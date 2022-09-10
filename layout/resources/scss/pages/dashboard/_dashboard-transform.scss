@@ -1,0 +1,46 @@
+// import here
+@use "../../costumize" as *;
+
+// DASHBOARD TRANSFORMATION AFTER SCROLLDOWN FROM SPECIFIC HEIGHTS
+.dashboard-transformation {
+
+    background-color: rgba($eukalyptus, 0.5)!important;
+
+    .sidebar, .section { background-color: rgba($white, 0)!important; overflow-y: hidden !important; }
+    .section-body { background-color: rgba($white, 0.5)!important; }
+
+    .content-header {
+        position: sticky;
+        top: 0;
+        z-index: 1200 !important;
+        border-radius: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        border-top: 1.5rem solid $white !important;
+
+        .col-2, .col-7, .col-3 {
+            padding-top: 0.75rem !important;
+            padding-bottom: 0 !important;
+        }
+
+        object { width: 50px !important; padding: 0 !important; }
+        .reason { display: none; } 
+        .header-section { display: none; }
+        .header-left { display: none; }
+
+        .header-icons { margin: 0 !important; padding: 0 !important; }
+        .header-right { 
+            position: absolute;
+            top: 1.5rem; right: 1.5rem;
+        }
+    }
+
+    .section-green {
+        .alert-success { background-color: $success !important; }
+    }
+
+    .section-transparent {
+        .alert-light { background-color: transparent !important; }
+    }
+
+}

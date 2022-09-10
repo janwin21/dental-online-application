@@ -1,0 +1,16 @@
+// import bootstrap
+@use 'costumize';
+
+// import all files from components
+@use './component/mixins';
+@use './component/typography';
+@use './component/navbar';
+@use './component/controls';
+@use './component/modal';
+
+// import all files from dashboard
+@use './pages/dashboard/sidebar';
+@use './pages/dashboard/content-header';
+@use './pages/dashboard/content-body';
+@use './pages/dashboard/section';
+@use './pages/dashboard/dashboard-transform';
