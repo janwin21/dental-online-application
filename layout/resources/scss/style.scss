@@ -7,6 +7,7 @@
 @use './component/navbar';
 @use './component/controls';
 @use './component/modal';
+@use './component/inputs';
 
 // import all files from dashboard
 @use './pages/dashboard/sidebar';

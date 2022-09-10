@@ -32,7 +32,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- Script -->
-    <script src="../js/pages/dashboard.js"></script>
+    <script src="../js/components/transformation.js"></script>
+    <script src="../js/components/modal.js"></script>
     
 </head>
 <body>
@@ -81,11 +82,17 @@
             <div class="wrapper">
 
                 <!-- Medical History Section -->
-                <div class="text-center bg-light border border-light rounded hover-to-grayish px-2 py-4">
+                <div class="card-content text-center bg-light border border-light rounded hover-to-grayish px-2 py-4">
                     <object data="../svg/medical-history.svg"></object>
                     <h5 class="roboto my-3">Medical History</h5>
                     <p class="roboto weight-100 fs-xs">A record of information about a your personal health.</p>
-                    <a href="#" class="btn btn-success px-5 py-1 rounded-pill roboto text-light weight-500 hover-to-dark fs-xs shadow-none">Add</a>
+                    <a href="#"
+                    data-src="SRC_URL"
+                    data-title="Add Medical History"
+                    data-paragraph="You previous history are cannot be updated. Do you want to add new history for your new update?"
+                    data-color="bg-success"
+                    data-btn="Add"    
+                    class="modal-trigger btn btn-success px-5 py-1 rounded-pill roboto text-light weight-500 hover-to-dark fs-xs shadow-none">Add</a>
                 </div>
 
                 <div class="duty border border-0 px-2 pt-0 pb-2 mt-3 text-start">
@@ -129,13 +136,31 @@
                                 </div>
                                 
                                 <div class="header-right col-6 text-end">
-                                    <button class="btn border-0 outlined-hover-to-grayish m-0 ms-2 p-0">
+                                    <button
+                                    data-src="SRC_URL"
+                                    data-title="Add Patients"
+                                    data-paragraph="Do you want to add more patients?"
+                                    data-color="bg-success"
+                                    data-btn="Add"    
+                                    class="modal-trigger btn border-0 outlined-hover-to-grayish m-0 ms-2 p-0">
                                         <h4 class="m-0 p-0"><i class="fa-solid fa-hospital-user"></i></h4>
                                     </button>
-                                    <button class="btn border-0 outlined-hover-to-grayish m-0 ms-2 p-0">
+                                    <button
+                                    data-src="SRC_URL"
+                                    data-title="Update {{ nickname }}"
+                                    data-paragraph="Do you want to update {{ nickname }}'s patient information?"
+                                    data-color="bg-warning"
+                                    data-btn="Update"    
+                                    class="modal-trigger btn border-0 outlined-hover-to-grayish m-0 ms-2 p-0">
                                         <h4 class="m-0 p-0"><i class="fa-solid fa-file-pen"></i></h4>
                                     </button>
-                                    <button class="btn border-0 outlined-hover-to-grayish m-0 ms-1 p-0">
+                                    <button
+                                    data-src="SRC_URL"
+                                    data-title="Delete Patient"
+                                    data-paragraph="Do you want to delete {{ nickname }}'s patient information?"
+                                    data-color="bg-danger"
+                                    data-btn="Delete"    
+                                    class="modal-trigger btn border-0 outlined-hover-to-grayish m-0 ms-1 p-0">
                                         <h4 class="m-0 p-0"><i class="fa-solid fa-trash"></i></h4>
                                     </button>
                                     <button class="btn border-0 outlined-hover-to-grayish m-0 ms-2 p-0">
@@ -593,15 +618,21 @@
             <div class="wrapper">
 
                 <!-- X-ray Section -->
-                <div class="text-center border border-light bg-light rounded hover-to-grayish px-2 py-4">
+                <div class="card-content text-center border border-light bg-light rounded hover-to-grayish px-2 py-4">
                     <object data="../svg/x-ray.svg"></object>
                     <h5 class="roboto my-3">X-ray</h5>
                     <p class="roboto weight-100 fs-xs">Examine the structure of your teeth for precise consultation.</p>
-                    <a href="#" class="btn btn-success px-5 py-1 rounded-pill roboto text-light weight-500 hover-to-dark fs-xs shadow-none">Add</a>
+                    <a href="#"
+                    data-src="SRC_URL"
+                    data-title="Add X-Ray Examination"
+                    data-paragraph="You previous examination are cannot be updated. Do you want to add new examination for your new update?"
+                    data-color="bg-success"
+                    data-btn="Add"    
+                    class="modal-trigger btn btn-success px-5 py-1 rounded-pill roboto text-light weight-500 hover-to-dark fs-xs shadow-none">Add</a>
                 </div>
 
                 <!-- Navigations -->
-                <div class="navigation-section mt-3">
+                <div class="duty navigation-section mt-3">
 
                     <!-- User Lists -->
                     <p class="roboto ms-2 fs-xs weight-600 text-grayish">Dentist on Duty</p>
@@ -624,19 +655,22 @@
     </div>
     </div>
 
-    <div class="modal-section modal-dialog-centered text-center">
-        <div class="modal-dialog w-25">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal-section fade modal-dialog-centered text-center">
+        <div class="modal-dialog w-25 rounded-top">
+            <div class="modal-content bg-light rounded-top">
+            <div class="modal-header-box bg-danger text-center py-3 rounded-top">
+                <h5 class="modal-title d-block text-light" id="exampleModalLabel">notificationMessage</h5>
+                <p class="d-block p-0 m-0 fs-sm text-light">Mouth Masters - Dental Clinic</p>
+                <button class="btn btn-danger close-btn shadow-none border border-none border-0"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <div class="modal-body">
-                ...
+            <div class="modal-body p-3">
+                <p class="modal-paragraph fs-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+            <div class="modal-footer p-2">
+                <button type="button" class="btn cancel-btn btn-secondary px-4 py-1 shadow-none hover-to-dark" data-bs-dismiss="modal">Cancel</button>
+                <form action="#" method="POST">
+                    <button type="submit" class="btn btn-danger ms-2 px-4 py-1 shadow-none hover-to-dark border-light">Delete</button>
+                </form>
             </div>
             </div>
         </div>

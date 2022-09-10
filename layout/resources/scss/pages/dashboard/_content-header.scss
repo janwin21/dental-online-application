@@ -15,4 +15,9 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
+
+    &.no-information { 
+        background-image: none !important; 
+        background-color: $light !important;
+    }
 }
