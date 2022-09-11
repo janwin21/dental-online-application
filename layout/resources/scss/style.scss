@@ -16,3 +16,6 @@
 @use './pages/dashboard/content-body';
 @use './pages/dashboard/section';
 @use './pages/dashboard/dashboard-transform';
+
+// import all files from editors
+@use './pages/editors/intraoral';

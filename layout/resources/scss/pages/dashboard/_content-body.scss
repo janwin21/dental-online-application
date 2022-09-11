@@ -5,5 +5,10 @@
 // DASHBOARD MAIN CONTENT
 .container-wrapper {
     @include transition-to-all-25;
-    .section-body { @include transition-to-all-25; }   
+
+    .section-body { 
+        @include transition-to-all-25; 
+
+        object { height: 75px !important; }
+    }   
 }
