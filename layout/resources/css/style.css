@@ -10843,6 +10843,10 @@ textarea.form-control-lg {
   background-color: #f8f9fa !important;
 }
 
+.bg-light-grayish {
+  background-color: #e9ecef !important;
+}
+
 .outlined-hover-to-success {
   transition: all 0.25s ease-out;
 }
@@ -10913,6 +10917,9 @@ input, textarea {
 .sidebar object {
   width: 125px !important;
 }
+.sidebar .intraoral-acronym {
+  font-size: 4.5em !important;
+}
 
 .content-header {
   background-image: linear-gradient(to right, #33AB5F, #3eb489) !important;
@@ -10940,6 +10947,9 @@ input, textarea {
 .container-wrapper .section-body {
   transition: all 0.25s ease-out;
 }
+.container-wrapper .section-body object {
+  height: 75px !important;
+}
 
 .section {
   height: 100vh;
@@ -10959,6 +10969,11 @@ input, textarea {
 }
 .section .wrapper {
   direction: ltr;
+}
+.section .intraoral-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .dashboard-transformation {
@@ -11015,6 +11030,16 @@ input, textarea {
 }
 .dashboard-transformation .section-transparent .alert-light {
   background-color: transparent !important;
+}
+
+.intraoral table img {
+  width: 2em !important;
+  height: 2em !important;
+}
+.intraoral table input[type=text] {
+  transition: all 0.25s ease-out;
+  height: 1.5em !important;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */

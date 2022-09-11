@@ -23,4 +23,10 @@
     .wrapper {
         direction:ltr;
     }
+
+    .intraoral-name { 
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
