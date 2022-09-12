@@ -11042,4 +11042,15 @@ input, textarea {
   cursor: pointer;
 }
 
+.logbook table tr th, .logbook table tr td {
+  padding: 0;
+  margin: 0;
+}
+.logbook table tr th {
+  border: 1px solid black;
+}
+.logbook table tr:nth-child(odd):not(tr:first-child) {
+  background-color: #dee2e6 !important;
+}
+
 /*# sourceMappingURL=style.css.map */

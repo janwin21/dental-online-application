@@ -1,4 +1,4 @@
-<!-- APPOINTMENT FORM -->
+<!-- LOGBOOK FORM -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -109,26 +109,78 @@
         </div>
     
         <!-- Main Content -->
-        <div class="col-7 p-4">
+        <div class="col-10 p-4">
 
             <!-- Content Information -->
             <div class="form-information content-information">
 
                 <div class="section-title bg-success rounded-top px-4 py-4 text-center">
-                    <h5 class="roboto text-light-gray weight-600 m-0 mt-3 p-0">Dental Clinic Form</h5>
+                    <h5 class="roboto text-light-gray weight-600 m-0 mt-3 p-0">Dental Clinic Logbook</h5>
                     <p class="roboto text-light-gray weight-500">Mouth Master - Dental Clinic</p>
                 </div>
 
-                <form action="#" method="POST">
-
-                <div class="section-body bg-light p-5">
+                <div class="section-body bg-light px-3 py-5">
                     <div class="row">
                         
-                        <div class="col-12">
-                            <p class="roboto text-grayish weight-600 fs-sm pt-0 mt-0"><i class="fa-solid fa-calendar-check me-2"></i>Appointment</p>
+                        <!-- First Row -->
+                        <div class="mt-4 col-2 text-end">
+                            <p class="roboto text-grayish weight-600 fs-sm pt-0 mt-0"><i class="fa-solid fa-user me-2"></i>Name: </p>
+                        </div>
+                        
+                        <div class="mt-4 col-5">
+                            <p class="roboto text-dark weight-600 fs-sm pt-0 mt-0">last_name, first_name, mi.</p>
+                        </div>
+                        
+                        <div class="mt-4 col-1 text-end">
+                            <p class="roboto text-grayish weight-600 fs-sm pt-0 mt-0">Age: </p>
+                        </div>
+                        
+                        <div class="mt-4 col-1">
+                            <p class="roboto text-dark weight-600 fs-sm pt-0 mt-0">21</p>
+                        </div>
+                        
+                        <div class="mt-4 col-1 text-end">
+                            <p class="roboto text-grayish weight-600 fs-sm pt-0 mt-0">Sex: </p>
+                        </div>
+                        
+                        <div class="mt-4 col-2">
+                            <p class="roboto text-dark weight-600 fs-sm pt-0 mt-0">M</p>
                         </div>
 
-                        <!-- First Row -->
+                        <!-- Second Row Table -->
+                        <div class="col-12 mt-3">
+                            <div class="logbook w-100 pb-4">
+                                <table>
+                                    <tr class="py-0 my-0 text-center bg-success">
+                                        <th width="10%"><p class="text-dark roboto weight-600 m-1 p-0">DATE</p></th>
+                                        <th width="7%"><p class="text-dark roboto weight-600 m-1 p-0">TOOTH NO./S</p></th>
+                                        <th width="15%"><p class="text-dark roboto weight-600 m-1 p-0">PROCEDURE</p></th>
+                                        <th width="15%"><p class="text-dark roboto weight-600 m-1 p-0">DENTIST/S</p></th>
+                                        <th width="7%"><p class="text-dark roboto weight-600 m-1 p-0">AMOUNT CHARGE</p></th>
+                                        <th width="7%"><p class="text-dark roboto weight-600 m-1 p-0">AMOUNT PAID</p></th>
+                                        <th width="7%"><p class="text-dark roboto weight-600 m-1 p-0">BALANCE</p></th>
+                                        <th><p class="text-dark roboto weight-600 m-1 p-0">NEXT APPOINTMENT</p></th>
+                                        <th><p class="text-dark roboto weight-600 m-1 p-0">EDIT</p></th>
+                                    </tr>
+                                    <tr class="py-0 my-0 text-start">
+                                        <td class="py-2" width="10%"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">MM/DD/YYYY</p></td>
+                                        <td class="py-2" width="7%"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">00</p></td>
+                                        <td class="py-2"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p></td>
+                                        <td class="py-2" width="15%"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">last_name, first_name, mi.</p></td>
+                                        <td class="py-2" width="7%"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">P00.00</p></td>
+                                        <td class="py-2" width="7%"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">P00.00</p></td>
+                                        <td class="py-2" width="7%"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">P00.00</p></td>
+                                        <td class="py-2" width="20%"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">MM/DD/YYYY HH:SS:AM-HH:SS:AM</p></td>
+                                        <td class="text-end py-2 pe-2" width="20%">
+                                            <button class="btn btn-danger hover-to-dark text-light rounded px-2 py-1"><i class="fa-solid fa-trash"></i></button>
+                                            <button class="btn btn-warning hover-to-dark text-light rounded px-2 py-1"><i class="fa-solid fa-pen-to-square"></i></button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- First Row 
                         <div class="col-3 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="tooth_no">Tooth No./s <strong class="text-danger ms-1">*</strong></label>
                             <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="number" name="tooth_no">
@@ -137,59 +189,10 @@
                         <div class="col-9 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="procedure">Procedure <strong class="text-danger ms-1">*</strong></label>
                             <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="text" name="procedure">
-                        </div>
-
-                        <!-- Second Row -->
-                        <div class="col-4 mt-4 mb-3">
-                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="charge">Amount Charge <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="number" step="0.01" name="charge">
-                        </div>
-                        
-                        <div class="col-4 mt-4 mb-3">
-                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="paid">Amount Paid <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="number" step="0.01" name="paid">
-                        </div>
-                        
-                        <div class="col-4 mt-4 mb-3">
-                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="balance">Balance <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="number" step="0.01" name="balance">
-                        </div>
-
-                        <!-- Third Row -->
-                        <div class="col-4 mt-4 mb-3">
-                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="appointment">Next Appointment <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="date" name="appointment">
-                        </div>
-                        
-                        <div class="col-4 mt-4 mb-3">
-                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="start_time">Start Time <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="time" name="start_time">
-                        </div>
-                        
-                        <div class="col-4 mt-4 mb-3">
-                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="end_time">End Time <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="time" name="end_time">
-                        </div>
+                        </div>-->
 
                     </div>
                 </div>
-
-                <div class="section-body bg-light p-5 pt-4 border-top border-1 border-secondary">
-                    <div class="row">
-
-                        <p class="text-grayish roboto weight-600 fs-xs date-p">Month DD, YYYY</p>
-
-                        <!-- Ninth Row -->
-                        <div class="col-12 mt-0 d-flex flex-column text-end">
-                            <div class="text-end">
-                                <button type="submit" class="w-25 btn btn-success text-light hover-to-dark px-4 py-1">Confirm</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                </form>
 
             </div>
 
@@ -227,46 +230,6 @@
 
                 </div>
             </footer>
-
-        </div>
-    
-        <!-- Section -->
-        <div class="section col-3 bg-light py-4 sticky-top">
-
-            <div class="wrapper">
-
-                <!-- X-ray Section -->
-                <div class="card-content text-center border border-light bg-light rounded hover-to-grayish px-2 py-4">
-                    <object data="../svg/x-ray.svg"></object>
-                    <h5 class="roboto my-3">X-ray</h5>
-                    <p class="roboto weight-100 fs-xs">Examine the structure of your teeth for precise consultation.</p>
-                    <a href="#"
-                    data-src="SRC_URL"
-                    data-title="Add X-Ray Examination"
-                    data-paragraph="You previous examination are cannot be updated. Do you want to add new examination for your new update?"
-                    data-color="bg-success"
-                    data-btn="Add"    
-                    class="modal-trigger btn btn-success px-5 py-1 rounded-pill roboto text-light weight-500 hover-to-dark fs-xs shadow-none">Add</a>
-                </div>
-
-                <!-- Navigations -->
-                <div class="duty navigation-section mt-3">
-
-                    <!-- User Lists -->
-                    <p class="roboto ms-2 fs-xs weight-600 text-grayish">Dentist on Duty</p>
-                    <a class="btn btn-light w-100 text-start shadow-none my-2" href="#"><i class="fa-solid fa-user-tie me-2 text-dark fs-sm"></i>dentist_name denstist name</a>
-                    <a class="btn btn-light w-100 text-start shadow-none my-2" href="#"><i class="fa-solid fa-user-tie me-2 text-dark fs-sm"></i>dentist_name denstist name</a>
-                    
-                    <!-- Personnel List -->
-                    <p class="roboto ms-2 mt-4 fs-xs weight-600 text-grayish">Personnel on Duty</p>
-                    <a class="btn btn-light w-100 text-start shadow-none my-2" href="#"><i class="fa-solid fa-user-tie me-2 text-dark fs-sm"></i>personnel denstist name</a>
-                    <a class="btn btn-light w-100 text-start shadow-none my-2" href="#"><i class="fa-solid fa-user-tie me-2 text-dark fs-sm"></i>personnel denstist name</a>
-                    <a class="btn btn-light w-100 text-start shadow-none my-2" href="#"><i class="fa-solid fa-user-tie me-2 text-dark fs-sm"></i>personnel denstist name</a>
-                    <a class="btn btn-light w-100 text-start shadow-none my-2" href="#"><i class="fa-solid fa-user-tie me-2 text-dark fs-sm"></i>personnel denstist name</a>
-
-                </div>
-
-            </div>
 
         </div>
 

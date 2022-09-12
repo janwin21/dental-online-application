@@ -1,4 +1,4 @@
-<!-- APPOINTMENT FORM -->
+<!-- DASHBOARD WITH NO DATA -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,6 +35,8 @@
     <script src="../js/components/transformation.js"></script>
     <script src="../js/components/modal.js"></script>
     <script src="../js/pages/form.js"></script>
+    <script src="../js/model/calendar.js"></script>
+    <script src="../js/pages/calendar-form.js"></script>
     
 </head>
 <body>
@@ -112,84 +114,46 @@
         <div class="col-7 p-4">
 
             <!-- Content Information -->
-            <div class="form-information content-information">
+            <div class="content-information">
 
-                <div class="section-title bg-success rounded-top px-4 py-4 text-center">
-                    <h5 class="roboto text-light-gray weight-600 m-0 mt-3 p-0">Dental Clinic Form</h5>
-                    <p class="roboto text-light-gray weight-500">Mouth Master - Dental Clinic</p>
+                <div class="section-title bg-success rounded-top px-4 py-2">
+                    <h6 class="roboto text-light-gray weight-600 m-0 p-0"><i class="fa-solid fa-circle-info me-2"></i>Information</h6>
                 </div>
 
-                <form action="#" method="POST">
-
-                <div class="section-body bg-light p-5">
+                <div class="section-title bg-light rounded-top px-4 py-2">
                     <div class="row">
                         
-                        <div class="col-12">
-                            <p class="roboto text-grayish weight-600 fs-sm pt-0 mt-0"><i class="fa-solid fa-calendar-check me-2"></i>Appointment</p>
+                        <div class="col-12 mt-5">
+                            <p class="roboto text-grayish weight-600 fs-sm pt-0 mt-0 date-p">Dental History</p>
                         </div>
 
-                        <!-- First Row -->
-                        <div class="col-3 mt-4 mb-3">
-                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="tooth_no">Tooth No./s <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="number" name="tooth_no">
-                        </div>
-                        
-                        <div class="col-9 mt-4 mb-3">
-                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="procedure">Procedure <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="text" name="procedure">
-                        </div>
-
-                        <!-- Second Row -->
-                        <div class="col-4 mt-4 mb-3">
-                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="charge">Amount Charge <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="number" step="0.01" name="charge">
-                        </div>
-                        
-                        <div class="col-4 mt-4 mb-3">
-                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="paid">Amount Paid <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="number" step="0.01" name="paid">
-                        </div>
-                        
-                        <div class="col-4 mt-4 mb-3">
-                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="balance">Balance <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="number" step="0.01" name="balance">
-                        </div>
-
-                        <!-- Third Row -->
-                        <div class="col-4 mt-4 mb-3">
-                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="appointment">Next Appointment <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="date" name="appointment">
-                        </div>
-                        
-                        <div class="col-4 mt-4 mb-3">
-                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="start_time">Start Time <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="time" name="start_time">
-                        </div>
-                        
-                        <div class="col-4 mt-4 mb-3">
-                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="end_time">End Time <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="time" name="end_time">
+                        <div class="calendar col-12 mb-5">
+                            <table class="w-100">
+                                <tr>
+                                    <th class="text-center"><p class="text-success roboto">SUN</p></th>
+                                    <th class="text-center"><p class="text-success roboto">MON</p></th>
+                                    <th class="text-center"><p class="text-success roboto">TUE</p></th>
+                                    <th class="text-center"><p class="text-success roboto">WED</p></th>
+                                    <th class="text-center"><p class="text-success roboto">THU</p></th>
+                                    <th class="text-center"><p class="text-success roboto">FRI</p></th>
+                                    <th class="text-center"><p class="text-success roboto">SAT</p></th>
+                                </tr>
+                                <!--
+                                <tr>
+                                    <td class="text-center"><p class="text-dark roboto">00</p></td>
+                                    <td class="text-center"><p class="text-dark roboto">00</p></td>
+                                    <td class="text-center"><p class="text-dark roboto">00</p></td>
+                                    <td class="text-center"><p class="text-dark roboto">00</p></td>
+                                    <td class="text-center"><p class="text-dark roboto">00</p></td>
+                                    <td class="text-center"><p class="text-dark roboto">00</p></td>
+                                    <td class="text-center"><p class="text-dark roboto">00</p></td>
+                                </tr>
+                                -->
+                            </table>
                         </div>
 
                     </div>
                 </div>
-
-                <div class="section-body bg-light p-5 pt-4 border-top border-1 border-secondary">
-                    <div class="row">
-
-                        <p class="text-grayish roboto weight-600 fs-xs date-p">Month DD, YYYY</p>
-
-                        <!-- Ninth Row -->
-                        <div class="col-12 mt-0 d-flex flex-column text-end">
-                            <div class="text-end">
-                                <button type="submit" class="w-25 btn btn-success text-light hover-to-dark px-4 py-1">Confirm</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                </form>
 
             </div>
 
