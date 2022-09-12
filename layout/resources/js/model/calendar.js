@@ -19,7 +19,7 @@ function Calendar(parent, year, month) {
 
         for(let i = 1; i <= this.getDays(); i++) {
     
-            if(calendar_arr.length == 0 && row.length < this.getFirstDay()) {
+            if(calendar_arr.length == 0 && row.length <= this.getFirstDay()) {
                 row.push(0);
                 i--;
             } else {
@@ -92,8 +92,6 @@ function Calendar(parent, year, month) {
             
             arr.forEach((element, i) => {
 
-                console.log(this.year, this.date.getFullYear());
-
                 const today = this.year == this.date.getFullYear() && element == this.date.getDate();
 
                 const date = (element != 0) ? element : (index == 0) ? 
@@ -101,7 +99,7 @@ function Calendar(parent, year, month) {
                 
                 const month = (element != 0) ? this.month : (index == 0) ? this.month - 1 : this.month + 1;
                 
-                tdText += this.tdTemplate
+                if(map[0] != this.daySize) tdText += this.tdTemplate
                     .replaceAll('{{ dd }}', (date.toString().length == 2) ? date : `0${date}`)
                     .replace('{{ yyyy }}', this.year)
                     .replace('{{ mm }}', month)
@@ -109,7 +107,6 @@ function Calendar(parent, year, month) {
                     .replace('{{ css }}', today ? 'text-light' : (element != 0) ? 'text-dark' : 'text-danger');
 
             });
-
             
             trText += `<tr>${ tdText }</tr>`;
 
@@ -132,8 +129,7 @@ function Calendar(parent, year, month) {
     this.setAnchorEvent = () => {
         $('.date-a').click(event => {
             let { year, month, date } = event.currentTarget.dataset;
-            this.dateNo = date;
-            this.setDate(year, month, date);
+            this.setDate(parseInt(year), parseInt(month), parseInt(date));
         });
     };
 
@@ -151,6 +147,13 @@ function Calendar(parent, year, month) {
 
     this.incrementYear = (value) => { 
         this.year += parseInt(value);
+        this.generateCalendarArray();
+        this.setDetails();
+        this.setAnchorEvent();
+    };
+
+    this.setMonth = (index) => { 
+        this.month = parseInt(index);
         this.generateCalendarArray();
         this.setDetails();
         this.setAnchorEvent();
