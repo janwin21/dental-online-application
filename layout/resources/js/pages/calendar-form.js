@@ -22,5 +22,10 @@ $(document).ready(() => {
     calendar.generateCalendarArray();
     calendar.setDetails();
     calendar.setCurrentDate();
+    calendar.setAnchorEvent();
+
+    $('.year-btn').click(event => {
+        calendar.incrementYear(event.currentTarget.dataset.value);
+    });
 
 });

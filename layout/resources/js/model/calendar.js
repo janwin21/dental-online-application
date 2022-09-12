@@ -59,12 +59,30 @@ function Calendar(parent, year, month) {
 
     // setting templates and details
     this.tdTemplate = `<td class="text-center">
-        <a class="text-dark roboto btn btn-light hover-to-grayish px-3 py-4 rounded shadow-none" href="#">
+        <button class="date-a roboto btn btn-{{ color }} {{ css }} hover-to-grayish px-3 py-4 rounded shadow-none" data-year="{{ yyyy }}" data-month="{{ mm }}" data-date="{{ dd }}">
             {{ dd }}
-        </a>
+        </button>
     </td>`;
 
+    this.tableHeader = `
+        <tr>
+            <th class="text-center"><p class="text-success roboto">SUN</p></th>
+            <th class="text-center"><p class="text-success roboto">MON</p></th>
+            <th class="text-center"><p class="text-success roboto">TUE</p></th>
+            <th class="text-center"><p class="text-success roboto">WED</p></th>
+            <th class="text-center"><p class="text-success roboto">THU</p></th>
+            <th class="text-center"><p class="text-success roboto">FRI</p></th>
+            <th class="text-center"><p class="text-success roboto">SAT</p></th>
+        </tr>
+    `;
+
+    this.yearDisplay = $('.year-display');
+
     this.setDetails = () => {
+
+        this.yearDisplay.find('h2').html(this.year);
+        
+        let trText = '';
        
         this.calendar_arr.forEach((arr, index) => {
 
@@ -73,24 +91,69 @@ function Calendar(parent, year, month) {
             const map = arr.reduce((cnt, cur) => (cnt[cur] = cnt[cur] + 1 || 1, cnt), {});
             
             arr.forEach((element, i) => {
+
+                console.log(this.year, this.date.getFullYear());
+
+                const today = this.year == this.date.getFullYear() && element == this.date.getDate();
+
+                const date = (element != 0) ? element : (index == 0) ? 
+                    (this.getDaysOfPrevMonth() - map[0] + 1 + i) : ++count;
+                
+                const month = (element != 0) ? this.month : (index == 0) ? this.month - 1 : this.month + 1;
                 
                 tdText += this.tdTemplate
-                    .replace('{{ dd }}', (element != 0) ? element : 
-                        (index == 0) ? (this.getDaysOfPrevMonth() - map[0] + 1 + i) : ++count);
+                    .replaceAll('{{ dd }}', (date.toString().length == 2) ? date : `0${date}`)
+                    .replace('{{ yyyy }}', this.year)
+                    .replace('{{ mm }}', month)
+                    .replace('{{ color }}', today ? 'success' : 'light')
+                    .replace('{{ css }}', today ? 'text-light' : (element != 0) ? 'text-dark' : 'text-danger');
 
-                console.log(this.year == this.date.getFullYear() && element == this.date.getDate());
             });
 
-            this.parent.html(`${ this.parent.html() }<tr>${ tdText }</tr>`);
+            
+            trText += `<tr>${ tdText }</tr>`;
 
         });
+        
+        this.parent.html(this.tableHeader + trText);
 
     };
 
-    this.setCurrentDate = () => {
+    this.setCurrentDate = () => { 
+        this.date = new Date(); 
+        this.displayDate() 
+    };
+
+    this.setDate = (year, month, date) => { 
+        this.date = new Date(year, month, date); 
+        this.displayDate() 
+    };
+
+    this.setAnchorEvent = () => {
+        $('.date-a').click(event => {
+            let { year, month, date } = event.currentTarget.dataset;
+            this.dateNo = date;
+            this.setDate(year, month, date);
+        });
+    };
+
+    this.displayDate = () => {
+        let month = this.months[this.date.getMonth()];
+        let date = this.date.getDate();
+        let year = this.date.getFullYear();
+
         $('.date-p').text(
-            `${this.months[this.date.getMonth()]}, ${this.date.getDate()} ${this.date.getFullYear()}`
+            `${month}, 
+            ${(date.toString().length == 2) ? date : `0${date}`} 
+            ${year}`
         );
+    }
+
+    this.incrementYear = (value) => { 
+        this.year += parseInt(value);
+        this.generateCalendarArray();
+        this.setDetails();
+        this.setAnchorEvent();
     };
 
 }
