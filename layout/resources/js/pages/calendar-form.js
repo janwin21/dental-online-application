@@ -3,7 +3,7 @@
 
 $(document).ready(() => {
 
-    const calendar = new Calendar($('.calendar table'), 2022, 11);
+    const calendar = new Calendar($('.calendar table'), 2022, 8);
 
     let date = calendar.getDate();
     let months = calendar.getMonths();
@@ -21,5 +21,6 @@ $(document).ready(() => {
 
     calendar.generateCalendarArray();
     calendar.setDetails();
+    calendar.setCurrentDate();
 
 });

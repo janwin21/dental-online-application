@@ -3,6 +3,8 @@
 
 function Calendar(parent, year, month) {
     this.parent = parent;
+    this.year = year;
+    this.month = month;
 
     this.daySize = 7;
     this.date = new Date();
@@ -47,35 +49,48 @@ function Calendar(parent, year, month) {
     this.getMonths = () => { return this.months; };
 
     // get the days from specific year & month 
-    this.getDays = () => { return this.date.getDays(year, month); };
-    this.getDaysOfPrevMonth = () => { return this.date.getDays(year, month - 1); };
-    this.getDaysOfNextMonth = () => { return this.date.getDays(year, month + 1); };
+    this.getDays = () => { return this.date.getDays(this.year, this.month); };
+    this.getDaysOfPrevMonth = () => { return this.date.getDays(this.year, this.month - 1); };
 
     // get the first day from specific year & month (day_index)
-    this.getFirstDay = () => { return this.date.getFirstDay(year, month); };
+    this.getFirstDay = () => { return this.date.getFirstDay(this.year, this.month); };
     
     this.getGenerateCalendarArray = () => { return this.calendar_arr };
 
     // setting templates and details
-    this.tdTemplate = `<td class="text-center"><p class="text-dark roboto">{{ dd }}</p></td>`;
+    this.tdTemplate = `<td class="text-center">
+        <a class="text-dark roboto btn btn-light hover-to-grayish px-3 py-4 rounded shadow-none" href="#">
+            {{ dd }}
+        </a>
+    </td>`;
 
     this.setDetails = () => {
        
-        this.calendar_arr.forEach(arr => {
+        this.calendar_arr.forEach((arr, index) => {
 
             let tdText = '';
+            let count = 0;
             const map = arr.reduce((cnt, cur) => (cnt[cur] = cnt[cur] + 1 || 1, cnt), {});
             
             arr.forEach((element, i) => {
-                console.log(this.getDaysOfPrevMonth(), i, map[0]);
-                tdText += this.tdTemplate.replace('{{ dd }}', (element != 0) ? element : this.getDaysOfPrevMonth() - map[0] + 1 + i);
+                
+                tdText += this.tdTemplate
+                    .replace('{{ dd }}', (element != 0) ? element : 
+                        (index == 0) ? (this.getDaysOfPrevMonth() - map[0] + 1 + i) : ++count);
 
+                console.log(this.year == this.date.getFullYear() && element == this.date.getDate());
             });
 
             this.parent.html(`${ this.parent.html() }<tr>${ tdText }</tr>`);
 
         });
 
+    };
+
+    this.setCurrentDate = () => {
+        $('.date-p').text(
+            `${this.months[this.date.getMonth()]}, ${this.date.getDate()} ${this.date.getFullYear()}`
+        );
     };
 
 }
