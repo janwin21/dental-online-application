@@ -1,4 +1,4 @@
-// INTRAORAL SELECTION SCRIPT
+// INTRAORAL SELECTION MODEL
 'use strict';
 
 function IntraoralSelection(parent, settings) {

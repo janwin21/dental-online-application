@@ -35,6 +35,7 @@
     <script src="../js/components/transformation.js"></script>
     <script src="../js/components/modal.js"></script>
     <script src="../js/model/calendar.js"></script>
+    <script src="../js/model/appointment.js"></script>
     <script src="../js/pages/calendar-form.js"></script>
     
 </head>
@@ -117,7 +118,7 @@
             <div class="content-information">
 
                 <div class="section-title bg-success rounded-top px-4 py-2">
-                    <h6 class="roboto text-light-gray weight-600 m-0 p-0"><i class="fa-solid fa-circle-info me-2"></i>Information</h6>
+                    <h6 class="roboto text-light-gray weight-600 m-0 p-0"><i class="fa-solid fa-calendar me-2"></i></i>Calendar</h6>
                 </div>
 
                 <div class="section-title bg-light rounded-top px-4 py-2">
@@ -236,33 +237,24 @@
             <div class="wrapper">
 
                 <!-- X-ray Section -->
-                <div class="card-content text-center border border-light bg-light rounded hover-to-grayish px-2 py-4">
-                    <object data="../svg/x-ray.svg"></object>
-                    <h5 class="roboto my-3">X-ray</h5>
-                    <p class="roboto weight-100 fs-xs">Examine the structure of your teeth for precise consultation.</p>
-                    <a href="#"
-                    data-src="SRC_URL"
-                    data-title="Add X-Ray Examination"
-                    data-paragraph="You previous examination are cannot be updated. Do you want to add new examination for your new update?"
-                    data-color="bg-success"
-                    data-btn="Add"    
-                    class="modal-trigger btn btn-success px-5 py-1 rounded-pill roboto text-light weight-500 hover-to-dark fs-xs shadow-none">Add</a>
+                <div class="card-content text-center border border-light bg-light rounded px-2 py-4">
+                    <object data="../svg/appointment.svg"></object>
+                    <h5 class="roboto my-3">Appointment</h5>
+                    <p class="roboto weight-100 fs-xs">Patients who have an appointment from the selected date will apper here.</p>
                 </div>
 
                 <!-- Navigations -->
-                <div class="duty navigation-section mt-3">
+                <div class="duty navigation-section appointment mt-3">
 
-                    <!-- User Lists -->
-                    <p class="roboto ms-2 fs-xs weight-600 text-grayish">Dentist on Duty</p>
-                    <a class="btn btn-light w-100 text-start shadow-none my-2" href="#"><i class="fa-solid fa-user-tie me-2 text-dark fs-sm"></i>dentist_name denstist name</a>
-                    <a class="btn btn-light w-100 text-start shadow-none my-2" href="#"><i class="fa-solid fa-user-tie me-2 text-dark fs-sm"></i>dentist_name denstist name</a>
-                    
-                    <!-- Personnel List -->
-                    <p class="roboto ms-2 mt-4 fs-xs weight-600 text-grayish">Personnel on Duty</p>
-                    <a class="btn btn-light w-100 text-start shadow-none my-2" href="#"><i class="fa-solid fa-user-tie me-2 text-dark fs-sm"></i>personnel denstist name</a>
-                    <a class="btn btn-light w-100 text-start shadow-none my-2" href="#"><i class="fa-solid fa-user-tie me-2 text-dark fs-sm"></i>personnel denstist name</a>
-                    <a class="btn btn-light w-100 text-start shadow-none my-2" href="#"><i class="fa-solid fa-user-tie me-2 text-dark fs-sm"></i>personnel denstist name</a>
-                    <a class="btn btn-light w-100 text-start shadow-none my-2" href="#"><i class="fa-solid fa-user-tie me-2 text-dark fs-sm"></i>personnel denstist name</a>
+                    <!-- Appointed User Lists -->
+                    <p class="roboto ms-2 fs-xs weight-600 text-grayish">Appointed Patients</p>
+
+                    <!-- Empty Appointed Items -->
+                    <div class="btn bg-light-grayish w-100 text-start shadow-none my-2 hover-to-grayish" href="#">
+                        <div class="row m-0 px-2 py-3">
+                            <p class="col-10 m-0 p-0 roboto text-wrap fs-sm"><i class="fa-solid fa-hourglass me-3"></i>No Appointment Available</p>
+                        </div>
+                    </div>
 
                 </div>
 
@@ -294,5 +286,56 @@
         </div>
     </div>
 
+    <script>
+        
+        const appointmentSettings = [
+            {
+                route: 1,
+                name: 'last_name, first_name, mi. 1',
+                done: true,
+                color: 'blue',
+                date: '2022-09-09',
+                startTime: '10:50 AM',
+                endTime: '1:30 PM'
+            },
+            {
+                route: 2,
+                name: 'last_name, first_name, mi. 2',
+                done: false,
+                color: 'indigo',
+                date: '2022-09-09',
+                startTime: '2:00 PM',
+                endTime: '3:00 PM'
+            },
+            {
+                route: 3,
+                name: 'last_name, first_name, mi. 3',
+                done: false,
+                color: 'yellow',
+                date: '2022-09-09',
+                startTime: '4:00 PM',
+                endTime: '6:00 PM'
+            },
+            {
+                route: 4,
+                name: 'last_name, first_name, mi. 4',
+                done: true,
+                color: 'indigo',
+                date: '2022-09-11',
+                startTime: '2:00 PM',
+                endTime: '3:00 PM'
+            },
+            {
+                route: 5,
+                name: 'last_name, first_name, mi. 5',
+                done: false,
+                color: 'yellow',
+                date: '2022-09-13',
+                startTime: '4:00 PM',
+                endTime: '6:00 PM'
+            }
+        ]
+
+    </script>
 </body>
 </html>

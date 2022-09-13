@@ -1,4 +1,4 @@
-// INTRAORAL TABLE SCRIPT
+// INTRAORAL TABLE MODEL
 'use strict';
 
 function IntraoralTable(parent, settings) {

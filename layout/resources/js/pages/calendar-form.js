@@ -1,12 +1,13 @@
-// FORM SCRIPT
+// CALENDAR FORM SCRIPT
 'use strict';
 
 $(document).ready(() => {
 
+    // CALENDAR & APPOINTMENT
     const calendar = new Calendar($('.calendar table'), 2022, 8);
+    const appointment = new Appointment($('.appointment'), appointmentSettings).generateAppointmentMap();
 
-    let date = calendar.getDate();
-    let months = calendar.getMonths();
+    calendar.setAppointment(appointment);
 
     // DATE class configuration
     Date.prototype.getDays= function(year, monthIndex) {
@@ -32,7 +33,12 @@ $(document).ready(() => {
         calendar.setMonth(event.currentTarget.dataset.index);
     });
 
-    console.log('January', new Date(2022, 1, 0).getDate());
-    console.log('February', new Date(2022, 2, 0).getDate());
+    /*
+    for (let [key, value] of Object.entries(appointment.getAppointmentMap())) {
+        let date1 = new Date(key);
+        let date2 = new Date();
+        console.log(appointment.compareDate(date1, date2), key, value);
+    }
+    */
 
 });

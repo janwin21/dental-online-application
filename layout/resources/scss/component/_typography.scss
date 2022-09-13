@@ -26,6 +26,9 @@
 .fs-sm { font-size: 0.95em !important; }
 .fs-xl { font-size: 4.5em !important; }
 
+// alignments
+.text-justify { text-align: justify !important; } 
+
 // colors
 .active { color: $mint-green !important; font-weight: 600 !important; }
 
@@ -37,3 +40,21 @@
 // background
 .bg-light-gray { background-color: $gray-100 !important; }
 .bg-light-grayish { background-color: $gray-200 !important; }
+
+// calendar color
+$opacity-color: 0.25;
+
+.bg-calendar-blue { background-color: rgba($blue, $opacity-color) !important; }
+.bg-calendar-indigo { background-color: rgba($indigo, $opacity-color) !important; }
+.bg-calendar-purple { background-color: rgba($purple, $opacity-color) !important; }
+.bg-calendar-pink { background-color: rgba($pink, $opacity-color) !important; }
+.bg-calendar-red { background-color: rgba($red, $opacity-color) !important; }
+.bg-calendar-orange { background-color: rgba($orange, $opacity-color) !important; }
+.bg-calendar-yellow { background-color: rgba($yellow, $opacity-color) !important; }
+.bg-calendar-green { background-color: rgba($green, $opacity-color) !important; }
+.bg-calendar-teal { background-color: rgba($teal, $opacity-color) !important; }
+.bg-calendar-cyan { background-color: rgba($cyan, $opacity-color) !important; }
+.bg-calendar-mint-green { background-color: rgba($mint-green, $opacity-color) !important; }
+.bg-calendar-eukalyptus { background-color: rgba($eukalyptus, $opacity-color) !important; }
+.bg-calendar-nature { background-color: rgba($nature, $opacity-color) !important; }
+.bg-calendar-gold { background-color: rgba($gold, $opacity-color) !important; }

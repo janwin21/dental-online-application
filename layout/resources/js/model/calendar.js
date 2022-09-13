@@ -1,4 +1,4 @@
-// FORM SCRIPT
+// CALENDAR MODEL
 'use strict';
 
 function Calendar(parent, year, month) {
@@ -8,6 +8,12 @@ function Calendar(parent, year, month) {
 
     this.daySize = 7;
     this.date = new Date();
+
+    // constants
+    this.mainDate = this.date.getDate();
+    this.mainMonth = this.date.getMonth();
+    this.mainYear = this.date.getFullYear();
+
     this.months = [ "January", "February", "March", "April", "May", "June", 
         "July", "August", "September", "October", "November", "December"];
 
@@ -59,7 +65,7 @@ function Calendar(parent, year, month) {
 
     // setting templates and details
     this.tdTemplate = `<td class="text-center">
-        <button class="date-a roboto btn btn-{{ color }} {{ css }} hover-to-grayish px-3 py-4 rounded shadow-none" data-year="{{ yyyy }}" data-month="{{ mm }}" data-date="{{ dd }}">
+        <button class="date-a roboto btn btn-{{ color }} {{ css }} hover-to-grayish px-3 py-4 rounded shadow-none" data-year="{{ yyyy }}" data-month="{{ mm }}" data-date="{{ dd }}" data-appoint="{{ formated-date }}">
             {{ dd }}
         </button>
     </td>`;
@@ -91,20 +97,31 @@ function Calendar(parent, year, month) {
             const map = arr.reduce((cnt, cur) => (cnt[cur] = cnt[cur] + 1 || 1, cnt), {});
             
             arr.forEach((element, i) => {
-
-                const today = this.year == this.date.getFullYear() && element == this.date.getDate();
+                const today = this.year == this.mainYear && 
+                              this.month == this.mainMonth && 
+                              element == this.mainDate;
 
                 const date = (element != 0) ? element : (index == 0) ? 
                     (this.getDaysOfPrevMonth() - map[0] + 1 + i) : ++count;
                 
                 const month = (element != 0) ? this.month : (index == 0) ? this.month - 1 : this.month + 1;
+                      
+                // appointment configure
+                const iMonth = month + 1;
+                const twoDigitDate = (date.toString().length == 2) ? date : `0${date}`;
+                const twoDigitMonth = (iMonth.toString().length == 2) ? iMonth : `0${iMonth}`;
+                const newDateFormat = `${this.year}-${twoDigitMonth}-${twoDigitDate}`;
                 
                 if(map[0] != this.daySize) tdText += this.tdTemplate
                     .replaceAll('{{ dd }}', (date.toString().length == 2) ? date : `0${date}`)
                     .replace('{{ yyyy }}', this.year)
                     .replace('{{ mm }}', month)
                     .replace('{{ color }}', today ? 'success' : 'light')
-                    .replace('{{ css }}', today ? 'text-light' : (element != 0) ? 'text-dark' : 'text-danger');
+                    .replace('{{ css }}', today ? 'text-light' : (element != 0) ? 'text-dark' : 'text-danger')
+                    .replace('{{ formated-date }}', newDateFormat);
+
+                //let newDate = new Date(newDateFormat);
+                //console.log(newDateFormat, appointmentMap[`${newDateFormat}`] ? true : false);
 
             });
             
@@ -128,8 +145,14 @@ function Calendar(parent, year, month) {
 
     this.setAnchorEvent = () => {
         $('.date-a').click(event => {
-            let { year, month, date } = event.currentTarget.dataset;
+            let { year, month, date, appoint } = event.currentTarget.dataset;
             this.setDate(parseInt(year), parseInt(month), parseInt(date));
+
+            if(this.appointment.getAppointmentMap()[appoint]) 
+                this.appointment.setDetails(appoint);
+            else
+                this.appointment.setDetails(0);
+            
         });
     };
 
@@ -158,5 +181,8 @@ function Calendar(parent, year, month) {
         this.setDetails();
         this.setAnchorEvent();
     };
+
+    // APOINTMENT
+    this.setAppointment = appointment => { this.appointment = appointment; };
 
 }
