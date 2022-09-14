@@ -1,0 +1,18 @@
+// import here
+@use "../../costumize" as *;
+@use "../../component/mixins" as *;
+
+// AUTH CONTENT
+.apply-wave {
+    position: fixed;
+    top: 0; left: 0;
+    height: 100vh !important;
+    z-index: -1 !important;
+
+    object {
+        position: fixed;
+        bottom: 0; left: 0;
+    }
+}
+
+.auth-bg-light { background-color: rgba($light, 0.5); }

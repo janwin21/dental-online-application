@@ -16,9 +16,13 @@
 @use './pages/dashboard/content-body';
 @use './pages/dashboard/section';
 @use './pages/dashboard/dashboard-transform';
+@use './pages/dashboard/calendar';
 
 // import all files from editors
 @use './pages/editors/intraoral';
 
 // import all files from logbook
 @use './pages/logbook/logbook';
+
+// import all files from auth
+@use './pages/auth/auth';

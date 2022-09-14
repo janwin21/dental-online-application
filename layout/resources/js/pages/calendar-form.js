@@ -33,12 +33,4 @@ $(document).ready(() => {
         calendar.setMonth(event.currentTarget.dataset.index);
     });
 
-    /*
-    for (let [key, value] of Object.entries(appointment.getAppointmentMap())) {
-        let date1 = new Date(key);
-        let date2 = new Date();
-        console.log(appointment.compareDate(date1, date2), key, value);
-    }
-    */
-
 });

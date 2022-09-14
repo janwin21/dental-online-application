@@ -10907,6 +10907,62 @@ textarea.form-control-lg {
   background-color: rgba(214, 167, 38, 0.25) !important;
 }
 
+.text-calendar-blue {
+  color: #0d6efd;
+}
+
+.text-calendar-indigo {
+  color: #6610f2;
+}
+
+.text-calendar-purple {
+  color: #6f42c1;
+}
+
+.text-calendar-pink {
+  color: #d63384;
+}
+
+.text-calendar-red {
+  color: #dc3545;
+}
+
+.text-calendar-orange {
+  color: #fd7e14;
+}
+
+.text-calendar-yellow {
+  color: #ffc107;
+}
+
+.text-calendar-green {
+  color: #198754;
+}
+
+.text-calendar-teal {
+  color: #20c997;
+}
+
+.text-calendar-cyan {
+  color: #0dcaf0;
+}
+
+.text-calendar-mint-green {
+  color: #3eb489;
+}
+
+.text-calendar-eukalyptus {
+  color: #33AB5F;
+}
+
+.text-calendar-nature {
+  color: #1a936f;
+}
+
+.text-calendar-gold {
+  color: #d6a726;
+}
+
 .outlined-hover-to-success {
   transition: all 0.25s ease-out;
 }
@@ -10935,6 +10991,14 @@ textarea.form-control-lg {
 .hover-to-grayish:hover {
   background-color: #e9ecef !important;
   border: 1px solid #e9ecef !important;
+}
+
+.hover-to-dark-gray {
+  transition: all 0.25s ease-out;
+}
+.hover-to-dark-gray:hover {
+  background-color: #343a40 !important;
+  border: 1px solid #343a40 !important;
 }
 
 .rm-outline {
@@ -11092,6 +11156,15 @@ input, textarea {
   background-color: transparent !important;
 }
 
+.calendar td {
+  position: relative;
+}
+.calendar td div {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
 .intraoral table img {
   width: 2em !important;
   height: 2em !important;
@@ -11111,6 +11184,23 @@ input, textarea {
 }
 .logbook table tr:nth-child(odd):not(tr:first-child) {
   background-color: #dee2e6 !important;
+}
+
+.apply-wave {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh !important;
+  z-index: -1 !important;
+}
+.apply-wave object {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.auth-bg-light {
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 /*# sourceMappingURL=style.css.map */

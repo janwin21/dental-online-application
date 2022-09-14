@@ -68,6 +68,9 @@ function Calendar(parent, year, month) {
         <button class="date-a roboto btn btn-{{ color }} {{ css }} hover-to-grayish px-3 py-4 rounded shadow-none" data-year="{{ yyyy }}" data-month="{{ mm }}" data-date="{{ dd }}" data-appoint="{{ formated-date }}">
             {{ dd }}
         </button>
+        <div class="w-100">
+            {{ icons }}
+        </div>
     </td>`;
 
     this.tableHeader = `
@@ -81,6 +84,8 @@ function Calendar(parent, year, month) {
             <th class="text-center"><p class="text-success roboto">SAT</p></th>
         </tr>
     `;
+
+    this.icon = `<i class="fa-solid fa-circle fs-xs text-calendar-{{ text-color }}"></i>`;
 
     this.yearDisplay = $('.year-display');
 
@@ -111,17 +116,31 @@ function Calendar(parent, year, month) {
                 const twoDigitDate = (date.toString().length == 2) ? date : `0${date}`;
                 const twoDigitMonth = (iMonth.toString().length == 2) ? iMonth : `0${iMonth}`;
                 const newDateFormat = `${this.year}-${twoDigitMonth}-${twoDigitDate}`;
+
+                let newDate = new Date(newDateFormat);
+                let appointMap = this.appointment.getAppointmentMap()[`${newDateFormat}`];
+                let iconText = '';
+
+                if(appointMap) {
+                    let count = 0;
+
+                    for (let [key, value] of Object.entries(appointMap)) {
+                        if(count >= 5) break;
+                        iconText += this.icon.replace('{{ text-color }}', value.color);
+                        count++;
+                    }
+
+                }
                 
+                // display output
                 if(map[0] != this.daySize) tdText += this.tdTemplate
                     .replaceAll('{{ dd }}', (date.toString().length == 2) ? date : `0${date}`)
                     .replace('{{ yyyy }}', this.year)
                     .replace('{{ mm }}', month)
                     .replace('{{ color }}', today ? 'success' : 'light')
                     .replace('{{ css }}', today ? 'text-light' : (element != 0) ? 'text-dark' : 'text-danger')
-                    .replace('{{ formated-date }}', newDateFormat);
-
-                //let newDate = new Date(newDateFormat);
-                //console.log(newDateFormat, appointmentMap[`${newDateFormat}`] ? true : false);
+                    .replace('{{ formated-date }}', newDateFormat)
+                    .replace('{{ icons }}', iconText);
 
             });
             

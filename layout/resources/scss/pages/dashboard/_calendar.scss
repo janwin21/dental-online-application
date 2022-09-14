@@ -1,0 +1,17 @@
+// import here
+@use "../../costumize" as *;
+@use "../../component/mixins" as *;
+
+// CALENDAR MAIN CONTENT
+.calendar {
+
+    td {
+        position: relative;
+
+        div {
+            position: absolute;
+            bottom: 0; left: 0;
+        }
+    }
+
+}

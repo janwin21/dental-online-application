@@ -44,6 +44,7 @@
 // calendar color
 $opacity-color: 0.25;
 
+// background
 .bg-calendar-blue { background-color: rgba($blue, $opacity-color) !important; }
 .bg-calendar-indigo { background-color: rgba($indigo, $opacity-color) !important; }
 .bg-calendar-purple { background-color: rgba($purple, $opacity-color) !important; }
@@ -58,3 +59,19 @@ $opacity-color: 0.25;
 .bg-calendar-eukalyptus { background-color: rgba($eukalyptus, $opacity-color) !important; }
 .bg-calendar-nature { background-color: rgba($nature, $opacity-color) !important; }
 .bg-calendar-gold { background-color: rgba($gold, $opacity-color) !important; }
+
+// text
+.text-calendar-blue { color: $blue; }
+.text-calendar-indigo { color: $indigo; }
+.text-calendar-purple { color: $purple; }
+.text-calendar-pink { color: $pink; }
+.text-calendar-red { color: $red; }
+.text-calendar-orange { color: $orange; }
+.text-calendar-yellow { color: $yellow; }
+.text-calendar-green { color: $green; }
+.text-calendar-teal { color: $teal; }
+.text-calendar-cyan { color: $cyan; }
+.text-calendar-mint-green { color: $mint-green; }
+.text-calendar-eukalyptus { color: $eukalyptus; }
+.text-calendar-nature { color: $nature; }
+.text-calendar-gold { color: $gold; }

@@ -34,6 +34,8 @@
     <!-- Script -->
     <script src="../js/components/transformation.js"></script>
     <script src="../js/components/modal.js"></script>
+    <script src="../js/model/intraoral-table.js"></script>
+    <script src="../js/pages/dashboard.js"></script>
     
 </head>
 <body>
@@ -192,6 +194,7 @@
                     <h6 class="roboto text-light-gray weight-600 m-0 p-0"><i class="fa-solid fa-circle-info me-2"></i>Information</h6>
                 </div>
 
+                <!-- Main Information Section -->
                 <div class="section-body bg-light p-5">
                     <div class="row">
 
@@ -304,6 +307,7 @@
                     </div>
                 </div>
 
+                <!-- Medical History Section -->
                 <div class="medical-form section-body border-top border-success bg-light p-5">
                     <div class="row">
 
@@ -537,37 +541,140 @@
                             </div>
                         </div>
 
-                        <!-- Ninth Row -->
-                        <div class="section-transparent col-12 pt-5">
-                            <div class="row">
-                                <div class="col-12">
-                                    <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0"><i class="fa-solid fa-list me-2 text-success"></i>X-ray Information</p>
+                    </div>
+                </div>
 
-                                    <!-- Add Information -->
-                                    <div class="d-flex flex-row flex-wrap">
-                                        <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                            <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-check text-success me-2"></i>Periapical</p>
-                                        </div>
-                                        <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                            <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-xmark text-danger me-2"></i>Panoramic</p>
-                                        </div>
-                                        <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                            <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-xmark text-danger me-2"></i>Cephalometric</p>
-                                        </div>
-                                        <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                            <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-xmark text-danger me-2"></i>Occlusal (Upper/Lower)</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="section-title bg-dark px-4 py-2">
+                    <h6 class="roboto text-light-gray weight-600 m-0 p-0"><i class="fa-solid fa-teeth text-success me-2"></i>Intraoral Examination Result</h6>
+                </div>
+                
+                <!-- Intraoral Section -->
+                <div class="section-body border-top border-success bg-light p-5">
+                    <div class="row">
+
+                        <div class="intraoral col-12">
+                            <table class="w-100"></table>
                         </div>
 
-                        <!-- Signature Row -->
-                        <div class="col-12 pt-3 mt-5 text-end">
-                            <div class="d-flex flex-column justify-content-end text-center w-25 float-end">
-                                <img class="w-100" src="../images//samples/signature.png" alt="">
-                                <p class="roboto weight-600 mb-0 pb-0 text-dark border-top border-dark border-1 w-100 fs-sm">e-Signature</p>
+                    </div>
+                </div>
+
+                <div class="section-title bg-dark px-4 py-2">
+                    <h6 class="roboto text-light-gray weight-600 m-0 p-0"><i class="fa-solid fa-x-ray text-success me-2"></i></i>X-ray Information</h6>
+                </div>
+                
+                <!-- X-ray Section -->
+                <div class="section-body border-top border-success bg-light p-5">
+                    <div class="row">
+                        
+                        <div class="col-12">
+                            <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0"><i class="fa-solid fa-list me-2 text-success"></i>X-ray List</p>
+                        </div>
+                        
+                        <div class="col-12">
+
+                            <!-- Add Information -->
+                            <div class="d-flex flex-row flex-wrap">
+                                <div class="alert alert-light m-1 border-0 px-4 py-1">
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-check text-success me-2"></i>Periapical</p>
+                                </div>
+                                <div class="alert alert-light m-1 border-0 px-4 py-1">
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-xmark text-danger me-2"></i>Panoramic</p>
+                                </div>
+                                <div class="alert alert-light m-1 border-0 px-4 py-1">
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-xmark text-danger me-2"></i>Cephalometric</p>
+                                </div>
+                                <div class="alert alert-light m-1 border-0 px-4 py-1">
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-xmark text-danger me-2"></i>Occlusal (Upper/Lower)</p>
+                                </div>
                             </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-title bg-dark px-4 py-2">
+                    <h6 class="roboto text-light-gray weight-600 m-0 p-0"><i class="fa-solid fa-display text-success me-2"></i>Screening Information</h6>
+                </div>
+                
+                <!-- Screening Section -->
+                <div class="section-body border-top border-success bg-light p-5">
+                    <div class="row">
+                        
+                        <!-- First Row -->
+                        <div class="col-12">
+                            <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0"><i class="fa-solid fa-list me-2 text-success"></i>Periodental List</p>
+                        </div>
+                        
+                        <div class="col-12">
+
+                            <!-- Add Information -->
+                            <div class="d-flex flex-row flex-wrap">
+                                <div class="alert alert-light m-1 border-0 px-4 py-1">
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-check text-success me-2"></i>Occlusal</p>
+                                </div>
+                                <div class="alert alert-light m-1 border-0 px-4 py-1">
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-xmark text-danger me-2"></i>Early Periodontitis</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                        <!-- Second Row -->
+                        <div class="col-12 mt-4">
+                            <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0"><i class="fa-solid fa-list me-2 text-success"></i>Appliances List</p>
+                        </div>
+                        
+                        <div class="col-12">
+
+                            <!-- Add Information -->
+                            <div class="d-flex flex-row flex-wrap">
+                                <div class="alert alert-light m-1 border-0 px-4 py-1">
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-check text-success me-2"></i>Occlusal</p>
+                                </div>
+                                <div class="alert alert-light m-1 border-0 px-4 py-1">
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-xmark text-danger me-2"></i>Early Periodontitis</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                        <!-- Third Row -->
+                        <div class="col-12 mt-4">
+                            <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0"><i class="fa-solid fa-list me-2 text-success"></i>Occlusion List</p>
+                        </div>
+                        
+                        <div class="col-12">
+
+                            <!-- Add Information -->
+                            <div class="d-flex flex-row flex-wrap">
+                                <div class="alert alert-light m-1 border-0 px-4 py-1">
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-check text-success me-2"></i>Occlusal</p>
+                                </div>
+                                <div class="alert alert-light m-1 border-0 px-4 py-1">
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-xmark text-danger me-2"></i>Early Periodontitis</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                        <!-- Fourth Row -->
+                        <div class="col-12 mt-4">
+                            <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0"><i class="fa-solid fa-list me-2 text-success"></i>TMD List</p>
+                        </div>
+                        
+                        <div class="col-12">
+
+                            <!-- Add Information -->
+                            <div class="d-flex flex-row flex-wrap">
+                                <div class="alert alert-light m-1 border-0 px-4 py-1">
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-check text-success me-2"></i>Occlusal</p>
+                                </div>
+                                <div class="alert alert-light m-1 border-0 px-4 py-1">
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-xmark text-danger me-2"></i>Early Periodontitis</p>
+                                </div>
+                            </div>
+
                         </div>
 
                     </div>
@@ -675,6 +782,99 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const intraoralSettings = [
+            // first row
+            {
+                isReversed: true,
+                data: [
+                    { type: 'empty' },
+                    { type: 'empty' },
+                    { type: 'empty' },
+                    { type: 'open', no: '55' },
+                    { type: 'open', no: '54' },
+                    { type: 'close', no: '53' },
+                    { type: 'close', no: '52' },
+                    { type: 'close', no: '51' },
+                    { type: 'close', no: '61' },
+                    { type: 'close', no: '62' },
+                    { type: 'close', no: '63' },
+                    { type: 'open', no: '64' },
+                    { type: 'open', no: '65' },
+                    { type: 'empty' },
+                    { type: 'empty' },
+                    { type: 'empty' }
+                ]
+            },
+            // second row
+            {
+                isReversed: false,
+                data: [
+                    { type: 'open', no: '18' },
+                    { type: 'open', no: '17' },
+                    { type: 'open', no: '16' },
+                    { type: 'open', no: '15' },
+                    { type: 'open', no: '14' },
+                    { type: 'close', no: '13' },
+                    { type: 'close', no: '12' },
+                    { type: 'close', no: '11' },
+                    { type: 'close', no: '21' },
+                    { type: 'close', no: '22' },
+                    { type: 'close', no: '23' },
+                    { type: 'open', no: '24' },
+                    { type: 'open', no: '25' },
+                    { type: 'open', no: '26' },
+                    { type: 'open', no: '27' },
+                    { type: 'open', no: '28' }
+                ]
+            },
+            // first row
+            {
+                isReversed: true,
+                data: [
+                    { type: 'open', no: '48' },
+                    { type: 'open', no: '47' },
+                    { type: 'open', no: '46' },
+                    { type: 'open', no: '45' },
+                    { type: 'open', no: '44' },
+                    { type: 'close', no: '43' },
+                    { type: 'close', no: '42' },
+                    { type: 'close', no: '41' },
+                    { type: 'close', no: '31' },
+                    { type: 'close', no: '32' },
+                    { type: 'close', no: '33' },
+                    { type: 'open', no: '34' },
+                    { type: 'open', no: '35' },
+                    { type: 'open', no: '36' },
+                    { type: 'open', no: '37' },
+                    { type: 'open', no: '38' }
+                ]
+            },
+            // second row
+            {
+                isReversed: false,
+                data: [
+                    { type: 'empty' },
+                    { type: 'empty' },
+                    { type: 'empty' },
+                    { type: 'open', no: '85', value: 'D' },
+                    { type: 'open', no: '84' },
+                    { type: 'close', no: '83' },
+                    { type: 'close', no: '82' },
+                    { type: 'close', no: '81' },
+                    { type: 'close', no: '71' },
+                    { type: 'close', no: '72' },
+                    { type: 'close', no: '73' },
+                    { type: 'open', no: '74' },
+                    { type: 'open', no: '75' },
+                    { type: 'empty' },
+                    { type: 'empty' },
+                    { type: 'empty' }
+                ]
+            }
+        ];
+    </script>
 
 </body>
 </html>
