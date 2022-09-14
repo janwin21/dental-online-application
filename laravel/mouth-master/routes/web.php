@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PatientController;
+use App\Http\Controllers\TestNavigationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +15,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () { return view('pages.dashboard'); });
+Route::get('/', [TestNavigationController::class, 'dashboard'])->name('page.dashboard');
+Route::get('/logbook', [TestNavigationController::class, 'logbook'])->name('page.logbook');
+Route::get('/patient', [TestNavigationController::class, 'patient'])->name('page.patient');
+Route::get('/history', [TestNavigationController::class, 'history'])->name('page.history');
+Route::get('/calendar', [TestNavigationController::class, 'calendar'])->name('page.calendar');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/intraoral', [TestNavigationController::class, 'intraoral_examination'])->name('form.intraoral');
+Route::get('/screening', [TestNavigationController::class, 'screening'])->name('form.screening');
+Route::get('/appointment', [TestNavigationController::class, 'appointment'])->name('form.appointment');
+Route::get('/main-information', [TestNavigationController::class, 'main_information'])->name('form.main-information');
+Route::get('/xray', [TestNavigationController::class, 'xray'])->name('form.xray');
+Route::get('/medical-history', [TestNavigationController::class, 'medical_history'])->name('form.medical-history');
+Route::get('/informed-consent', [TestNavigationController::class, 'informed_consent'])->name('form.informed-consent');
+
+Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
+
+Route::resource('patient', PatientController::class);
 
 require __DIR__.'/auth.php';

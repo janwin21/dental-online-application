@@ -1,6 +1,9 @@
 // INTRAORAL FORM SCRIPT
 'use strict';
 
+import IntraoralTable from '../model/intraoral-table';
+import IntraoralSelection from '../model/intraoral-selection';
+
 $(document).ready(() => {
 
     const intraoralAcronym = $('.intraoral-acronym');

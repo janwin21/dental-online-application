@@ -1,6 +1,6 @@
-{{-- LOGIN --}}
 @extends('layouts.master')
 
+<!-- APPOINTMENT FORM -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,6 +32,7 @@
     <!-- Resources Bundling -->
     @vite([
         'resources/scss/style.scss', 'resources/scss/fontawesome.scss',
+        'resources/js/components/transformation.js', 'resources/js/components/modal.js',
         'resources/js/pages/form.js'
     ])
     
@@ -41,47 +42,80 @@
     @section('page-content')
     
         <!-- Main Content -->
-        <div class="col-6 p-4">
+        <div class="col-7 p-4">
 
             <!-- Content Information -->
-            <div class="content-information mt-4">
+            <div class="form-information content-information">
 
                 <div class="section-title bg-success rounded-top px-4 py-4 text-center">
-                    <h5 class="roboto text-light-gray weight-600 m-0 mt-3 p-0">Dental Clinic Login</h5>
+                    <h5 class="roboto text-light-gray weight-600 m-0 mt-3 p-0">Dental Clinic Form</h5>
                     <p class="roboto text-light-gray weight-500">Mouth Master - Dental Clinic</p>
                 </div>
-                
-                <form action="{{ route('login') }}" method="POST">
-                    @csrf
 
-                <div class="section-body auth-bg-light p-5">
-                    <div class="row px-5">
+                <form action="#" method="POST">
+
+                <div class="section-body bg-light p-5">
+                    <div class="row">
+                        
+                        <div class="col-12">
+                            <p class="roboto text-grayish weight-600 fs-sm pt-0 mt-0"><i class="fa-solid fa-calendar-check me-2"></i>Appointment</p>
+                        </div>
 
                         <!-- First Row -->
-                        <div class="col-12 mt-4 mb-3">
-                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="email">Email <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="email" name="email">
+                        <div class="col-3 mt-4 mb-3">
+                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="tooth_no">Tooth No./s <strong class="text-danger ms-1">*</strong></label>
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="number" name="tooth_no">
+                        </div>
+                        
+                        <div class="col-9 mt-4 mb-3">
+                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="procedure">Procedure <strong class="text-danger ms-1">*</strong></label>
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="text" name="procedure">
                         </div>
 
                         <!-- Second Row -->
-                        <div class="col-12 mt-4 mb-3">
-                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="password">Password <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="password" name="password">
+                        <div class="col-4 mt-4 mb-3">
+                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="charge">Amount Charge <strong class="text-danger ms-1">*</strong></label>
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="number" step="0.01" name="charge">
+                        </div>
+                        
+                        <div class="col-4 mt-4 mb-3">
+                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="paid">Amount Paid <strong class="text-danger ms-1">*</strong></label>
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="number" step="0.01" name="paid">
+                        </div>
+                        
+                        <div class="col-4 mt-4 mb-3">
+                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="balance">Balance <strong class="text-danger ms-1">*</strong></label>
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="number" step="0.01" name="balance">
+                        </div>
+
+                        <!-- Third Row -->
+                        <div class="col-4 mt-4 mb-3">
+                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="appointment">Next Appointment <strong class="text-danger ms-1">*</strong></label>
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="date" name="appointment">
+                        </div>
+                        
+                        <div class="col-4 mt-4 mb-3">
+                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="start_time">Start Time <strong class="text-danger ms-1">*</strong></label>
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="time" name="start_time">
+                        </div>
+                        
+                        <div class="col-4 mt-4 mb-3">
+                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="end_time">End Time <strong class="text-danger ms-1">*</strong></label>
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="time" name="end_time">
                         </div>
 
                     </div>
                 </div>
 
-                <div class="section-body auth-bg-light p-5 pt-4 border-top border-1 border-secondary">
-                    <div class="row px-5">
+                <div class="section-body bg-light p-5 pt-4 border-top border-1 border-secondary">
+                    <div class="row">
 
                         <p class="text-grayish roboto weight-600 fs-xs date-p">Month DD, YYYY</p>
 
-                        <!-- Last Row -->
+                        <!-- Ninth Row -->
                         <div class="col-12 mt-0 d-flex flex-column text-end">
                             <div class="text-end">
-                                <button type="submit" class="w-25 btn btn-success text-light hover-to-dark px-4 py-1">Login</button>
-                                <a href="{{ route('register') }}" class="w-25 btn btn-dark text-light hover-to-dark-gray px-4 py-1 ms-1">Register</a>
+                                <button type="submit" class="w-25 btn btn-success text-light hover-to-dark px-4 py-1">Confirm</button>
                             </div>
                         </div>
 
@@ -131,68 +165,5 @@
 
     @endsection
 
-    <!--
-    <div class="apply-wave container-fluid w-100 m-0 p-0"><object data="../svg/wave.svg"></object></div>
-    -->
-
 </body>
 </html>
-
-{{--  
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-
-            <!-- Email Address -->
-            <div>
-                <x-input-label for="email" :value="__('Email')" />
-
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-input-label for="password" :value="__('Password')" />
-
-                <x-text-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-            </div>
-
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-primary-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-primary-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
---}}

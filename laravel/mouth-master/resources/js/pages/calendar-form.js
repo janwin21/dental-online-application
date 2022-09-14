@@ -1,6 +1,9 @@
 // CALENDAR FORM SCRIPT
 'use strict';
 
+import Calendar from '../model/calendar';
+import Appointment from '../model/appointment';
+
 $(document).ready(() => {
 
     // CALENDAR & APPOINTMENT

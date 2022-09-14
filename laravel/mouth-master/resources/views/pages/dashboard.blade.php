@@ -1,3 +1,5 @@
+@extends('layouts.master')
+
 <!-- DASHBOARD WITH DATA -->
 <!DOCTYPE html>
 <html lang="en">
@@ -36,75 +38,8 @@
     
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg bg-light px-4">
-        <div class="container-fluid">
-            <a class="navbar-brand text-success pacifico weight-500 me-4" href="#">
-                <i class="fa-solid fa-tooth me-2" width="30" height="24"></i>
-                Mouth Masters
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item ms-4 me-3">
-                    <a class="nav-link roboto fs-sm outlined-hover-to-success weight-500 active text-grayish" href="#"><i class="fa-solid fa-table-columns me-2"></i>Dashboard</a>
-                </li>
-                <li class="nav-item me-3">
-                    <a class="nav-link roboto fs-sm outlined-hover-to-success weight-500 text-grayish" href="#"><i class="fa-solid fa-teeth me-2"></i>Intraoral</a>
-                </li>
-                <li class="nav-item me-3">
-                    <a class="nav-link roboto fs-sm outlined-hover-to-success weight-500 text-grayish" href="#"><i class="fa-solid fa-tablet me-2"></i>Screening</a>
-                </li>
-                <li class="nav-item me-3">
-                    <a class="nav-link roboto fs-sm outlined-hover-to-success weight-500 text-grayish" href="#"><i class="fa-solid fa-book me-2"></i>Logbook</a>
-                </li>
-                </ul>   
-                <form class="d-flex m-0 p-0 w-50 text-end" role="search">
-                    <div class="form-control form-control-sm bg-light border-0 m-0 p-0">
-                        <input class="border border-1 rounded rm-outline w-50 m-0 me-2 py-1 px-2 fs-sm" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-success hover-to-dark text-light m-0 py-0 px-4 fs-sm" type="submit">Search</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Container Wrapper -->
-    <div class="container-wrapper container-fluid bg-light-gray">
-    <div class="row">
-
-        <!-- Sidebar -->
-        <div class="sidebar col-2 bg-light py-4 sticky-top">
-
-            <div class="wrapper">
-
-                <!-- Medical History Section -->
-                <div class="card-content text-center bg-light border border-light rounded hover-to-grayish px-2 py-4">
-                    <object data="{{ asset('svg/medical-history.svg') }}"></object>
-                    <h5 class="roboto my-3">Medical History</h5>
-                    <p class="roboto weight-100 fs-xs">A record of information about a your personal health.</p>
-                    <a href="#"
-                    data-src="SRC_URL"
-                    data-title="Add Medical History"
-                    data-paragraph="You previous history are cannot be updated. Do you want to add new history for your new update?"
-                    data-color="bg-success"
-                    data-btn="Add"    
-                    class="modal-trigger btn btn-success px-5 py-1 rounded-pill roboto text-light weight-500 hover-to-dark fs-xs shadow-none">Add</a>
-                </div>
-
-                <div class="duty border border-0 px-2 pt-0 pb-2 mt-3 text-start">
-                    <p class="roboto ms-2 fs-xs weight-600 text-grayish">Welcome to our Clinic</p>
-                    <a class="btn btn-light w-100 text-start shadow-none my-2 weight-600" href="#"><i class="fa-solid fa-teeth me-2"></i>Intraoral</a>
-                    <a class="btn btn-light w-100 text-start shadow-none my-2 weight-600" href="#"><i class="fa-solid fa-tablet me-2"></i>Screening</a>
-                    <a class="btn btn-light w-100 text-start shadow-none my-2 weight-600" href="#"><i class="fa-solid fa-book me-2"></i>Appointment</a>
-                    <a class="btn btn-light w-100 text-start shadow-none my-2 weight-600" href="#"><i class="fa-solid fa-notes-medical me-2"></i>History</a>
-                </div>
-
-            </div>
-
-        </div>
+    @section('page-content')
     
         <!-- Main Content -->
         <div class="col-7 p-4">
@@ -113,14 +48,16 @@
             <div class="content-header rounded px-4">
                 
                 <div class="row">
+                    @if (isset($patient))
+
                     <!-- Left SVG Image -->
                     <div class="col-2 py-4"><object data="{{ asset('svg/male.svg') }}"></object></div>
 
                     <!-- Header User Information -->
                     <div class="col-7 ps-0 pe-4 py-4">
-                        <h5 class="pb-0 mb-0 text-dark">LastName, FirstName, MI.</h5>
-                        <p class="text-light-gray weight-500 pt-0 mt-0">Patient ID#1234</p>
-                        <p class="fs-sm weight-400 roboto reason">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, doloremque. Dignissimos maxime veniam repellat.</p>
+                        <h5 class="pb-0 mb-0 text-dark">{{ $patient->last_name }}, {{ $patient->first_name }}, {{ $patient->middle_initial }}</h5>
+                        <p class="text-light-gray weight-500 pt-0 mt-0">Patient ID#{{ $patient->id }}</p>
+                        <p class="fs-sm weight-400 roboto reason">{{ $patient->reason }}</p>
 
                         <div class="header-icons mt-4 pt-2">
                             <div class="row">
@@ -136,7 +73,7 @@
                                 
                                 <div class="header-right col-6 text-end">
                                     <button
-                                    data-src="SRC_URL"
+                                    data-src="{{ route('patient.create') }}"
                                     data-title="Add Patients"
                                     data-paragraph="Do you want to add more patients?"
                                     data-color="bg-success"
@@ -162,9 +99,9 @@
                                     class="modal-trigger btn border-0 outlined-hover-to-grayish m-0 ms-1 p-0">
                                         <h4 class="m-0 p-0"><i class="fa-solid fa-trash"></i></h4>
                                     </button>
-                                    <button class="btn border-0 outlined-hover-to-grayish m-0 ms-2 p-0">
+                                    <a href="{{ route('page.calendar') }}" class="btn border-0 outlined-hover-to-grayish m-0 ms-2 p-0">
                                         <h4 class="m-0 p-0"><i class="fa-regular fa-calendar-xmark"></i></h4>
-                                    </button>
+                                    </a>
                                 </div>
 
                             </div>
@@ -173,13 +110,16 @@
 
                     <!-- Header User Section -->
                     <div class="header-section col-3 py-4 border-start border-2 ps-4">
-                        <h1 class="fs-xl anton text-light-gray float-start">16</h1>
+                        <h1 class="fs-xl anton text-light-gray float-start">{{ $patient->age }}</h1>
                         <p class="text-light-gray weight-500 pt-2 ps-2 mt-0 float-start">Age</p>
                         <div class="w-100 float-start">
-                            <h5 class="weight-600 pb-0 mb-0 roboto">Nickname</h5>
+                            <h5 class="weight-600 pb-0 mb-0 roboto">{{ $patient->nickname }}</h5>
                             <p class="text-light-gray weight-500 pt-0 mt-0 fs-sm">Nickname<i class="ms-2 fa-solid fa-children"></i></p>
                         </div>
                     </div>
+                        
+                    @endif
+
                 </div>
 
             </div>
@@ -715,70 +655,8 @@
             </footer>
 
         </div>
-    
-        <!-- Section -->
-        <div class="section col-3 bg-light py-4 sticky-top">
 
-            <div class="wrapper">
-
-                <!-- X-ray Section -->
-                <div class="card-content text-center border border-light bg-light rounded hover-to-grayish px-2 py-4">
-                    <object data="{{ asset('svg/x-ray.svg') }}"></object>
-                    <h5 class="roboto my-3">X-ray</h5>
-                    <p class="roboto weight-100 fs-xs">Examine the structure of your teeth for precise consultation.</p>
-                    <a href="#"
-                    data-src="SRC_URL"
-                    data-title="Add X-Ray Examination"
-                    data-paragraph="You previous examination are cannot be updated. Do you want to add new examination for your new update?"
-                    data-color="bg-success"
-                    data-btn="Add"    
-                    class="modal-trigger btn btn-success px-5 py-1 rounded-pill roboto text-light weight-500 hover-to-dark fs-xs shadow-none">Add</a>
-                </div>
-
-                <!-- Navigations -->
-                <div class="duty navigation-section mt-3">
-
-                    <!-- User Lists -->
-                    <p class="roboto ms-2 fs-xs weight-600 text-grayish">Dentist on Duty</p>
-                    <a class="btn btn-light w-100 text-start shadow-none my-2" href="#"><i class="fa-solid fa-user-tie me-2 text-dark fs-sm"></i>dentist_name denstist name</a>
-                    <a class="btn btn-light w-100 text-start shadow-none my-2" href="#"><i class="fa-solid fa-user-tie me-2 text-dark fs-sm"></i>dentist_name denstist name</a>
-                    
-                    <!-- Personnel List -->
-                    <p class="roboto ms-2 mt-4 fs-xs weight-600 text-grayish">Personnel on Duty</p>
-                    <a class="btn btn-light w-100 text-start shadow-none my-2" href="#"><i class="fa-solid fa-user-tie me-2 text-dark fs-sm"></i>personnel denstist name</a>
-                    <a class="btn btn-light w-100 text-start shadow-none my-2" href="#"><i class="fa-solid fa-user-tie me-2 text-dark fs-sm"></i>personnel denstist name</a>
-                    <a class="btn btn-light w-100 text-start shadow-none my-2" href="#"><i class="fa-solid fa-user-tie me-2 text-dark fs-sm"></i>personnel denstist name</a>
-                    <a class="btn btn-light w-100 text-start shadow-none my-2" href="#"><i class="fa-solid fa-user-tie me-2 text-dark fs-sm"></i>personnel denstist name</a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-    </div>
-
-    <div class="modal-section fade modal-dialog-centered text-center">
-        <div class="modal-dialog w-25 rounded-top">
-            <div class="modal-content bg-light rounded-top">
-            <div class="modal-header-box bg-danger text-center py-3 rounded-top">
-                <h5 class="modal-title d-block text-light" id="exampleModalLabel">notificationMessage</h5>
-                <p class="d-block p-0 m-0 fs-sm text-light">Mouth Masters - Dental Clinic</p>
-                <button class="btn btn-danger close-btn shadow-none border border-none border-0"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div class="modal-body p-3">
-                <p class="modal-paragraph fs-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-            <div class="modal-footer p-2">
-                <button type="button" class="btn cancel-btn btn-secondary px-4 py-1 shadow-none hover-to-dark" data-bs-dismiss="modal">Cancel</button>
-                <form action="#" method="POST">
-                    <button type="submit" class="btn btn-danger ms-2 px-4 py-1 shadow-none hover-to-dark border-light">Delete</button>
-                </form>
-            </div>
-            </div>
-        </div>
-    </div>
+    @endsection
 
     <script>
         const intraoralSettings = [
