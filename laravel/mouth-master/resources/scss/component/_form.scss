@@ -1,0 +1,12 @@
+// import here
+@use "../costumize" as *;
+@use "./mixins" as *;
+
+// FORM
+.form-information {
+
+    .form-control-left, .form-control-right {
+        @include transition-to-all-25;
+    }
+
+}

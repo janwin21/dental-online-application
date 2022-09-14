@@ -1,0 +1,19 @@
+// import here
+@use "../../costumize" as *;
+@use "../../component/mixins" as *;
+
+// INTRAORAL MAIN CONTENT
+.intraoral {
+    table {
+        img { 
+            width: 2em !important; 
+            height: 2em !important; 
+        }
+
+        input[type=text] { 
+            @include transition-to-all-25;
+            height: 1.5em !important; 
+            cursor: pointer; 
+        }
+    }
+}

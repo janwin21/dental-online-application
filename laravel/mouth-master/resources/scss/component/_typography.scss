@@ -1,0 +1,77 @@
+// import here
+@use "../costumize" as *;
+@use "./mixins" as *;
+
+// TYPOGRAPHY - compile all important FONTS and COLORS
+
+// font families
+.roboto { font-family: 'Roboto', sans-serif !important; }
+.open-sans { font-family: 'Open Sans', sans-serif !important; }
+.pacifico { font-family: 'Pacifico', cursive !important; }
+.anton { font-family: 'Anton', sans-serif !important; }
+
+// font weight
+.weight-100 { font-weight: 100 !important; }
+.weight-200 { font-weight: 200 !important; }
+.weight-300 { font-weight: 300 !important; }
+.weight-400 { font-weight: 400 !important; }
+.weight-500 { font-weight: 500 !important; }
+.weight-600 { font-weight: 600 !important; }
+.weight-700 { font-weight: 700 !important; }
+.weight-800 { font-weight: 800 !important; }
+.weight-900 { font-weight: 900 !important; }
+
+// font sizes
+.fs-xs { font-size: 0.8em !important; }
+.fs-sm { font-size: 0.95em !important; }
+.fs-xl { font-size: 4.5em !important; }
+
+// alignments
+.text-justify { text-align: justify !important; } 
+
+// colors
+.active { color: $mint-green !important; font-weight: 600 !important; }
+
+// text
+.text-grayish { color: $gray-600; }
+.text-light-gray { color: $gray-100; }
+.text-gold { color: $gold; }
+
+// background
+.bg-light-gray { background-color: $gray-100 !important; }
+.bg-light-grayish { background-color: $gray-200 !important; }
+
+// calendar color
+$opacity-color: 0.25;
+
+// background
+.bg-calendar-blue { background-color: rgba($blue, $opacity-color) !important; }
+.bg-calendar-indigo { background-color: rgba($indigo, $opacity-color) !important; }
+.bg-calendar-purple { background-color: rgba($purple, $opacity-color) !important; }
+.bg-calendar-pink { background-color: rgba($pink, $opacity-color) !important; }
+.bg-calendar-red { background-color: rgba($red, $opacity-color) !important; }
+.bg-calendar-orange { background-color: rgba($orange, $opacity-color) !important; }
+.bg-calendar-yellow { background-color: rgba($yellow, $opacity-color) !important; }
+.bg-calendar-green { background-color: rgba($green, $opacity-color) !important; }
+.bg-calendar-teal { background-color: rgba($teal, $opacity-color) !important; }
+.bg-calendar-cyan { background-color: rgba($cyan, $opacity-color) !important; }
+.bg-calendar-mint-green { background-color: rgba($mint-green, $opacity-color) !important; }
+.bg-calendar-eukalyptus { background-color: rgba($eukalyptus, $opacity-color) !important; }
+.bg-calendar-nature { background-color: rgba($nature, $opacity-color) !important; }
+.bg-calendar-gold { background-color: rgba($gold, $opacity-color) !important; }
+
+// text
+.text-calendar-blue { color: $blue; }
+.text-calendar-indigo { color: $indigo; }
+.text-calendar-purple { color: $purple; }
+.text-calendar-pink { color: $pink; }
+.text-calendar-red { color: $red; }
+.text-calendar-orange { color: $orange; }
+.text-calendar-yellow { color: $yellow; }
+.text-calendar-green { color: $green; }
+.text-calendar-teal { color: $teal; }
+.text-calendar-cyan { color: $cyan; }
+.text-calendar-mint-green { color: $mint-green; }
+.text-calendar-eukalyptus { color: $eukalyptus; }
+.text-calendar-nature { color: $nature; }
+.text-calendar-gold { color: $gold; }

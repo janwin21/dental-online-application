@@ -1,0 +1,60 @@
+// import here
+@use "../costumize" as *;
+@use "./mixins" as *;
+
+// CONTROLS - compile all event triggered elements here and some removal utilities
+
+// hover
+// outlined
+.outlined-hover-to-success {
+    @include transition-to-all-25;
+    &:hover { color: $success !important; }
+}
+
+.outlined-hover-to-grayish {
+    @include transition-to-all-25;
+    &:hover { color: $gray-200 !important; }
+}
+
+// background
+.hover-to-dark {
+    @include transition-to-all-25;
+    &:hover { 
+        background-color: $gray-900 !important; 
+        border: 1px solid $gray-900 !important;
+    }
+}
+
+.hover-to-grayish {
+    @include transition-to-all-25;
+    &:hover { 
+        background-color: $gray-200 !important; 
+        border: 1px solid $gray-200 !important;
+    }
+}
+
+.hover-to-dark-gray {
+    @include transition-to-all-25;
+    &:hover { 
+        background-color: $gray-800 !important; 
+        border: 1px solid $gray-800 !important;
+    }
+}
+
+// removal utilites
+.rm-outline { outline: none !important; } // remove outline
+
+// animations
+@mixin pulse { 
+    @keyframes pulse {
+        0% { opacity: 0.25; }
+        100% { opacity: 1; }
+    }
+}
+
+@mixin jump {
+    @keyframes jump {
+        0% { transform: translateY(0px); }
+        100% { transform: translateY(5px); }
+    }
+}

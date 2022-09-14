@@ -1,0 +1,23 @@
+// import here
+@use "../../costumize" as *;
+@use "../../component/mixins" as *;
+
+// DASHBOARD CONTENT HEADER
+.content-header {
+    background-image: linear-gradient(to right, $eukalyptus, $success) !important;
+    @include transition-to-all-25;
+
+    object { width: 75px !important; }
+    .header-section { @include transition-to-all-25; }
+
+    h5 {  
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &.no-information { 
+        background-image: none !important; 
+        background-color: $light !important;
+    }
+}

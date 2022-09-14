@@ -1,0 +1,6 @@
+// import here
+@use "../costumize" as *;
+@use "./mixins" as *;
+
+input { outline: none !important; }
+input, textarea { background-color: transparent !important; }

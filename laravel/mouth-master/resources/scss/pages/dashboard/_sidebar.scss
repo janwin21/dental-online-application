@@ -1,0 +1,13 @@
+// import here
+@use "../../costumize" as *;
+@use "../../component/mixins" as *;
+
+// DASHBOARD SIDEBAR
+.sidebar {
+    height: 100vh;
+    overflow-y: auto;
+    @include transition-to-all-25;
+
+    object { width: 125px !important; }
+    .intraoral-acronym { font-size: 4.5em !important; }
+}

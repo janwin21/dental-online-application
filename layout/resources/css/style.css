@@ -11101,7 +11101,7 @@ input, textarea {
 }
 
 .dashboard-transformation {
-  background-color: rgba(51, 171, 95, 0.5) !important;
+  background-color: rgba(51, 171, 95, 0.25) !important;
 }
 .dashboard-transformation .sidebar, .dashboard-transformation .section {
   background-color: rgba(255, 255, 255, 0.5) !important;

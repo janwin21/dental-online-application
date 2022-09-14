@@ -1,0 +1,32 @@
+// import here
+@use "../../costumize" as *;
+@use "../../component/mixins" as *;
+
+// DASHBOARD SECTION
+.section {
+    height: 100vh;
+    overflow-y: auto;
+    @include transition-to-all-25;
+
+    object { width: 125px !important; }
+    
+    a { 
+        text-decoration: none; 
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; 
+    }
+    
+    direction:rtl; 
+    overflow:auto; 
+
+    .wrapper {
+        direction:ltr;
+    }
+
+    .intraoral-name { 
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
