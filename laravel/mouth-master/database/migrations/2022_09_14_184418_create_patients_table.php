@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('middle_initial');
-            $table->string('birth_date');
+            $table->date('birth_date');
             $table->string('sex');
             $table->integer('age');
             $table->string('religion');
@@ -27,8 +27,9 @@ return new class extends Migration
             $table->string('home_no');
             $table->text('home_address');
             $table->string('occupation');
+            $table->string('office_no')->nullable();
             $table->tinyInteger('dental_insurance');
-            $table->string('effective_date')->nullable();
+            $table->date('effective_date')->nullable();
             $table->string('phone_no')->nullable();
             $table->string('email')->nullable();
             $table->string('refferer')->nullable();

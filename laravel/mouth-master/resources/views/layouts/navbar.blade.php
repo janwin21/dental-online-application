@@ -1,5 +1,8 @@
 @php
     $current_route = Route::current()->getName();
+    if(isset($patient)) $id = $patient->id;
+    $dashboard_route = isset($id) ? route('patient.show', $id) : route('page.dashboard');
+    $intraoral_route = route('intraoral.edit', isset($patient->id) ? $patient->id : -1);
 @endphp
 
 <!-- Navigation Bar -->
@@ -7,7 +10,7 @@
 
     <div class="container-fluid">
 
-        <a class="navbar-brand text-success pacifico weight-500 me-4" href="{{ route('page.dashboard') }}">
+        <a class="navbar-brand text-success pacifico weight-500 me-4" href="{{ $dashboard_route }}">
             <i class="fa-solid fa-tooth me-2" width="30" height="24"></i>
             Mouth Masters
         </a>
@@ -19,17 +22,17 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
+                
             <li class="nav-item ms-4 me-3">
                 <a class="nav-link roboto fs-sm outlined-hover-to-success weight-500 text-grayish
                 {{ ($current_route == 'page.dashboard') ? 'active' : '' }}
-                " href="{{ route('page.dashboard') }}"><i class="fa-solid fa-table-columns me-2"></i>Dashboard</a>
+                " href="{{ $dashboard_route }}"><i class="fa-solid fa-table-columns me-2"></i>Dashboard</a>
             </li>
 
             <li class="nav-item me-3">
                 <a class="nav-link roboto fs-sm outlined-hover-to-success weight-500 text-grayish
                 {{ ($current_route == 'form.intraoral') ? 'active' : '' }}
-                " href="{{ route('form.intraoral') }}"><i class="fa-solid fa-teeth me-2"></i>Intraoral</a>
+                " href="{{ $intraoral_route }}"><i class="fa-solid fa-teeth me-2"></i>Intraoral</a>
             </li>
 
             <li class="nav-item me-3">

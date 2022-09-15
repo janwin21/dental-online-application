@@ -25,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // remove temporary during migration
         View::share('users', User::get());
     }
 }

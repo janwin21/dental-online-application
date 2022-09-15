@@ -1,5 +1,7 @@
 @php
     $current_route = Route::current()->getName();
+    $medical_history_route = route('medical-history.edit', isset($patient->id) ? $patient->id : -1);
+    $patient_route = isset($id) ? route('patient.showAll', $id) : route('patient.index');
 @endphp
 
 <!-- Container Wrapper -->
@@ -14,7 +16,7 @@
 
             <div class="wrapper">
 
-                @if ($current_route == 'form.intraoral')
+                @if ($current_route == 'intraoral.edit')
 
                 <!-- Intraoral Acronyms Display -->
                 <div class="card-content text-center bg-light border border-light rounded px-2 pt-4 pb-2">
@@ -31,7 +33,7 @@
                     <h5 class="roboto my-3">Medical History</h5>
                     <p class="roboto weight-100 fs-xs">A record of information about a your personal health.</p>
                     <a href="#"
-                    data-src="{{ route('form.medical-history') }}"
+                    data-src="{{ $medical_history_route }}"
                     data-title="Add Medical History"
                     data-paragraph="You previous history are cannot be updated. Do you want to add new history for your new update?"
                     data-color="bg-success"
@@ -63,10 +65,9 @@
 
                 <div class="duty border border-0 px-2 pt-0 pb-2 mt-3 text-start">
                     <p class="roboto ms-2 fs-xs weight-600 text-grayish">Welcome to our Clinic</p>
-                    <a class="btn btn-light w-100 text-start shadow-none my-2 weight-600" href="{{ route('form.medical-history') }}"><i class="fa-solid fa-file-waveform me-2"></i>Medical History</a>
                     <a class="btn btn-light w-100 text-start shadow-none my-2 weight-600" href="{{ route('form.appointment') }}"><i class="fa-solid fa-book me-2"></i>Appointment</a>
                     <a class="btn btn-light w-100 text-start shadow-none my-2 weight-600" href="{{ route('page.history') }}"><i class="fa-solid fa-notes-medical me-2"></i>History</a>
-                    <a class="btn btn-light w-100 text-start shadow-none my-2 weight-600" href="{{ route('patient.index') }}"><i class="fa-solid fa-bed me-2"></i>Patients</a>
+                    <a class="btn btn-light w-100 text-start shadow-none my-2 weight-600" href="{{ $patient_route }}"><i class="fa-solid fa-bed me-2"></i>Patients</a>
                 </div>
 
                 @endif

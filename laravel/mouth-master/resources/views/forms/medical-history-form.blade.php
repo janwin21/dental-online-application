@@ -52,7 +52,10 @@
                     <p class="roboto text-light-gray weight-500">Mouth Master - Dental Clinic</p>
                 </div>
 
-                <form action="#" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('medical-history.store') }}" method="POST">
+                    @csrf
+
+                    <input required class="d-none" type="number" name="patient_id" value="{{ $id }}">
 
                 <div class="section-body bg-light p-5">
                     <div class="row">
@@ -125,13 +128,13 @@
                             <div class="row">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="q1" value="m">
+                                        <input required type="radio" name="q1" value="1">
                                         <label class="weight-600" for="q1">Yes</label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="q1" value="fm">
+                                        <input required type="radio" name="q1" value="0">
                                         <label class="weight-600" for="q1">No</label><br>
                                     </div>
                                 </div>
@@ -147,13 +150,13 @@
                             <div class="row">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="q2" value="m">
+                                        <input required type="radio" name="q2" value="1">
                                         <label class="weight-600" for="q2">Yes</label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="q2" value="fm">
+                                        <input required type="radio" name="q2" value="0">
                                         <label class="weight-600" for="q2">No</label><br>
                                     </div>
                                 </div>
@@ -174,13 +177,13 @@
                             <div class="row">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="q3" value="m">
+                                        <input required type="radio" name="q3" value="1">
                                         <label class="weight-600" for="q3">Yes</label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="q3" value="fm">
+                                        <input required type="radio" name="q3" value="0">
                                         <label class="weight-600" for="q3">No</label><br>
                                     </div>
                                 </div>
@@ -201,13 +204,13 @@
                             <div class="row">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="q4" value="m">
+                                        <input required type="radio" name="q4" value="1">
                                         <label class="weight-600" for="q4">Yes</label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="q4" value="fm">
+                                        <input required type="radio" name="q4" value="0">
                                         <label class="weight-600" for="q4">No</label><br>
                                     </div>
                                 </div>
@@ -228,13 +231,13 @@
                             <div class="row">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="q5" value="m">
+                                        <input required type="radio" name="q5" value="1">
                                         <label class="weight-600" for="q5">Yes</label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="q5" value="fm">
+                                        <input required type="radio" name="q5" value="0">
                                         <label class="weight-600" for="q5">No</label><br>
                                     </div>
                                 </div>
@@ -242,8 +245,8 @@
                         </div>
 
                         <div class="col-9 mt-4 mb-3 d-flex flex-column">
-                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="q4_text">If so, please specify: <strong class="text-danger ms-1">*</strong></label>
-                            <textarea required class="flex-grow-1 w-100 border border-secondary rounded px-2 py-1 mt-2" name="q4_text" style="resize: none;" placeholder="Type 'none' to fill empty"></textarea>
+                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="q5_text">If so, please specify: <strong class="text-danger ms-1">*</strong></label>
+                            <textarea required class="flex-grow-1 w-100 border border-secondary rounded px-2 py-1 mt-2" name="q5_text" style="resize: none;" placeholder="Type 'none' to fill empty"></textarea>
                         </div>
 
                         <!-- Sixth Row -->
@@ -255,13 +258,13 @@
                             <div class="row">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="q6" value="m">
+                                        <input required type="radio" name="q6" value="1">
                                         <label class="weight-600" for="q6">Yes</label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="q6" value="fm">
+                                        <input required type="radio" name="q6" value="0">
                                         <label class="weight-600" for="q6">No</label><br>
                                     </div>
                                 </div>
@@ -277,13 +280,13 @@
                             <div class="row">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="q7" value="m">
+                                        <input required type="radio" name="q7" value="1">
                                         <label class="weight-600" for="q7">Yes</label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="q7" value="fm">
+                                        <input required type="radio" name="q7" value="0">
                                         <label class="weight-600" for="q7">No</label><br>
                                     </div>
                                 </div>
@@ -298,23 +301,23 @@
                         <div class="col-12 mt-0 mb-3">
                             <div class="d-flex flex-row flex-wrap justify-content-start">
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="allergy1" value="Bike">
+                                    <input type="checkbox" name="allergy1" value="Local Anesthetics">
                                     <label class="text-light ms-1" for="allergy1">Local Anesthetics ( e.g. Lidocaine)</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="allergy2" value="Car">
+                                    <input type="checkbox" name="allergy2" value="Penicillin, Antibiotics">
                                     <label class="text-light ms-1" for="allergy2">Penicillin, Antibiotics</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="allergy3" value="Boat">
+                                    <input type="checkbox" name="allergy3" value="Sulfa drugs">
                                     <label class="text-light ms-1" for="allergy3">Sulfa drugs</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="allergy4" value="Boat">
+                                    <input type="checkbox" name="allergy4" value="Aspirin">
                                     <label class="text-light ms-1" for="allergy4">Aspirin</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="allergy5" value="Boat">
+                                    <input type="checkbox" name="allergy5" value="Latex">
                                     <label class="text-light ms-1" for="allergy5">Latex</label>
                                 </div>
                             </div>
@@ -365,13 +368,13 @@
                             <div class="row">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="women_q1" value="m">
+                                        <input type="radio" name="women_q1" value="1">
                                         <label class="weight-600" for="women_q1">Yes</label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="women_q1" value="fm">
+                                        <input type="radio" name="women_q1" value="0">
                                         <label class="weight-600" for="women_q1">No</label><br>
                                     </div>
                                 </div>
@@ -387,13 +390,13 @@
                             <div class="row">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="women_q2" value="m">
+                                        <input type="radio" name="women_q2" value="1">
                                         <label class="weight-600" for="women_q2">Yes</label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="women_q2" value="fm">
+                                        <input type="radio" name="women_q2" value="0">
                                         <label class="weight-600" for="women_q2">No</label><br>
                                     </div>
                                 </div>
@@ -409,13 +412,13 @@
                             <div class="row">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="women_q3" value="m">
+                                        <input type="radio" name="women_q3" value="1">
                                         <label class="weight-600" for="women_q3">Yes</label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="women_q3" value="fm">
+                                        <input type="radio" name="women_q3" value="0">
                                         <label class="weight-600" for="women_q3">No</label><br>
                                     </div>
                                 </div>
@@ -431,149 +434,149 @@
 
                         <!-- First Row -->
                         <div class="col-12 mt-4 mb-3">
-                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="q8">Do you have or have you had any of the following? Check which apply <strong class="text-danger me-1">*</strong></label>
+                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="illness">Do you have or have you had any of the following? Check which apply <strong class="text-danger me-1">*</strong></label>
                         </div>
 
                         <div class="col-12 mt-0 mb-3">
                             <div class="d-flex flex-row flex-wrap justify-content-start">
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness1" value="Bike">
+                                    <input type="checkbox" name="illness1" value="High Blood Pressure">
                                     <label class="text-light ms-1" for="illness1">High Blood Pressure</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness2" value="Bike">
+                                    <input type="checkbox" name="illness2" value="Low Blood Pressure">
                                     <label class="text-light ms-1" for="illness2">Low Blood Pressure</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness3" value="Bike">
+                                    <input type="checkbox" name="illness3" value="Epilepsy / Convulsions">
                                     <label class="text-light ms-1" for="illness3">Epilepsy / Convulsions</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness4" value="Bike">
+                                    <input type="checkbox" name="illness4" value="AIDS / HIV infection">
                                     <label class="text-light ms-1" for="illness4">AIDS / HIV infection</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness5" value="Bike">
+                                    <input type="checkbox" name="illness5" value="Sexually Transmitted disease">
                                     <label class="text-light ms-1" for="illness5">Sexually Transmitted disease</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness6" value="Bike">
+                                    <input type="checkbox" name="illness6" value="Stomach Troubles / Ulcers">
                                     <label class="text-light ms-1" for="illness6">Stomach Troubles / Ulcers</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness7" value="Bike">
+                                    <input type="checkbox" name="illness7" value="Fainting Seizure">
                                     <label class="text-light ms-1" for="illness7">Fainting Seizure</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness8" value="Bike">
+                                    <input type="checkbox" name="illness8" value="Rapid weight loss">
                                     <label class="text-light ms-1" for="illness8">Rapid weight loss</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness9" value="Bike">
+                                    <input type="checkbox" name="illness9" value="Radiation Therapy">
                                     <label class="text-light ms-1" for="illness9">Radiation Therapy</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness10" value="Bike">
+                                    <input type="checkbox" name="illness10" value="Joint replacement / Implant">
                                     <label class="text-light ms-1" for="illness10">Joint replacement / Implant</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness11" value="Bike">
+                                    <input type="checkbox" name="illness11" value="Heart surgery">
                                     <label class="text-light ms-1" for="illness11">Heart surgery</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness12" value="Bike">
+                                    <input type="checkbox" name="illness12" value="Heart Attack">
                                     <label class="text-light ms-1" for="illness12">Heart Attack</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness13" value="Bike">
+                                    <input type="checkbox" name="illness13" value="Thyroid Problem">
                                     <label class="text-light ms-1" for="illness13">Thyroid Problem</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness14" value="Bike">
+                                    <input type="checkbox" name="illness14" value="Heart Disease">
                                     <label class="text-light ms-1" for="illness14">Heart Disease</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness15" value="Bike">
+                                    <input type="checkbox" name="illness15" value="Heart Murmur">
                                     <label class="text-light ms-1" for="illness15">Heart Murmur</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness16" value="Bike">
+                                    <input type="checkbox" name="illness16" value="Hepatitis / Liver Disease">
                                     <label class="text-light ms-1" for="illness16">Hepatitis / Liver Disease</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness17" value="Bike">
+                                    <input type="checkbox" name="illness17" value="Rheumatic fever">
                                     <label class="text-light ms-1" for="illness17">Rheumatic fever</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness18" value="Bike">
+                                    <input type="checkbox" name="illness18" value="Hay fever / Allergies">
                                     <label class="text-light ms-1" for="illness18">Hay fever / Allergies</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness19" value="Bike">
+                                    <input type="checkbox" name="illness19" value="Respiratory Problems">
                                     <label class="text-light ms-1" for="illness19">Respiratory Problems</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness20" value="Bike">
+                                    <input type="checkbox" name="illness20" value="Hepatitis / Jaundice">
                                     <label class="text-light ms-1" for="illness20">Hepatitis / Jaundice</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness21" value="Bike">
+                                    <input type="checkbox" name="illness21" value="Tuberculosis">
                                     <label class="text-light ms-1" for="illness21">Tuberculosis</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness22" value="Bike">
+                                    <input type="checkbox" name="illness22" value="Swollen ankles">
                                     <label class="text-light ms-1" for="illness22">Swollen ankles</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness23" value="Bike">
+                                    <input type="checkbox" name="illness23" value="Kidney Disease">
                                     <label class="text-light ms-1" for="illness23">Kidney Disease</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness24" value="Bike">
+                                    <input type="checkbox" name="illness24" value="Diabetes">
                                     <label class="text-light ms-1" for="illness24">Diabetes</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness25" value="Bike">
+                                    <input type="checkbox" name="illness25" value="Chest Pain">
                                     <label class="text-light ms-1" for="illness25">Chest Pain</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness26" value="Bike">
+                                    <input type="checkbox" name="illness26" value="Stroke">
                                     <label class="text-light ms-1" for="illness26">Stroke</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness27" value="Bike">
+                                    <input type="checkbox" name="illness27" value="Cancer / Tumors">
                                     <label class="text-light ms-1" for="illness27">Cancer / Tumors</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness28" value="Bike">
+                                    <input type="checkbox" name="illness28" value="Anemia">
                                     <label class="text-light ms-1" for="illness28">Anemia</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness29" value="Bike">
+                                    <input type="checkbox" name="illness29" value="Angina">
                                     <label class="text-light ms-1" for="illness29">Angina</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness30" value="Bike">
+                                    <input type="checkbox" name="illness30" value="Asthma">
                                     <label class="text-light ms-1" for="illness30">Asthma</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness31" value="Bike">
+                                    <input type="checkbox" name="illness31" value="Emphysema">
                                     <label class="text-light ms-1" for="illness31">Emphysema</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness32" value="Bike">
+                                    <input type="checkbox" name="illness32" value="Bleeding Problems">
                                     <label class="text-light ms-1" for="illness32">Bleeding Problems</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness33" value="Bike">
+                                    <input type="checkbox" name="illness33" value="Blood Diseases">
                                     <label class="text-light ms-1" for="illness33">Blood Diseases</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness34" value="Bike">
+                                    <input type="checkbox" name="illness34" value="Head Injuries">
                                     <label class="text-light ms-1" for="illness34">Head Injuries</label>
                                 </div>
                                 <div class="bg-success rounded-pill m-1 px-4 py-1">
-                                    <input type="checkbox" name="illness35" value="Bike">
+                                    <input type="checkbox" name="illness35" value="Arthris / Rheumatism">
                                     <label class="text-light ms-1" for="illness35">Arthris / Rheumatism</label>
                                 </div>
                             </div>
@@ -587,22 +590,10 @@
 
                         <p class="text-grayish roboto weight-600 fs-xs date-p">Month DD, YYYY</p>
 
-                        <!-- Signature Row -->
-                        <div class="col-12 pt-3 mt-0 text-end">
-                            <div class="d-flex flex-column justify-content-end text-center w-25 float-end">
-                                <img id="signature-image" class="w-100" src="../images//samples/signature.png" alt="">
-                                <p class="roboto weight-600 mb-0 pb-0 text-dark border-top border-dark border-1 w-100 fs-sm">e-Signature <strong class="text-danger ms-1">*</strong></p>
-                            </div>
-                        </div>
-
                         <!-- Last Row -->
-                        <div class="col-12 mt-5 d-flex flex-column text-end">
+                        <div class="col-12 d-flex flex-column text-end">
                             <div class="text-end">
-                                <button id="upload-image" class="btn btn-warning text-light hover-to-dark px-5 py-1">Upload Signature (PNG)</button>
-                                <button type="submit" class="w-25 btn btn-success text-light hover-to-dark px-4 py-1 ms-1">Add</button>
-
-                                <!-- Invisible Input File -->
-                                <input class="d-none" type="file" name="signature_image">
+                                <button type="submit" class="w-25 btn btn-success text-light hover-to-dark px-4 py-1 ms-1">Confirm</button>
                             </div>
                         </div>
 

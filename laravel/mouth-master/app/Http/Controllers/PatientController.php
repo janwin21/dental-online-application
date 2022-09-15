@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PatientRequest;
+use App\Models\CheckUtility;
+use App\Models\Intraorals;
+use App\Models\MedicalHistories;
 use App\Models\Patient;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Validated;
@@ -57,6 +60,7 @@ class PatientController extends Controller
             'home_no' => $request->home_no,
             'home_address' => $request->home_address,
             'occupation' => $request->occupation,
+            'office_no' => $request->office_no,
             'dental_insurance' => $request->dental_insurance,
             'effective_date' => $request->effective_date,
             'phone_no' => $request->phone_no,
@@ -79,7 +83,22 @@ class PatientController extends Controller
      */
     public function show($id)
     {
-        return redirect(RouteServiceProvider::HOME);
+        return view('pages.dashboard', [
+            'check' => new CheckUtility(),
+            'patient' => Patient::where('id', $id)->first(),
+            'medical_history' => 
+                MedicalHistories::where('patient_id', $id)->orderBy('created_at', 'desc')->limit(1)->first(),
+            'intraoral' =>
+                Intraorals::where('patient_id', $id)->orderBy('created_at', 'desc')->limit(1)->first()
+        ]);
+    }
+
+    public function showAll($id) 
+    {
+        return view('pages.patient', [
+            'id' => $id,
+            'patients' => Patient::get()
+        ]);
     }
 
     /**

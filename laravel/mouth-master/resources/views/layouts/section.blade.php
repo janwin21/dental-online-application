@@ -11,7 +11,7 @@
 
             @unless ($current_route == 'login' || $current_route == 'register')
 
-            @if ($current_route == 'form.intraoral')
+            @if ($current_route == 'intraoral.edit')
 
             <!-- Intraoral Editor Section -->
             <div class="card-content text-center border border-light bg-light rounded px-2 py-4">

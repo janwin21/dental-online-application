@@ -52,7 +52,10 @@
                     <p class="roboto text-light-gray weight-500">Mouth Master - Dental Clinic</p>
                 </div>
 
-                <form action="#" method="POST">
+                <form action="{{ route('intraoral.store') }}" method="POST">
+                    @csrf
+
+                    <input required class="d-none" type="number" name="patient_id" value="{{ $id }}">
  
                 <div class="section-body rounded-top bg-light p-5 pt-4">
                     <div class="row">
@@ -96,16 +99,16 @@
                     { type: 'empty' },
                     { type: 'empty' },
                     { type: 'empty' },
-                    { type: 'open', no: '55' },
-                    { type: 'open', no: '54' },
-                    { type: 'close', no: '53' },
-                    { type: 'close', no: '52' },
-                    { type: 'close', no: '51' },
-                    { type: 'close', no: '61' },
-                    { type: 'close', no: '62' },
-                    { type: 'close', no: '63' },
-                    { type: 'open', no: '64' },
-                    { type: 'open', no: '65' },
+                    { type: 'open', no: '55', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
+                    { type: 'open', no: '54', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
+                    { type: 'close', no: '53', route: '{{ asset('images/intraoral/intraoral-close.png') }}' },
+                    { type: 'close', no: '52', route: '{{ asset('images/intraoral/intraoral-close.png') }}' },
+                    { type: 'close', no: '51', route: '{{ asset('images/intraoral/intraoral-close.png') }}' },
+                    { type: 'close', no: '61', route: '{{ asset('images/intraoral/intraoral-close.png') }}' },
+                    { type: 'close', no: '62', route: '{{ asset('images/intraoral/intraoral-close.png') }}' },
+                    { type: 'close', no: '63', route: '{{ asset('images/intraoral/intraoral-close.png') }}' },
+                    { type: 'open', no: '64', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
+                    { type: 'open', no: '65', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
                     { type: 'empty' },
                     { type: 'empty' },
                     { type: 'empty' }
@@ -115,44 +118,44 @@
             {
                 isReversed: false,
                 data: [
-                    { type: 'open', no: '18' },
-                    { type: 'open', no: '17' },
-                    { type: 'open', no: '16' },
-                    { type: 'open', no: '15' },
-                    { type: 'open', no: '14' },
-                    { type: 'close', no: '13' },
-                    { type: 'close', no: '12' },
-                    { type: 'close', no: '11' },
-                    { type: 'close', no: '21' },
-                    { type: 'close', no: '22' },
-                    { type: 'close', no: '23' },
-                    { type: 'open', no: '24' },
-                    { type: 'open', no: '25' },
-                    { type: 'open', no: '26' },
-                    { type: 'open', no: '27' },
-                    { type: 'open', no: '28' }
+                    { type: 'open', no: '18', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
+                    { type: 'open', no: '17', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
+                    { type: 'open', no: '16', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
+                    { type: 'open', no: '15', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
+                    { type: 'open', no: '14', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
+                    { type: 'close', no: '13', route: '{{ asset('images/intraoral/intraoral-close.png') }}' },
+                    { type: 'close', no: '12', route: '{{ asset('images/intraoral/intraoral-close.png') }}' },
+                    { type: 'close', no: '11', route: '{{ asset('images/intraoral/intraoral-close.png') }}' },
+                    { type: 'close', no: '21', route: '{{ asset('images/intraoral/intraoral-close.png') }}' },
+                    { type: 'close', no: '22', route: '{{ asset('images/intraoral/intraoral-close.png') }}' },
+                    { type: 'close', no: '23', route: '{{ asset('images/intraoral/intraoral-close.png') }}' },
+                    { type: 'open', no: '24', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
+                    { type: 'open', no: '25', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
+                    { type: 'open', no: '26', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
+                    { type: 'open', no: '27', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
+                    { type: 'open', no: '28', route: '{{ asset('images/intraoral/intraoral-open.png') }}' }
                 ]
             },
             // first row
             {
                 isReversed: true,
                 data: [
-                    { type: 'open', no: '48' },
-                    { type: 'open', no: '47' },
-                    { type: 'open', no: '46' },
-                    { type: 'open', no: '45' },
-                    { type: 'open', no: '44' },
-                    { type: 'close', no: '43' },
-                    { type: 'close', no: '42' },
-                    { type: 'close', no: '41' },
-                    { type: 'close', no: '31' },
-                    { type: 'close', no: '32' },
-                    { type: 'close', no: '33' },
-                    { type: 'open', no: '34' },
-                    { type: 'open', no: '35' },
-                    { type: 'open', no: '36' },
-                    { type: 'open', no: '37' },
-                    { type: 'open', no: '38' }
+                    { type: 'open', no: '48', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
+                    { type: 'open', no: '47', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
+                    { type: 'open', no: '46', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
+                    { type: 'open', no: '45', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
+                    { type: 'open', no: '44', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
+                    { type: 'close', no: '43', route: '{{ asset('images/intraoral/intraoral-close.png') }}' },
+                    { type: 'close', no: '42', route: '{{ asset('images/intraoral/intraoral-close.png') }}' },
+                    { type: 'close', no: '41', route: '{{ asset('images/intraoral/intraoral-close.png') }}' },
+                    { type: 'close', no: '31', route: '{{ asset('images/intraoral/intraoral-close.png') }}' },
+                    { type: 'close', no: '32', route: '{{ asset('images/intraoral/intraoral-close.png') }}' },
+                    { type: 'close', no: '33', route: '{{ asset('images/intraoral/intraoral-close.png') }}' },
+                    { type: 'open', no: '34', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
+                    { type: 'open', no: '35', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
+                    { type: 'open', no: '36', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
+                    { type: 'open', no: '37', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
+                    { type: 'open', no: '38', route: '{{ asset('images/intraoral/intraoral-open.png') }}' }
                 ]
             },
             // second row
@@ -162,16 +165,16 @@
                     { type: 'empty' },
                     { type: 'empty' },
                     { type: 'empty' },
-                    { type: 'open', no: '85' },
-                    { type: 'open', no: '84' },
-                    { type: 'close', no: '83' },
-                    { type: 'close', no: '82' },
-                    { type: 'close', no: '81' },
-                    { type: 'close', no: '71' },
-                    { type: 'close', no: '72' },
-                    { type: 'close', no: '73' },
-                    { type: 'open', no: '74' },
-                    { type: 'open', no: '75' },
+                    { type: 'open', no: '85', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
+                    { type: 'open', no: '84', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
+                    { type: 'close', no: '83', route: '{{ asset('images/intraoral/intraoral-close.png') }}' },
+                    { type: 'close', no: '82', route: '{{ asset('images/intraoral/intraoral-close.png') }}' },
+                    { type: 'close', no: '81', route: '{{ asset('images/intraoral/intraoral-close.png') }}' },
+                    { type: 'close', no: '71', route: '{{ asset('images/intraoral/intraoral-close.png') }}' },
+                    { type: 'close', no: '72', route: '{{ asset('images/intraoral/intraoral-close.png') }}' },
+                    { type: 'close', no: '73', route: '{{ asset('images/intraoral/intraoral-close.png') }}' },
+                    { type: 'open', no: '74', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
+                    { type: 'open', no: '75', route: '{{ asset('images/intraoral/intraoral-open.png') }}' },
                     { type: 'empty' },
                     { type: 'empty' },
                     { type: 'empty' }

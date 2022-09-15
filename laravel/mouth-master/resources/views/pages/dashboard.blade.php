@@ -48,77 +48,11 @@
             <div class="content-header rounded px-4">
                 
                 <div class="row">
-                    @if (isset($patient))
 
                     <!-- Left SVG Image -->
                     <div class="col-2 py-4"><object data="{{ asset('svg/male.svg') }}"></object></div>
 
-                    <!-- Header User Information -->
-                    <div class="col-7 ps-0 pe-4 py-4">
-                        <h5 class="pb-0 mb-0 text-dark">{{ $patient->last_name }}, {{ $patient->first_name }}, {{ $patient->middle_initial }}</h5>
-                        <p class="text-light-gray weight-500 pt-0 mt-0">Patient ID#{{ $patient->id }}</p>
-                        <p class="fs-sm weight-400 roboto reason">{{ $patient->reason }}</p>
-
-                        <div class="header-icons mt-4 pt-2">
-                            <div class="row">
-
-                                <div class="header-left col-6 text-start">
-                                    <button class="btn border-0 outlined-hover-to-grayish m-0 p-0">
-                                        <h4 class="m-0 p-0"><i class="fa-solid fa-circle-left"></i></h4>
-                                    </button>
-                                    <button class="btn border-0 outlined-hover-to-grayish m-0 p-0">
-                                        <h4 class="m-0 p-0"><i class="fa-solid fa-circle-right"></i></h4>
-                                    </button>
-                                </div>
-                                
-                                <div class="header-right col-6 text-end">
-                                    <button
-                                    data-src="{{ route('patient.create') }}"
-                                    data-title="Add Patients"
-                                    data-paragraph="Do you want to add more patients?"
-                                    data-color="bg-success"
-                                    data-btn="Add"    
-                                    class="modal-trigger btn border-0 outlined-hover-to-grayish m-0 ms-2 p-0">
-                                        <h4 class="m-0 p-0"><i class="fa-solid fa-hospital-user"></i></h4>
-                                    </button>
-                                    <button
-                                    data-src="SRC_URL"
-                                    data-title="Update { nickname }"
-                                    data-paragraph="Do you want to update { nickname }'s patient information?"
-                                    data-color="bg-warning"
-                                    data-btn="Update"    
-                                    class="modal-trigger btn border-0 outlined-hover-to-grayish m-0 ms-2 p-0">
-                                        <h4 class="m-0 p-0"><i class="fa-solid fa-file-pen"></i></h4>
-                                    </button>
-                                    <button
-                                    data-src="SRC_URL"
-                                    data-title="Delete Patient"
-                                    data-paragraph="Do you want to delete { nickname }'s patient information?"
-                                    data-color="bg-danger"
-                                    data-btn="Delete"    
-                                    class="modal-trigger btn border-0 outlined-hover-to-grayish m-0 ms-1 p-0">
-                                        <h4 class="m-0 p-0"><i class="fa-solid fa-trash"></i></h4>
-                                    </button>
-                                    <a href="{{ route('page.calendar') }}" class="btn border-0 outlined-hover-to-grayish m-0 ms-2 p-0">
-                                        <h4 class="m-0 p-0"><i class="fa-regular fa-calendar-xmark"></i></h4>
-                                    </a>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Header User Section -->
-                    <div class="header-section col-3 py-4 border-start border-2 ps-4">
-                        <h1 class="fs-xl anton text-light-gray float-start">{{ $patient->age }}</h1>
-                        <p class="text-light-gray weight-500 pt-2 ps-2 mt-0 float-start">Age</p>
-                        <div class="w-100 float-start">
-                            <h5 class="weight-600 pb-0 mb-0 roboto">{{ $patient->nickname }}</h5>
-                            <p class="text-light-gray weight-500 pt-0 mt-0 fs-sm">Nickname<i class="ms-2 fa-solid fa-children"></i></p>
-                        </div>
-                    </div>
-                        
-                    @endif
+                    @include('layouts.dashboard-header')
 
                 </div>
 
@@ -127,9 +61,11 @@
             <!-- Content Information -->
             <div class="content-information mt-4">
 
-                <div class="section-title bg-success rounded-top px-4 py-2">
-                    <h6 class="roboto text-light-gray weight-600 m-0 p-0"><i class="fa-solid fa-circle-info me-2"></i>Information</h6>
+                <div class="section-title bg-{{ (isset($patient)) ? 'success' : 'dark' }} rounded-top px-4 py-2">
+                    <h6 class="roboto text-light-gray weight-600 m-0 p-0"><i class="fa-solid fa-circle-info me-2"></i>{{ (isset($patient)) ? '' : 'No Patient ' }}Information</h6>
                 </div>
+
+                @if (isset($patient))
 
                 <!-- Main Information Section -->
                 <div class="section-body bg-light p-5">
@@ -137,61 +73,81 @@
 
                         <!-- First Row -->
                         <div class="col-6">
-                            <p class="roboto weight-600 mb-0 pb-0">Male</p>
+                            <p class="roboto weight-600 mb-0 pb-0">{{ $patient->sex }}</p>
                             <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0"><i class="fa-solid fa-venus-mars me-2 text-success"></i>Sex</p>
                         </div>
 
                         <div class="col-6">
-                            <p class="roboto weight-600 mb-0 pb-0">Catholic</p>
+                            <p class="roboto weight-600 mb-0 pb-0">{{ $patient->religion }}</p>
                             <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0"><i class="fa-solid fa-cross me-2 text-success"></i>Religion</p>
                         </div>
 
                         <!-- Second Row -->
                         <div class="col-6 pt-3">
-                            <p class="roboto weight-600 mb-0 pb-0">MM/DD/YYYY</p>
+                            <p class="roboto weight-600 mb-0 pb-0">{{ date('F d, Y', strtotime($patient->birth_date)) }}</p>
                             <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0"><i class="fa-solid fa-cake-candles me-2 text-success"></i>Birth Date</p>
                         </div>
 
                         <div class="col-6 pt-3">
-                            <p class="roboto weight-600 mb-0 pb-0">patient@gmail.com</p>
+                            <p class="roboto weight-600 mb-0 pb-0">{{ $patient->email }}</p>
                             <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0"><i class="fa-solid fa-envelope me-2 text-success"></i>Email Address</p>
                         </div>
 
                         <!-- Third Row -->
                         <div class="col-6 pt-3">
-                            <p class="roboto weight-600 mb-0 pb-0">Address City</p>
+                            <p class="roboto weight-600 mb-0 pb-0">{{ $patient->home_address }}</p>
                             <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0"><i class="fa-solid fa-house me-2 text-success"></i>Home Address</p>
                         </div>
 
                         <div class="col-6 pt-3">
-                            <p class="roboto weight-600 mb-0 pb-0">Filipino</p>
+                            <p class="roboto weight-600 mb-0 pb-0">{{ $patient->nationality }}</p>
                             <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0"><i class="fa-solid fa-flag me-2 text-success"></i>Nationality</p>
                         </div>
 
                         <!-- Fourth Row -->
                         <div class="col-6 pt-3">
-                            <p class="roboto weight-600 mb-0 pb-0">homeNo</p>
+                            <p class="roboto weight-600 mb-0 pb-0">{{ $patient->home_no }}</p>
                             <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0">Home#</p>
                         </div>
 
                         <div class="col-6 pt-3">
-                            <p class="roboto weight-600 mb-0 pb-0">cellNo</p>
+                            <p class="roboto weight-600 mb-0 pb-0">{{ $patient->phone_no }}</p>
                             <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0">Cellphone#</p>
                         </div>
 
                         <!-- Fifth Row -->
                         <div class="col-6 pt-3">
-                            <p class="roboto weight-600 mb-0 pb-0">programmer</p>
+                            <p class="roboto weight-600 mb-0 pb-0">{{ $patient->occupation }}</p>
                             <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0"><i class="fa-solid fa-briefcase me-2 text-success"></i>Occupation</p>
                         </div>
 
                         <div class="col-6 pt-3">
-                            <p class="roboto weight-600 mb-0 pb-0">officeNo</p>
+                            <p class="roboto weight-600 mb-0 pb-0">{{ $check->empty($patient->office_no) }}</p>
                             <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0">Office#</p>
+                        </div>
+
+                        <!-- Sixth Row -->
+                        <div class="col-6 pt-3">
+                            <p class="roboto weight-600 mb-0 pb-0">{{ $check->radio($patient->dental_insurance) }}</p>
+                            <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0">Have dental insurance?</p>
+                        </div>
+
+                        @php
+                            $value = $check->empty($patient->effective_date);
+                            $empty = $value != 'None';
+                            $effective_date = 
+                                !$empty ? date('F d, Y', strtotime($patient->effective_date)) : $value ;
+                        @endphp
+
+                        <div class="col-6 pt-3">
+                            <p class="roboto weight-600 mb-0 pb-0">{{ $effective_date }}</p>
+                            <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0">Effective Date</p>
                         </div>
 
                     </div>
                 </div>
+
+                @if (isset($medical_history))
 
                 <div class="section-title bg-dark px-4 py-2">
                     <h6 class="roboto text-light-gray weight-600 m-0 p-0"><i class="fa-solid fa-clock-rotate-left me-2 text-success"></i>Medical History</h6>
@@ -206,13 +162,13 @@
 
                         <!-- First Row -->
                         <div class="col-6 pt-3">
-                            <p class="roboto weight-600 mb-0 pb-0">Dr. Einstein</p>
+                            <p class="roboto weight-600 mb-0 pb-0">{{ $medical_history->previous_dentist }}</p>
                             <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0">Previous Doctor</p>
                         </div>
 
                         <div class="col-6 pt-3">
-                            <p class="roboto weight-600 mb-0 pb-0">MM/DD/YYYY</p>
-                            <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0">Last Dentist Visit</p>
+                            <p class="roboto weight-600 mb-0 pb-0">{{ $medical_history->last_dental_visit }}</p>
+                            <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0">Last Dental Visit</p>
                         </div>
                         
                         <div class="col-12 pt-5">
@@ -221,23 +177,23 @@
 
                         <!-- Second Row -->
                         <div class="col-6 pt-3">
-                            <p class="roboto weight-600 mb-0 pb-0">Dr. Kwak Kwak</p>
+                            <p class="roboto weight-600 mb-0 pb-0">{{ $medical_history->physician }}</p>
                             <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0"><i class="fa-solid fa-star me-2 text-gold"></i>Physician</p>
                         </div>
 
                         <div class="col-6 pt-3">
-                            <p class="roboto weight-600 mb-0 pb-0">Specialty</p>
+                            <p class="roboto weight-600 mb-0 pb-0">{{ $medical_history->specialty }}</p>
                             <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0">Specialty</p>
                         </div>
 
                         <!-- Third Row -->
                         <div class="col-6 pt-3">
-                            <p class="roboto weight-600 mb-0 pb-0">Office Location City</p>
+                            <p class="roboto weight-600 mb-0 pb-0">{{ $medical_history->office_address }}</p>
                             <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0">Office Address</p>
                         </div>
 
                         <div class="col-6 pt-3">
-                            <p class="roboto weight-600 mb-0 pb-0">OfficeNo</p>
+                            <p class="roboto weight-600 mb-0 pb-0">{{ $medical_history->office_no }}</p>
                             <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0">Office#</p>
                         </div>
 
@@ -255,7 +211,7 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">Are you in good health?</p>
                                 </div>
                                 <div class="col-2">
-                                    <p class="roboto weight-500 mb-0 pb-0 text-success">YES</p>
+                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->radio_color($medical_history->q1) }}">{{ $check->radio($medical_history->q1) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -270,7 +226,7 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">If so, what is the condition being treated?</p>
                                 </div>
                                 <div class="col-2">
-                                    <p class="roboto weight-500 mb-0 pb-0 text-danger">NO</p>
+                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->radio_color($medical_history->q2) }}">{{ $check->radio($medical_history->q2) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -286,7 +242,7 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">If so, what illness or operation?</p>
                                 </div>
                                 <div class="col-2">
-                                    <p class="roboto weight-500 mb-0 pb-0 text-success">YES</p>
+                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->radio_color($medical_history->q3) }}">{{ $check->radio($medical_history->q3) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -301,7 +257,7 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">If so, when and why?</p>
                                 </div>
                                 <div class="col-2">
-                                    <p class="roboto weight-500 mb-0 pb-0 text-danger">NO</p>
+                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->radio_color($medical_history->q4) }}">{{ $check->radio($medical_history->q4) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -317,7 +273,7 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">If so, please specify:</p>
                                 </div>
                                 <div class="col-2">
-                                    <p class="roboto weight-500 mb-0 pb-0 text-success">YES</p>
+                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->radio_color($medical_history->q5) }}">{{ $check->radio($medical_history->q5) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -328,7 +284,7 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">Do you use tobacco products?</p>
                                 </div>
                                 <div class="col-2">
-                                    <p class="roboto weight-500 mb-0 pb-0 text-danger">NO</p>
+                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->radio_color($medical_history->q6) }}">{{ $check->radio($medical_history->q6) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -340,40 +296,33 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">Do you use alcohol, cocaine or other dangerous drugs?</p>
                                 </div>
                                 <div class="col-2">
-                                    <p class="roboto weight-500 mb-0 pb-0 text-success">YES</p>
+                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->radio_color($medical_history->q7) }}">{{ $check->radio($medical_history->q7) }}</p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="section-green col-6 pt-5">
                             <div class="row">
-                                <div class="col-10">
+                                <div class="col-12">
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0"><i class="fa-solid fa-list me-2 text-success"></i>Are you allergic to any of the following:</p>
 
-                                    <!-- Add Information -->
                                     <div class="d-flex flex-row flex-wrap">
+
+                                    <!-- Add Information -->
+                                    @foreach ($check->arr($medical_history->allergies) as $allergy)
+
+                                        @if ($allergy == 'null')
+                                            @continue
+                                        @endif
+
                                         <div class="alert alert-success rounded m-1 border-0 px-4 py-1">
-                                            <p class="roboto fs-sm weight-600 m-0 p-0 text-dark">Local Anesthetics</p>
+                                            <p class="roboto fs-sm weight-600 m-0 p-0 text-dark">{{ $allergy }}</p>
                                         </div>
-                                        <div class="alert alert-success rounded m-1 border-0 px-4 py-1">
-                                            <p class="roboto fs-sm weight-600 m-0 p-0 text-dark">Penicillin, Antibiotics</p>
-                                        </div>
-                                        <div class="alert alert-success rounded m-1 border-0 px-4 py-1">
-                                            <p class="roboto fs-sm weight-600 m-0 p-0 text-dark">Sulfa drugs</p>
-                                        </div>
-                                        <div class="alert alert-success rounded m-1 border-0 px-4 py-1">
-                                            <p class="roboto fs-sm weight-600 m-0 p-0 text-dark">Aspirin</p>
-                                        </div>
-                                        <div class="alert alert-success rounded m-1 border-0 px-4 py-1">
-                                            <p class="roboto fs-sm weight-600 m-0 p-0 text-dark">Latex</p>
-                                        </div>
-                                        <div class="alert alert-success rounded m-1 border-0 px-4 py-1">
-                                            <p class="roboto fs-sm weight-600 m-0 p-0 text-dark">Others:</p>
-                                        </div>
+                                        
+                                    @endforeach
+
                                     </div>
-                                </div>
-                                <div class="col-2">
-                                    <p class="roboto weight-500 mb-0 pb-0 text-danger">NO</p>
+
                                 </div>
                             </div>
                         </div>
@@ -385,7 +334,7 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">Bleeding time:</p>
                                 </div>
                                 <div class="col-5 text-end">
-                                    <p class="roboto weight-600 mb-0 pb-0 text-dark">HH:MM:SS</p>
+                                    <p class="roboto weight-600 mb-0 pb-0 text-dark">{{ $check->time($medical_history->bleeding_time) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -396,7 +345,7 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">Are you pregnant?</p>
                                 </div>
                                 <div class="col-2">
-                                    <p class="roboto weight-500 mb-0 pb-0 text-danger">NO</p>
+                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->empty_radio_color($medical_history->women_q1) }}">{{ $check->empty_radio($medical_history->women_q1) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -408,7 +357,7 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">Are you nursing?</p>
                                 </div>
                                 <div class="col-2">
-                                    <p class="roboto weight-500 mb-0 pb-0 text-success">YES</p>
+                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->empty_radio_color($medical_history->women_q2) }}">{{ $check->empty_radio($medical_history->women_q2) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -419,7 +368,7 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">Are you taking birth pills?</p>
                                 </div>
                                 <div class="col-2">
-                                    <p class="roboto weight-500 mb-0 pb-0 text-danger">NO</p>
+                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->empty_radio_color($medical_history->women_q3) }}">{{ $check->empty_radio($medical_history->women_q3) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -431,7 +380,7 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">Blood type:</p>
                                 </div>
                                 <div class="col-5 text-end">
-                                    <p class="roboto weight-600 mb-0 pb-0 text-dark">blood_type</p>
+                                    <p class="roboto weight-600 mb-0 pb-0 text-dark">{{ $medical_history->blood_type }}</p>
                                 </div>
                             </div>
                         </div>
@@ -442,7 +391,7 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">Blood pressure:</p>
                                 </div>
                                 <div class="col-7 text-end">
-                                    <p class="roboto weight-600 mb-0 pb-0 text-dark">blood_pressure</p>
+                                    <p class="roboto weight-600 mb-0 pb-0 text-dark">{{ $medical_history->blood_pressure }} mmHg</p>
                                 </div>
                             </div>
                         </div>
@@ -453,26 +402,21 @@
                                 <div class="col-12">
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0"><i class="fa-solid fa-list me-2 text-success"></i>Do you have or have you had any of the following?</p>
 
-                                    <!-- Add Information -->
                                     <div class="d-flex flex-row flex-wrap">
-                                        <div class="alert alert-success rounded m-1 border-0 px-4 py-1">
-                                            <p class="roboto fs-sm weight-600 m-0 p-0 text-dark">Local Anesthetics</p>
-                                        </div>
-                                        <div class="alert alert-success rounded m-1 border-0 px-4 py-1">
-                                            <p class="roboto fs-sm weight-600 m-0 p-0 text-dark">Penicillin, Antibiotics</p>
-                                        </div>
-                                        <div class="alert alert-success rounded m-1 border-0 px-4 py-1">
-                                            <p class="roboto fs-sm weight-600 m-0 p-0 text-dark">Sulfa drugs</p>
-                                        </div>
-                                        <div class="alert alert-success rounded m-1 border-0 px-4 py-1">
-                                            <p class="roboto fs-sm weight-600 m-0 p-0 text-dark">Aspirin</p>
-                                        </div>
-                                        <div class="alert alert-success rounded m-1 border-0 px-4 py-1">
-                                            <p class="roboto fs-sm weight-600 m-0 p-0 text-dark">Latex</p>
-                                        </div>
-                                        <div class="alert alert-success rounded m-1 border-0 px-4 py-1">
-                                            <p class="roboto fs-sm weight-600 m-0 p-0 text-dark">Others:</p>
-                                        </div>
+
+                                        <!-- Add Information -->
+                                        @foreach ($check->arr($medical_history->illnesses) as $illness)
+
+                                            @if ($illness == 'null')
+                                                @continue
+                                            @endif
+
+                                            <div class="alert alert-success rounded m-1 border-0 px-4 py-1">
+                                                <p class="roboto fs-sm weight-600 m-0 p-0 text-dark">{{ $illness }}</p>
+                                            </div>   
+
+                                        @endforeach
+
                                     </div>
                                 </div>
                             </div>
@@ -480,6 +424,10 @@
 
                     </div>
                 </div>
+
+                @endif
+
+                @if (isset($intraoral))
 
                 <div class="section-title bg-dark px-4 py-2">
                     <h6 class="roboto text-light-gray weight-600 m-0 p-0"><i class="fa-solid fa-teeth text-success me-2"></i>Intraoral Examination Result</h6>
@@ -495,6 +443,8 @@
 
                     </div>
                 </div>
+                    
+                @endif
 
                 <div class="section-title bg-dark px-4 py-2">
                     <h6 class="roboto text-light-gray weight-600 m-0 p-0"><i class="fa-solid fa-x-ray text-success me-2"></i></i>X-ray Information</h6>
@@ -616,6 +566,8 @@
 
                     </div>
                 </div>
+                
+                @endif
 
             </div>
 
@@ -659,6 +611,79 @@
     @endsection
 
     <script>
+
+        @if (isset($intraoral))
+
+        @php
+            $intraoral_arr = $check->arr($intraoral->data);
+
+            $row1 = [
+                '0' => array('55', 'open'),
+                '1' => array('54', 'open'),
+                '2' => array('53', 'close'),
+                '3' => array('52', 'close'),
+                '4' => array('51', 'close'),
+                '5' => array('61', 'close'),
+                '6' => array('62', 'close'),
+                '7' => array('63', 'close'),
+                '8' => array('64', 'open'),
+                '9' => array('65', 'open')
+            ];
+
+            $row2 = [
+                '10' => array('18', 'open'),
+                '11' => array('17', 'open'),
+                '12' => array('16', 'open'),
+                '13' => array('15', 'open'),
+                '14' => array('14', 'open'),
+                '15' => array('13', 'close'),
+                '16' => array('12', 'close'),
+                '17' => array('11', 'close'),
+                '18' => array('21', 'close'),
+                '19' => array('22', 'close'),
+                '20' => array('23', 'close'),
+                '21' => array('24', 'open'),
+                '22' => array('25', 'open'),
+                '23' => array('26', 'open'),
+                '24' => array('27', 'open'),
+                '25' => array('28', 'open')
+            ];
+
+            $row3 = [
+                '26' => array('48', 'open'),
+                '27' => array('47', 'open'),
+                '28' => array('46', 'open'),
+                '29' => array('45', 'open'),
+                '30' => array('44', 'open'),
+                '31' => array('43', 'close'),
+                '32' => array('42', 'close'),
+                '33' => array('41', 'close'),
+                '34' => array('31', 'close'),
+                '35' => array('32', 'close'),
+                '36' => array('33', 'close'),
+                '37' => array('34', 'open'),
+                '38' => array('35', 'open'),
+                '39' => array('36', 'open'),
+                '40' => array('37', 'open'),
+                '41' => array('38', 'open')
+            ];
+
+            $row4 = [
+                '42' => array('85', 'open'),
+                '43' => array('84', 'open'),
+                '44' => array('83', 'close'),
+                '45' => array('82', 'close'),
+                '46' => array('81', 'close'),
+                '47' => array('71', 'close'),
+                '48' => array('72', 'close'),
+                '49' => array('73', 'close'),
+                '50' => array('74', 'open'),
+                '51' => array('75', 'open')
+            ];
+
+            $row_count = 0;
+        @endphp
+
         const intraoralSettings = [
             // first row
             {
@@ -667,16 +692,16 @@
                     { type: 'empty' },
                     { type: 'empty' },
                     { type: 'empty' },
-                    { type: 'open', no: '55' },
-                    { type: 'open', no: '54' },
-                    { type: 'close', no: '53' },
-                    { type: 'close', no: '52' },
-                    { type: 'close', no: '51' },
-                    { type: 'close', no: '61' },
-                    { type: 'close', no: '62' },
-                    { type: 'close', no: '63' },
-                    { type: 'open', no: '64' },
-                    { type: 'open', no: '65' },
+
+                    @for ($i = 0; $i < count($row1); $i++, $row_count++)
+                    { 
+                        type: '$row1[$row_count][1]', 
+                        value: '{{ $intraoral_arr[$row_count] }}',
+                        no: '{{ $row1[$row_count][0] }}', 
+                        route: '{{ asset('images/intraoral/intraoral-' . $row1[$row_count][1] . '.png') }}' 
+                    },
+                    @endfor
+
                     { type: 'empty' },
                     { type: 'empty' },
                     { type: 'empty' }
@@ -686,44 +711,32 @@
             {
                 isReversed: false,
                 data: [
-                    { type: 'open', no: '18' },
-                    { type: 'open', no: '17' },
-                    { type: 'open', no: '16' },
-                    { type: 'open', no: '15' },
-                    { type: 'open', no: '14' },
-                    { type: 'close', no: '13' },
-                    { type: 'close', no: '12' },
-                    { type: 'close', no: '11' },
-                    { type: 'close', no: '21' },
-                    { type: 'close', no: '22' },
-                    { type: 'close', no: '23' },
-                    { type: 'open', no: '24' },
-                    { type: 'open', no: '25' },
-                    { type: 'open', no: '26' },
-                    { type: 'open', no: '27' },
-                    { type: 'open', no: '28' }
+
+                    @for ($i = 0; $i < count($row2); $i++, $row_count++)
+                    { 
+                        type: '$row2[$row_count][1]', 
+                        value: '{{ $intraoral_arr[$row_count] }}',
+                        no: '{{ $row2[$row_count][0] }}', 
+                        route: '{{ asset('images/intraoral/intraoral-' . $row2[$row_count][1] . '.png') }}' 
+                    },
+                    @endfor
+                    
                 ]
             },
             // first row
             {
                 isReversed: true,
                 data: [
-                    { type: 'open', no: '48' },
-                    { type: 'open', no: '47' },
-                    { type: 'open', no: '46' },
-                    { type: 'open', no: '45' },
-                    { type: 'open', no: '44' },
-                    { type: 'close', no: '43' },
-                    { type: 'close', no: '42' },
-                    { type: 'close', no: '41' },
-                    { type: 'close', no: '31' },
-                    { type: 'close', no: '32' },
-                    { type: 'close', no: '33' },
-                    { type: 'open', no: '34' },
-                    { type: 'open', no: '35' },
-                    { type: 'open', no: '36' },
-                    { type: 'open', no: '37' },
-                    { type: 'open', no: '38' }
+
+                    @for ($i = 0; $i < count($row3); $i++, $row_count++)
+                    { 
+                        type: '$row3[$row_count][1]', 
+                        value: '{{ $intraoral_arr[$row_count] }}',
+                        no: '{{ $row3[$row_count][0] }}', 
+                        route: '{{ asset('images/intraoral/intraoral-' . $row3[$row_count][1] . '.png') }}' 
+                    },
+                    @endfor
+
                 ]
             },
             // second row
@@ -733,22 +746,28 @@
                     { type: 'empty' },
                     { type: 'empty' },
                     { type: 'empty' },
-                    { type: 'open', no: '85', value: 'D' },
-                    { type: 'open', no: '84' },
-                    { type: 'close', no: '83' },
-                    { type: 'close', no: '82' },
-                    { type: 'close', no: '81' },
-                    { type: 'close', no: '71' },
-                    { type: 'close', no: '72' },
-                    { type: 'close', no: '73' },
-                    { type: 'open', no: '74' },
-                    { type: 'open', no: '75' },
+
+                    @for ($i = 0; $i < count($row4); $i++, $row_count++)
+                    { 
+                        type: '$row4[$row_count][1]', 
+                        value: '{{ $intraoral_arr[$row_count] }}',
+                        no: '{{ $row4[$row_count][0] }}', 
+                        route: '{{ asset('images/intraoral/intraoral-' . $row4[$row_count][1] . '.png') }}' 
+                    },
+                    @endfor
+
                     { type: 'empty' },
                     { type: 'empty' },
                     { type: 'empty' }
                 ]
             }
         ];
+
+        @else
+
+        const intraoralSettings = [];
+            
+        @endif
     </script>
 
 </body>

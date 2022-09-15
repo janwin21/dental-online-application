@@ -23,6 +23,7 @@ class Patient extends Model
         'home_no',
         'home_address',
         'occupation',
+        'office_no',
         'dental_insurance',
         'effective_date',
         'phone_no',
@@ -34,4 +35,14 @@ class Patient extends Model
     ];
 
     public $table = 'patients';
+    public $dates = ['birth_date'];
+
+    public function medical_histories() {
+        return $this->hasMany(MedicalHistories::class);
+    }
+
+    public function intraorals() {
+        return $this->hasMany(Intraorals::class);
+    }
+
 }
