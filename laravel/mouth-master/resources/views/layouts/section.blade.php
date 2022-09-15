@@ -1,12 +1,18 @@
 @php
     $current_route = Route::current()->getName();
+    $xray_route = route('xray.edit', isset($patient->id) ? $patient->id : -1);
+
+    // modal value
+    $title = isset($patient->id) ? 'Add X-Ray Examination' : 'Go To Patients';
+    $paragraph = isset($patient->id) ? 'You previous examination are cannot be updated. Do you want to add new examination for your new update?' : 'Select your Patients first. Click the button to visit all the Patients.';
+    $color = isset($patient->id) ? 'bg-success' : 'bg-danger';
+    $btn = isset($patient->id) ? 'Add' : 'Patients';
 @endphp
 
-@unless ($current_route == 'patient.index' || $current_route == 'page.logbook')
+@unless ($current_route == 'patient.index' || $current_route == 'patient.showAll' || $current_route == 'page.logbook')
     
     <!-- Section -->
     <div class="section col-3 {{ ($current_route == 'login' || $current_route == 'register') ?  '' : 'bg-light' }} py-4 sticky-top">
- 
         <div class="wrapper">
 
             @unless ($current_route == 'login' || $current_route == 'register')
@@ -69,11 +75,11 @@
                 <h5 class="roboto my-3">X-ray</h5>
                 <p class="roboto weight-100 fs-xs">Examine the structure of your teeth for precise consultation.</p>
                 <a href="#"
-                data-src="{{ route('form.xray') }}"
-                data-title="Add X-Ray Examination"
-                data-paragraph="You previous examination are cannot be updated. Do you want to add new examination for your new update?"
-                data-color="bg-success"
-                data-btn="Add"    
+                data-src="{{ $xray_route }}"
+                data-title="{{ $title }}"
+                data-paragraph="{{ $paragraph }}"
+                data-color="{{ $color }}"
+                data-btn="{{ $btn }}"    
                 class="modal-trigger btn btn-success px-5 py-1 rounded-pill roboto text-light weight-500 hover-to-dark fs-xs shadow-none">Add</a>
             </div>
 

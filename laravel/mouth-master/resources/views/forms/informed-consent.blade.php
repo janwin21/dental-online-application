@@ -52,7 +52,10 @@
                     <p class="roboto text-light-gray weight-500">Mouth Master - Dental Clinic</p>
                 </div>
 
-                <form action="#" method="POST">
+                <form action="{{ route('consent.store') }}" method="POST">
+                    @csrf
+
+                    <input class="d-none" required value="{{ $patient->id }}" type="text" name="patient_id">
 
                 <div class="section-body bg-light p-5">
                     <div class="row">
@@ -224,7 +227,7 @@
 
                     <!-- INFORMED CONSENT CHECKBOX -->
                     <div class="roboto form-check text-center">
-                        <input type="checkbox" value="" id="flexCheckDefault" name="agree">
+                        <input type="checkbox" value="agree" id="flexCheckDefault" name="agree">
                         <label class="ms-2 form-check-label" for="flexCheckDefault">
                             I agree and understand the terms and conditions stated in the  informed consent.
                         </label>

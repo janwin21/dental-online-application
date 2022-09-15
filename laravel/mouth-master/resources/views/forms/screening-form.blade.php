@@ -52,7 +52,10 @@
                     <p class="roboto text-light-gray weight-500">Mouth Master - Dental Clinic</p>
                 </div>
 
-                <form action="#" method="POST">
+                <form action="{{ route('screening.store') }}" method="POST">
+                    @csrf
+
+                    <input class="d-none" type="number" value="{{ $patient->id }}" name="patient_id">
 
                 <div class="row">
                 <div class="col-6 pe-0">
@@ -73,14 +76,14 @@
                             <div class="row">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="p1" value="m">
+                                        <input required type="radio" name="p1" value="1">
                                         <label class="weight-600" for="p1"><i class="fa-solid fa-check"></i></label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="p1" value="fm">
-                                        <label class="weight-600" for="p1"><i class="fa-solid fa-xmark"></i></label><br>
+                                        <input required type="radio" name="p1" value="0">
+                                        <label class="weight-600" for="p1"><i class="fa-solid fa-xmark text-danger"></i></label><br>
                                     </div>
                                 </div>
                             </div>
@@ -95,14 +98,14 @@
                             <div class="row">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="p2" value="m">
+                                        <input required type="radio" name="p2" value="1">
                                         <label class="weight-600" for="p2"><i class="fa-solid fa-check"></i></label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="p2" value="fm">
-                                        <label class="weight-600" for="p2"><i class="fa-solid fa-xmark"></i></label><br>
+                                        <input required type="radio" name="p2" value="0">
+                                        <label class="weight-600" for="p2"><i class="fa-solid fa-xmark text-danger"></i></label><br>
                                     </div>
                                 </div>
                             </div>
@@ -117,14 +120,14 @@
                             <div class="row">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="p3" value="m">
+                                        <input required type="radio" name="p3" value="1">
                                         <label class="weight-600" for="p3"><i class="fa-solid fa-check"></i></label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="p3" value="fm">
-                                        <label class="weight-600" for="p3"><i class="fa-solid fa-xmark"></i></label><br>
+                                        <input required type="radio" name="p3" value="0">
+                                        <label class="weight-600" for="p3"><i class="fa-solid fa-xmark text-danger"></i></label><br>
                                     </div>
                                 </div>
                             </div>
@@ -139,14 +142,14 @@
                             <div class="row">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="p4" value="m">
+                                        <input required type="radio" name="p4" value="1">
                                         <label class="weight-600" for="p4"><i class="fa-solid fa-check"></i></label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="p4" value="fm">
-                                        <label class="weight-600" for="p4"><i class="fa-solid fa-xmark"></i></label><br>
+                                        <input required type="radio" name="p4" value="0">
+                                        <label class="weight-600" for="p4"><i class="fa-solid fa-xmark text-danger"></i></label><br>
                                     </div>
                                 </div>
                             </div>
@@ -175,14 +178,14 @@
                             <div class="row">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="a1" value="m">
+                                        <input required type="radio" name="a1" value="1">
                                         <label class="weight-600" for="a1"><i class="fa-solid fa-check"></i></label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="a1" value="fm">
-                                        <label class="weight-600" for="a1"><i class="fa-solid fa-xmark"></i></label><br>
+                                        <input required type="radio" name="a1" value="0">
+                                        <label class="weight-600" for="a1"><i class="fa-solid fa-xmark text-danger"></i></label><br>
                                     </div>
                                 </div>
                             </div>
@@ -197,14 +200,14 @@
                             <div class="row">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="a2" value="m">
+                                        <input required type="radio" name="a2" value="1">
                                         <label class="weight-600" for="a2"><i class="fa-solid fa-check"></i></label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="a2" value="fm">
-                                        <label class="weight-600" for="a2"><i class="fa-solid fa-xmark"></i></label><br>
+                                        <input required type="radio" name="a2" value="0">
+                                        <label class="weight-600" for="a2"><i class="fa-solid fa-xmark text-danger"></i></label><br>
                                     </div>
                                 </div>
                             </div>
@@ -230,7 +233,7 @@
                         </div>
 
                         <div class="col-12 mb-3">
-                            <input required class="w-100 border border-secondary rounded px-2 py-1 mt-2" type="text">
+                            <input required name="o1" class="w-100 border border-secondary rounded px-2 py-1 mt-2" type="text">
                         </div>
 
                         <!-- Second Row -->
@@ -239,7 +242,7 @@
                         </div>
 
                         <div class="col-12 mb-3">
-                            <input required class="w-100 border border-secondary rounded px-1 py-1 mt-2" type="text">
+                            <input required name="o2" class="w-100 border border-secondary rounded px-1 py-1 mt-2" type="text">
                         </div>
 
                         <!-- Third Row -->
@@ -248,7 +251,7 @@
                         </div>
 
                         <div class="col-12 mb-3">
-                            <input required class="w-100 border border-secondary rounded px-1 py-1 mt-2" type="text">
+                            <input required name="o3" class="w-100 border border-secondary rounded px-1 py-1 mt-2" type="text">
                         </div>
 
                         <!-- Fourth Row -->
@@ -257,7 +260,7 @@
                         </div>
 
                         <div class="col-12 mb-3">
-                            <input required class="w-100 border border-secondary rounded px-1 py-1 mt-2" type="text">
+                            <input required name="o4" class="w-100 border border-secondary rounded px-1 py-1 mt-2" type="text">
                         </div>
 
                         <!-- Fifth Row -->
@@ -266,7 +269,7 @@
                         </div>
 
                         <div class="col-12">
-                            <input required class="w-100 border border-secondary rounded px-1 py-1 mt-2" type="text">
+                            <input required name="o5" class="w-100 border border-secondary rounded px-1 py-1 mt-2" type="text">
                         </div>
 
                     </div>
@@ -291,14 +294,14 @@
                             <div class="row">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="t1" value="m">
+                                        <input required type="radio" name="t1" value="1">
                                         <label class="weight-600" for="t1"><i class="fa-solid fa-check"></i></label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="t1" value="fm">
-                                        <label class="weight-600" for="t1"><i class="fa-solid fa-xmark"></i></label><br>
+                                        <input required type="radio" name="t1" value="0">
+                                        <label class="weight-600" for="t1"><i class="fa-solid fa-xmark text-danger"></i></label><br>
                                     </div>
                                 </div>
                             </div>
@@ -312,14 +315,14 @@
                             <div class="row">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="t2" value="m">
+                                        <input required type="radio" name="t2" value="1">
                                         <label class="weight-600" for="t2"><i class="fa-solid fa-check"></i></label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="t2" value="fm">
-                                        <label class="weight-600" for="t2"><i class="fa-solid fa-xmark"></i></label><br>
+                                        <input required type="radio" name="t2" value="0">
+                                        <label class="weight-600" for="t2"><i class="fa-solid fa-xmark text-danger"></i></label><br>
                                     </div>
                                 </div>
                             </div>
@@ -333,14 +336,14 @@
                             <div class="row">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="t3" value="m">
+                                        <input required type="radio" name="t3" value="1">
                                         <label class="weight-600" for="t3"><i class="fa-solid fa-check"></i></label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="t3" value="fm">
-                                        <label class="weight-600" for="t3"><i class="fa-solid fa-xmark"></i></label><br>
+                                        <input required type="radio" name="t3" value="0">
+                                        <label class="weight-600" for="t3"><i class="fa-solid fa-xmark text-danger"></i></label><br>
                                     </div>
                                 </div>
                             </div>
@@ -354,14 +357,14 @@
                             <div class="row">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="t4" value="m">
+                                        <input required type="radio" name="t4" value="1">
                                         <label class="weight-600" for="t4"><i class="fa-solid fa-check"></i></label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="t4" value="fm">
-                                        <label class="weight-600" for="t4"><i class="fa-solid fa-xmark"></i></label><br>
+                                        <input required type="radio" name="t4" value="0">
+                                        <label class="weight-600" for="t4"><i class="fa-solid fa-xmark text-danger"></i></label><br>
                                     </div>
                                 </div>
                             </div>

@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CheckUtility;
-use App\Models\Intraorals;
+use App\Models\InformedConsent;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 
-class IntraoralController extends Controller
+class InformedConsentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,15 +36,11 @@ class IntraoralController extends Controller
      */
     public function store(Request $request)
     {
-        $size = count($request->all()) - 2;
-        $check = new CheckUtility();
-        $intraoral_arr = $check->to_array($request, $size, 'intraoral_');
-
-        Intraorals::create([
+        InformedConsent::create([
             'patient_id' => $request->patient_id,
-            'data' => $check->toString($intraoral_arr)
+            'agree' => $request->agree
         ]);
-
+        
         return redirect(route('patient.show', $request->patient_id));
     }
 
@@ -69,8 +64,8 @@ class IntraoralController extends Controller
     public function edit($id) // THIS WILL BECOME A MEAN FOR CREATE!!!
     {
         if($id == -1) return redirect(route('patient.index'));
-        
-        return view('forms.intraoral-examination', [
+
+        return view('forms.informed-consent', [
             'patient' => Patient::where('id', $id)->first()
         ]);
     }

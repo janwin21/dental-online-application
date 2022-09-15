@@ -446,6 +446,8 @@
                     
                 @endif
 
+                @if ($xray)
+
                 <div class="section-title bg-dark px-4 py-2">
                     <h6 class="roboto text-light-gray weight-600 m-0 p-0"><i class="fa-solid fa-x-ray text-success me-2"></i></i>X-ray Information</h6>
                 </div>
@@ -463,22 +465,26 @@
                             <!-- Add Information -->
                             <div class="d-flex flex-row flex-wrap">
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-check text-success me-2"></i>Periapical</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($xray->p1) }} me-2"></i>Periapical</p>
                                 </div>
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-xmark text-danger me-2"></i>Panoramic</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($xray->p2) }} me-2"></i>Panoramic</p>
                                 </div>
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-xmark text-danger me-2"></i>Cephalometric</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($xray->p3) }} me-2"></i>Cephalometric</p>
                                 </div>
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-xmark text-danger me-2"></i>Occlusal (Upper/Lower)</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($xray->p4) }} me-2"></i>Occlusal (Upper/Lower)</p>
                                 </div>
                             </div>
 
                         </div>
                     </div>
                 </div>
+                    
+                @endif
+
+                @if ($screening)
 
                 <div class="section-title bg-dark px-4 py-2">
                     <h6 class="roboto text-light-gray weight-600 m-0 p-0"><i class="fa-solid fa-display text-success me-2"></i>Screening Information</h6>
@@ -498,10 +504,16 @@
                             <!-- Add Information -->
                             <div class="d-flex flex-row flex-wrap">
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-check text-success me-2"></i>Occlusal</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($screening->p1) }} me-2"></i>Occlusal</p>
                                 </div>
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-xmark text-danger me-2"></i>Early Periodontitis</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($screening->p2) }} me-2"></i>Early Periodontitis</p>
+                                </div>
+                                <div class="alert alert-light m-1 border-0 px-4 py-1">
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($screening->p3) }} me-2"></i>Moderate Periodontitis</p>
+                                </div>
+                                <div class="alert alert-light m-1 border-0 px-4 py-1">
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($screening->p4) }} me-2"></i>Advanced Periodontitis</p>
                                 </div>
                             </div>
 
@@ -517,10 +529,10 @@
                             <!-- Add Information -->
                             <div class="d-flex flex-row flex-wrap">
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-check text-success me-2"></i>Occlusal</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($screening->a1) }} me-2"></i>Orthodontics</p>
                                 </div>
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-xmark text-danger me-2"></i>Early Periodontitis</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($screening->a2) }} me-2"></i>Stayplate</p>
                                 </div>
                             </div>
 
@@ -536,10 +548,19 @@
                             <!-- Add Information -->
                             <div class="d-flex flex-row flex-wrap">
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-check text-success me-2"></i>Occlusal</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><span class="text-success me-2">{{ $screening->o1 }}</span>Class (Molor)</p>
                                 </div>
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-xmark text-danger me-2"></i>Early Periodontitis</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><span class="text-success me-2">{{ $screening->o2 }}</span>Overjet</p>
+                                </div>
+                                <div class="alert alert-light m-1 border-0 px-4 py-1">
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><span class="text-success me-2">{{ $screening->o3 }}</span>Overbite</p>
+                                </div>
+                                <div class="alert alert-light m-1 border-0 px-4 py-1">
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><span class="text-success me-2">{{ $screening->o4 }}</span>Midline Deviation</p>
+                                </div>
+                                <div class="alert alert-light m-1 border-0 px-4 py-1">
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><span class="text-success me-2">{{ $screening->o5 }}</span>Crossbite</p>
                                 </div>
                             </div>
 
@@ -555,10 +576,16 @@
                             <!-- Add Information -->
                             <div class="d-flex flex-row flex-wrap">
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-check text-success me-2"></i>Occlusal</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($screening->t1) }} me-2"></i>Clenching</p>
                                 </div>
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid fa-xmark text-danger me-2"></i>Early Periodontitis</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($screening->t2) }} me-2"></i>Clicking</p>
+                                </div>
+                                <div class="alert alert-light m-1 border-0 px-4 py-1">
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($screening->t3) }} me-2"></i>Trismus</p>
+                                </div>
+                                <div class="alert alert-light m-1 border-0 px-4 py-1">
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($screening->t4) }} me-2"></i>Muscle Spasm</p>
                                 </div>
                             </div>
 
@@ -566,6 +593,8 @@
 
                     </div>
                 </div>
+                    
+                @endif
                 
                 @endif
 
@@ -696,7 +725,7 @@
                     @for ($i = 0; $i < count($row1); $i++, $row_count++)
                     { 
                         type: '$row1[$row_count][1]', 
-                        value: '{{ $intraoral_arr[$row_count] }}',
+                        value: '{{ $check->null($intraoral_arr[$row_count]) }}',
                         no: '{{ $row1[$row_count][0] }}', 
                         route: '{{ asset('images/intraoral/intraoral-' . $row1[$row_count][1] . '.png') }}' 
                     },
@@ -715,7 +744,7 @@
                     @for ($i = 0; $i < count($row2); $i++, $row_count++)
                     { 
                         type: '$row2[$row_count][1]', 
-                        value: '{{ $intraoral_arr[$row_count] }}',
+                        value: '{{ $check->null($intraoral_arr[$row_count]) }}',
                         no: '{{ $row2[$row_count][0] }}', 
                         route: '{{ asset('images/intraoral/intraoral-' . $row2[$row_count][1] . '.png') }}' 
                     },
@@ -731,7 +760,7 @@
                     @for ($i = 0; $i < count($row3); $i++, $row_count++)
                     { 
                         type: '$row3[$row_count][1]', 
-                        value: '{{ $intraoral_arr[$row_count] }}',
+                        value: '{{ $check->null($intraoral_arr[$row_count]) }}',
                         no: '{{ $row3[$row_count][0] }}', 
                         route: '{{ asset('images/intraoral/intraoral-' . $row3[$row_count][1] . '.png') }}' 
                     },
@@ -750,7 +779,7 @@
                     @for ($i = 0; $i < count($row4); $i++, $row_count++)
                     { 
                         type: '$row4[$row_count][1]', 
-                        value: '{{ $intraoral_arr[$row_count] }}',
+                        value: '{{ $check->null($intraoral_arr[$row_count]) }}',
                         no: '{{ $row4[$row_count][0] }}', 
                         route: '{{ asset('images/intraoral/intraoral-' . $row4[$row_count][1] . '.png') }}' 
                     },

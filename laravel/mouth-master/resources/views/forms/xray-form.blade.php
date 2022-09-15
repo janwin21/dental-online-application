@@ -52,7 +52,10 @@
                     <p class="roboto text-light-gray weight-500">Mouth Master - Dental Clinic</p>
                 </div>
 
-                <form action="#" method="POST">
+                <form action="{{ route('xray.store') }}" method="POST">
+                    @csrf
+                    
+                    <input class="d-none" type="number" name="patient_id" value="{{ $patient->id }}">
 
                 <div class="section-body bg-light p-5">
                     <div class="row">
@@ -70,14 +73,14 @@
                             <div class="row">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="p1" value="m">
-                                        <label class="weight-600" for="p1"><i class="fa-solid fa-check"></i></label><br>
+                                        <input required type="radio" name="p1" value="1">
+                                        <label class="weight-600" for="p1"><i class="fa-solid fa-check text-dark"></i></label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="p1" value="fm">
-                                        <label class="weight-600" for="p1"><i class="fa-solid fa-xmark"></i></label><br>
+                                        <input required type="radio" name="p1" value="0">
+                                        <label class="weight-600" for="p1"><i class="fa-solid fa-xmark text-danger"></i></label><br>
                                     </div>
                                 </div>
                             </div>
@@ -91,14 +94,14 @@
                             <div class="row">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="p2" value="m">
-                                        <label class="weight-600" for="p2"><i class="fa-solid fa-check"></i></label><br>
+                                        <input required type="radio" name="p2" value="1">
+                                        <label class="weight-600" for="p2"><i class="fa-solid fa-check text-dark"></i></label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="p2" value="fm">
-                                        <label class="weight-600" for="p2"><i class="fa-solid fa-xmark"></i></label><br>
+                                        <input required type="radio" name="p2" value="0">
+                                        <label class="weight-600" for="p2"><i class="fa-solid fa-xmark text-danger"></i></label><br>
                                     </div>
                                 </div>
                             </div>
@@ -112,14 +115,14 @@
                             <div class="row">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="p3" value="m">
-                                        <label class="weight-600" for="p3"><i class="fa-solid fa-check"></i></label><br>
+                                        <input required type="radio" name="p3" value="1">
+                                        <label class="weight-600" for="p3"><i class="fa-solid fa-check text-dark"></i></label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="p3" value="fm">
-                                        <label class="weight-600" for="p3"><i class="fa-solid fa-xmark"></i></label><br>
+                                        <input required type="radio" name="p3" value="0">
+                                        <label class="weight-600" for="p3"><i class="fa-solid fa-xmark text-danger"></i></label><br>
                                     </div>
                                 </div>
                             </div>
@@ -133,14 +136,14 @@
                             <div class="row">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="p4" value="m">
-                                        <label class="weight-600" for="p4"><i class="fa-solid fa-check"></i></label><br>
+                                        <input required type="radio" name="p4" value="1">
+                                        <label class="weight-600" for="p4"><i class="fa-solid fa-check text-dark"></i></label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="p4" value="fm">
-                                        <label class="weight-600" for="p4"><i class="fa-solid fa-xmark"></i></label><br>
+                                        <input required type="radio" name="p4" value="0">
+                                        <label class="weight-600" for="p4"><i class="fa-solid fa-xmark text-danger"></i></label><br>
                                     </div>
                                 </div>
                             </div>

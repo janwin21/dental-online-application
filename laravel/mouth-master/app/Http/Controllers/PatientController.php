@@ -7,6 +7,7 @@ use App\Models\CheckUtility;
 use App\Models\Intraorals;
 use App\Models\MedicalHistories;
 use App\Models\Patient;
+use App\Models\Xrays;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
@@ -36,6 +37,15 @@ class PatientController extends Controller
         return view('forms.main-information-form');
     }
 
+    public function createIndex($id)
+    {
+        if($id == -1) return redirect(route('patient.create'));
+
+        return view('forms.screening-form', [
+            'patient' => Patient::where('id', $id)->first()
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -47,7 +57,7 @@ class PatientController extends Controller
     
         $request->validated();
 
-        Patient::create([
+        $patient = Patient::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'middle_initial' => $request->middle_initial,
@@ -71,7 +81,7 @@ class PatientController extends Controller
             'guardian_occupation' => $request->guardian_occupation
         ]);
 
-        return redirect(route('patient.index'));
+        return redirect(route('patient.show', $patient->id));
 
     }
 
@@ -83,20 +93,39 @@ class PatientController extends Controller
      */
     public function show($id)
     {
+        $patient = Patient::where('id', $id)->first();
+
         return view('pages.dashboard', [
             'check' => new CheckUtility(),
-            'patient' => Patient::where('id', $id)->first(),
+            
+            'patient' => $patient,
+
             'medical_history' => 
-                MedicalHistories::where('patient_id', $id)->orderBy('created_at', 'desc')->limit(1)->first(),
+                $patient->medical_histories()->orderBy('created_at', 'desc')
+                    ->limit(1)->first(),
+
             'intraoral' =>
-                Intraorals::where('patient_id', $id)->orderBy('created_at', 'desc')->limit(1)->first()
+                $patient->intraorals()->orderBy('created_at', 'desc')
+                    ->limit(1)->first(),
+
+            'xray' =>
+                $patient->xrays()->orderBy('created_at', 'desc')
+                    ->limit(1)->first(),
+
+            'screening' =>
+                $patient->screenings()->orderBy('created_at', 'desc')
+                    ->limit(1)->first(),
+
+            'informed_consent' =>
+                $patient->informed_consents()->orderBy('created_at', 'desc')
+                    ->limit(1)->first()
         ]);
     }
 
     public function showAll($id) 
     {
         return view('pages.patient', [
-            'id' => $id,
+            'patient' => Patient::where('id', $id)->first(),
             'patients' => Patient::get()
         ]);
     }

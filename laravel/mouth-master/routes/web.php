@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\InformedConsentController;
 use App\Http\Controllers\IntraoralController;
 use App\Http\Controllers\MedicalHistoriesController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\TestNavigationController;
+use App\Http\Controllers\XrayController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,8 +39,12 @@ Route::get('/dashboard', function () { return view('dashboard'); })->name('dashb
 /*-- MOUST MASTERS ROUTES --*/
 Route::resource('patient', PatientController::class);
 Route::get('/patient/show/all/{id}', [PatientController::class, 'showAll'])->name('patient.showAll');
+Route::get('/patient/create/with/{id}', [PatientController::class, 'createIndex'])->name('patient.createIndex');
 
 Route::resource('medical-history', MedicalHistoriesController::class);
 Route::resource('intraoral', IntraoralController::class);
+Route::resource('xray', XrayController::class);
+Route::resource('screening', ScreeningController::class);
+Route::resource('consent', InformedConsentController::class);
 
 require __DIR__.'/auth.php';

@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CheckUtility;
-use App\Models\Intraorals;
 use App\Models\Patient;
+use App\Models\Screenings;
 use Illuminate\Http\Request;
 
-class IntraoralController extends Controller
+class ScreeningController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,15 +36,25 @@ class IntraoralController extends Controller
      */
     public function store(Request $request)
     {
-        $size = count($request->all()) - 2;
-        $check = new CheckUtility();
-        $intraoral_arr = $check->to_array($request, $size, 'intraoral_');
-
-        Intraorals::create([
+        Screenings::create([
             'patient_id' => $request->patient_id,
-            'data' => $check->toString($intraoral_arr)
+            'p1' => $request->p1,
+            'p2' => $request->p2,
+            'p3' => $request->p3,
+            'p4' => $request->p4,
+            'a1' => $request->a1,
+            'a2' => $request->a2,
+            'o1' => $request->o1,
+            'o2' => $request->o2,
+            'o3' => $request->o3,
+            'o4' => $request->o4,
+            'o5' => $request->o5,
+            't1' => $request->t1,
+            't2' => $request->t2,
+            't3' => $request->t3,
+            't4' => $request->t4
         ]);
-
+        
         return redirect(route('patient.show', $request->patient_id));
     }
 
@@ -69,8 +78,8 @@ class IntraoralController extends Controller
     public function edit($id) // THIS WILL BECOME A MEAN FOR CREATE!!!
     {
         if($id == -1) return redirect(route('patient.index'));
-        
-        return view('forms.intraoral-examination', [
+
+        return view('forms.screening-form', [
             'patient' => Patient::where('id', $id)->first()
         ]);
     }

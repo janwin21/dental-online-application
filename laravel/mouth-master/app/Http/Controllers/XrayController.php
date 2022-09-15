@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CheckUtility;
-use App\Models\Intraorals;
 use App\Models\Patient;
+use App\Models\Xrays;
 use Illuminate\Http\Request;
 
-class IntraoralController extends Controller
+class XrayController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,14 +35,13 @@ class IntraoralController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $size = count($request->all()) - 2;
-        $check = new CheckUtility();
-        $intraoral_arr = $check->to_array($request, $size, 'intraoral_');
-
-        Intraorals::create([
+    {  
+        Xrays::create([
             'patient_id' => $request->patient_id,
-            'data' => $check->toString($intraoral_arr)
+            'p1' => $request->p1,
+            'p2' => $request->p2,
+            'p3' => $request->p3,
+            'p4' => $request->p4
         ]);
 
         return redirect(route('patient.show', $request->patient_id));
@@ -70,7 +68,7 @@ class IntraoralController extends Controller
     {
         if($id == -1) return redirect(route('patient.index'));
         
-        return view('forms.intraoral-examination', [
+        return view('forms.xray-form', [
             'patient' => Patient::where('id', $id)->first()
         ]);
     }

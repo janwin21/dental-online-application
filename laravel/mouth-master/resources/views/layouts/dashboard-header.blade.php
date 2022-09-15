@@ -29,7 +29,7 @@
             
             <div class="header-right col-6 text-end">
                 <button
-                data-src="{{ route('patient.create') }}"
+                data-src="{{ route('patient.createIndex', isset($patient->id) ? $patient->id : -1) }}"
                 data-title="Add Patients"
                 data-paragraph="Do you want to add more patients?"
                 data-color="bg-success"

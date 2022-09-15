@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CheckUtility;
 use App\Models\MedicalHistories;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 
 class MedicalHistoriesController extends Controller
@@ -101,7 +102,7 @@ class MedicalHistoriesController extends Controller
         if($id == -1) return redirect(route('patient.index'));
 
         return view('forms.medical-history-form', [
-            'id' => $id
+            'patient' => Patient::where('id', $id)->first()
         ]);
     }
 

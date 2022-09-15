@@ -1,13 +1,19 @@
 @php
     $current_route = Route::current()->getName();
     $medical_history_route = route('medical-history.edit', isset($patient->id) ? $patient->id : -1);
-    $patient_route = isset($id) ? route('patient.showAll', $id) : route('patient.index');
+    $patient_route = isset($patient->id) ? route('patient.showAll', $patient->id) : route('patient.index');
+
+    // modal value
+    $title = isset($patient->id) ? 'Add Medical History' : 'Go To Patients';
+    $paragraph = isset($patient->id) ? 'You previous history are cannot be updated. Do you want to add new history for your new update?' : 'Select your Patients first. Click the button to visit all the Patients.';
+    $color = isset($patient->id) ? 'bg-success' : 'bg-danger';
+    $btn = isset($patient->id) ? 'Add' : 'Patients';
 @endphp
 
 <!-- Container Wrapper -->
 <div class="container-wrapper container-fluid bg-light-gray">
     <div class="row">
-
+        
         <!-- Sidebar -->
         <div class="sidebar col-{{ ($current_route == 'login' || $current_route == 'register') ? '3' : '2' }} 
         {{ ($current_route == 'login' || $current_route == 'register') ? '' : 'bg-light' }} py-4 sticky-top">
@@ -34,10 +40,10 @@
                     <p class="roboto weight-100 fs-xs">A record of information about a your personal health.</p>
                     <a href="#"
                     data-src="{{ $medical_history_route }}"
-                    data-title="Add Medical History"
-                    data-paragraph="You previous history are cannot be updated. Do you want to add new history for your new update?"
-                    data-color="bg-success"
-                    data-btn="Add"    
+                    data-title="{{ $title }}"
+                    data-paragraph="{{ $paragraph }}"
+                    data-color="{{ $color }}"
+                    data-btn="{{ $btn }}"    
                     class="modal-trigger btn btn-success px-5 py-1 rounded-pill roboto text-light weight-500 hover-to-dark fs-xs shadow-none">Add</a>
                 </div>
     

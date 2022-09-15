@@ -11,6 +11,7 @@ class CheckUtility extends Model
 
     // checking radio value
     public function radio($q) { return $q == 1 ? 'YES' : 'NO'; }
+    public function radio_check($q) { return $q == 1 ? 'fa-check text-success' : 'fa-xmark text-danger'; }
     public function radio_color($q) { return $q == 1 ? 'success' : 'danger'; }
 
     public function empty_radio($q) {
@@ -44,5 +45,6 @@ class CheckUtility extends Model
 
     // check if the value is empty
     public function empty($val) { return $val == 'null' ? $val : 'None'; }
-
+    public function null($val) { return $val != 'null' ? $val : ''; }
+    
 }

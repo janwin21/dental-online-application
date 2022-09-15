@@ -18,9 +18,7 @@ class TestNavigationController extends Controller
     
     // FORMS ------------------------------------------------------------------------->
     public function intraoral_examination() { return view('forms.intraoral-examination'); } // intraoral 
-    public function screening() { return view('forms.screening-form'); } // screening 
     public function appointment() { return view('forms.appointment-form'); } // appointment
-    public function xray() { return view('forms.xray-form'); } // xray
     public function informed_consent() { return view('forms.informed-consent'); } // informed-consent
 
 }

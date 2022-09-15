@@ -55,7 +55,7 @@
                 <form action="{{ route('medical-history.store') }}" method="POST">
                     @csrf
 
-                    <input required class="d-none" type="number" name="patient_id" value="{{ $id }}">
+                    <input required class="d-none" type="number" name="patient_id" value="{{ $patient->id }}">
 
                 <div class="section-body bg-light p-5">
                     <div class="row">
@@ -100,7 +100,7 @@
                         <!-- Second Row -->
                         <div class="col-6 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="office_address">Office Address <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary border-1 rounded px-3 py-1 mt-2" type="text" name="office_address" placeholder="Dr. Doctor">
+                            <input required class="w-100 border border-secondary border-1 rounded px-3 py-1 mt-2" type="text" name="office_address">
                         </div>
                         
                         <div class="col-6 mt-4 mb-3">
@@ -295,7 +295,7 @@
 
                         <!-- Seventh Row -->
                         <div class="col-12 mt-4 mb-3">
-                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="q8">Q8. Are you allergic to any of the following: <strong class="text-danger me-1">*</strong></label>
+                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="q8">Q8. Are you allergic to any of the following:</label>
                         </div>
 
                         <div class="col-12 mt-0 mb-3">
@@ -434,7 +434,7 @@
 
                         <!-- First Row -->
                         <div class="col-12 mt-4 mb-3">
-                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="illness">Do you have or have you had any of the following? Check which apply <strong class="text-danger me-1">*</strong></label>
+                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="illness">Do you have or have you had any of the following? Check which apply</label>
                         </div>
 
                         <div class="col-12 mt-0 mb-3">

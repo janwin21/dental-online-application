@@ -45,4 +45,16 @@ class Patient extends Model
         return $this->hasMany(Intraorals::class);
     }
 
+    public function xrays() {
+        return $this->hasMany(Xrays::class);
+    }
+
+    public function screenings() {
+        return $this->hasMany(Screenings::class);
+    }
+
+    public function informed_consents() {
+        return $this->hasMany(InformedConsent::class);
+    }
+
 }

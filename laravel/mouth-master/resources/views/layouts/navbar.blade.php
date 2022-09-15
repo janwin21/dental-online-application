@@ -1,13 +1,14 @@
 @php
     $current_route = Route::current()->getName();
-    if(isset($patient)) $id = $patient->id;
-    $dashboard_route = isset($id) ? route('patient.show', $id) : route('page.dashboard');
+    $dashboard_route = isset($patient->id) ? route('patient.show', $patient->id) : route('page.dashboard');
     $intraoral_route = route('intraoral.edit', isset($patient->id) ? $patient->id : -1);
+    $screening_route = route('screening.edit', isset($patient->id) ? $patient->id : -1);
+    $consent_route = route('consent.edit', isset($patient->id) ? $patient->id : -1);
 @endphp
 
 <!-- Navigation Bar -->
 <nav class="navbar navbar-expand-lg bg-light px-4">
-
+    
     <div class="container-fluid">
 
         <a class="navbar-brand text-success pacifico weight-500 me-4" href="{{ $dashboard_route }}">
@@ -38,7 +39,7 @@
             <li class="nav-item me-3">
                 <a class="nav-link roboto fs-sm outlined-hover-to-success weight-500 text-grayish
                 {{ ($current_route == 'form.screening') ? 'active' : '' }}
-                " href="{{ route('form.screening') }}"><i class="fa-solid fa-tablet me-2"></i>Screening</a>
+                " href="{{ $screening_route }}"><i class="fa-solid fa-tablet me-2"></i>Screening</a>
             </li>
 
             <li class="nav-item me-3">
@@ -50,7 +51,7 @@
             <li class="nav-item me-3">
                 <a class="nav-link roboto fs-sm outlined-hover-to-success weight-500 text-grayish
                 {{ ($current_route == 'form.informed-consent') ? 'active' : '' }}
-                " href="{{ route('form.informed-consent') }}"><i class="fa-solid fa-align-justify me-2"></i>Informed Consent</a>
+                " href="{{ $consent_route }}"><i class="fa-solid fa-align-justify me-2"></i>Informed Consent</a>
             </li>
 
             </ul>  

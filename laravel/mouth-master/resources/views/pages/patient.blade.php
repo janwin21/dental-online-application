@@ -77,18 +77,18 @@
                                     </tr>
 
                                     @if (isset($patients))
-                                    @foreach ($patients as $patient)
+                                    @foreach ($patients as $patient_el)
 
                                     <tr class="py-0 my-0 text-start">
-                                        <td class="py-2"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">{{ $patient->last_name }}, {{ $patient->first_name }}, {{ $patient->middle_initial }}.</p></td>
-                                        <td class="text-center py-2"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">{{ $patient->age }}</p></td>
-                                        <td class="text-center py-2"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">{{ $patient->sex }}</p></td>
-                                        <td class="text-center py-2"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">{{ $patient->home_address }}</p></td>
-                                        <td class="text-center py-2"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">{{ (isset($patient->phone_no)) ? $patient->phone_no : 'none' }}</p></td>
+                                        <td class="py-2"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">{{ $patient_el->last_name }}, {{ $patient_el->first_name }}, {{ $patient_el->middle_initial }}.</p></td>
+                                        <td class="text-center py-2"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">{{ $patient_el->age }}</p></td>
+                                        <td class="text-center py-2"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">{{ $patient_el->sex }}</p></td>
+                                        <td class="text-center py-2"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">{{ $patient_el->home_address }}</p></td>
+                                        <td class="text-center py-2"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">{{ (isset($patient_el->phone_no)) ? $patient_el->phone_no : 'none' }}</p></td>
                                         <td class="text-end py-2 pe-2" width="20%">
                                             <button class="btn btn-danger hover-to-dark text-light rounded px-2 py-1"><i class="fa-solid fa-trash"></i></button>
                                             <button class="btn btn-warning hover-to-dark text-light rounded px-2 py-1"><i class="fa-solid fa-pen-to-square"></i></button>
-                                            <a href="{{ route('patient.show', $patient->id) }}" class="btn btn-success hover-to-dark text-light rounded px-2 py-1"><i class="fa-solid fa-eye"></i></a>
+                                            <a href="{{ route('patient.show', $patient_el->id) }}" class="btn btn-success hover-to-dark text-light rounded px-2 py-1"><i class="fa-solid fa-eye"></i></a>
                                         </td>
                                     </tr>
                                         

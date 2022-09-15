@@ -55,7 +55,7 @@
                 <form action="{{ route('intraoral.store') }}" method="POST">
                     @csrf
 
-                    <input required class="d-none" type="number" name="patient_id" value="{{ $id }}">
+                    <input required class="d-none" type="number" name="patient_id" value="{{ $patient->id }}">
  
                 <div class="section-body rounded-top bg-light p-5 pt-4">
                     <div class="row">
