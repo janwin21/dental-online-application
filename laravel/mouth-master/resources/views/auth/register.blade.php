@@ -96,9 +96,25 @@
                         </div>
 
                         <!-- Second Row -->
-                        <div class="col-12 mt-4 mb-3">
+                        <div class="col-6 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="email">Email <strong class="text-danger ms-1">*</strong></label>
                             <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="email" name="email">
+                        </div>
+
+                        <div class="col-6 mt-4 mb-3">
+                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="specialty">Specialty <strong class="text-danger ms-1">*</strong></label>
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="text" name="specialty">
+                        </div>
+
+                        <!-- Third Row -->
+                        <div class="col-9 mt-4 mb-3">
+                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="office_address">Office Address <strong class="text-danger ms-1">*</strong></label>
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="text" name="office_address">
+                        </div>
+
+                        <div class="col-3 mt-4 mb-3">
+                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="office_no">Office# <strong class="text-danger ms-1">*</strong></label>
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="text" name="office_no">
                         </div>
 
                         <!-- Third Row -->

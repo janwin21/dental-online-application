@@ -84,7 +84,7 @@
 
                         <!-- Second Row -->
                         <div class="col-6 pt-3">
-                            <p class="roboto weight-600 mb-0 pb-0">{{ date('F d, Y', strtotime($patient->birth_date)) }}</p>
+                            <p class="roboto weight-600 mb-0 pb-0">{{ $check->date($patient->birth_date) }}</p>
                             <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0"><i class="fa-solid fa-cake-candles me-2 text-success"></i>Birth Date</p>
                         </div>
 
@@ -136,7 +136,7 @@
                             $value = $check->empty($patient->effective_date);
                             $empty = $value != 'None';
                             $effective_date = 
-                                !$empty ? date('F d, Y', strtotime($patient->effective_date)) : $value ;
+                                !$empty ? $check->date($patient->effective_date) : $value ;
                         @endphp
 
                         <div class="col-6 pt-3">
@@ -147,7 +147,7 @@
                     </div>
                 </div>
 
-                @if (isset($medical_history))
+                @if ($patient->medical_history())
 
                 <div class="section-title bg-dark px-4 py-2">
                     <h6 class="roboto text-light-gray weight-600 m-0 p-0"><i class="fa-solid fa-clock-rotate-left me-2 text-success"></i>Medical History</h6>
@@ -162,12 +162,12 @@
 
                         <!-- First Row -->
                         <div class="col-6 pt-3">
-                            <p class="roboto weight-600 mb-0 pb-0">{{ $medical_history->previous_dentist }}</p>
+                            <p class="roboto weight-600 mb-0 pb-0">{{ $patient->medical_history()->previous_dentist }}</p>
                             <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0">Previous Doctor</p>
                         </div>
 
                         <div class="col-6 pt-3">
-                            <p class="roboto weight-600 mb-0 pb-0">{{ $medical_history->last_dental_visit }}</p>
+                            <p class="roboto weight-600 mb-0 pb-0">{{ $patient->medical_history()->last_dental_visit }}</p>
                             <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0">Last Dental Visit</p>
                         </div>
                         
@@ -177,23 +177,23 @@
 
                         <!-- Second Row -->
                         <div class="col-6 pt-3">
-                            <p class="roboto weight-600 mb-0 pb-0">{{ $medical_history->physician }}</p>
+                            <p class="roboto weight-600 mb-0 pb-0">{{ $patient->medical_history()->physician }}</p>
                             <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0"><i class="fa-solid fa-star me-2 text-gold"></i>Physician</p>
                         </div>
 
                         <div class="col-6 pt-3">
-                            <p class="roboto weight-600 mb-0 pb-0">{{ $medical_history->specialty }}</p>
+                            <p class="roboto weight-600 mb-0 pb-0">{{ $patient->medical_history()->specialty }}</p>
                             <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0">Specialty</p>
                         </div>
 
                         <!-- Third Row -->
                         <div class="col-6 pt-3">
-                            <p class="roboto weight-600 mb-0 pb-0">{{ $medical_history->office_address }}</p>
+                            <p class="roboto weight-600 mb-0 pb-0">{{ $patient->medical_history()->office_address }}</p>
                             <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0">Office Address</p>
                         </div>
 
                         <div class="col-6 pt-3">
-                            <p class="roboto weight-600 mb-0 pb-0">{{ $medical_history->office_no }}</p>
+                            <p class="roboto weight-600 mb-0 pb-0">{{ $patient->medical_history()->office_no }}</p>
                             <p class="roboto text-grayish weight-500 fs-sm pt-0 mt-0">Office#</p>
                         </div>
 
@@ -211,7 +211,7 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">Are you in good health?</p>
                                 </div>
                                 <div class="col-2">
-                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->radio_color($medical_history->q1) }}">{{ $check->radio($medical_history->q1) }}</p>
+                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->radio_color($patient->medical_history()->q1) }}">{{ $check->radio($patient->medical_history()->q1) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -226,7 +226,7 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">If so, what is the condition being treated?</p>
                                 </div>
                                 <div class="col-2">
-                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->radio_color($medical_history->q2) }}">{{ $check->radio($medical_history->q2) }}</p>
+                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->radio_color($patient->medical_history()->q2) }}">{{ $check->radio($patient->medical_history()->q2) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -242,7 +242,7 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">If so, what illness or operation?</p>
                                 </div>
                                 <div class="col-2">
-                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->radio_color($medical_history->q3) }}">{{ $check->radio($medical_history->q3) }}</p>
+                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->radio_color($patient->medical_history()->q3) }}">{{ $check->radio($patient->medical_history()->q3) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -257,7 +257,7 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">If so, when and why?</p>
                                 </div>
                                 <div class="col-2">
-                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->radio_color($medical_history->q4) }}">{{ $check->radio($medical_history->q4) }}</p>
+                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->radio_color($patient->medical_history()->q4) }}">{{ $check->radio($patient->medical_history()->q4) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -273,7 +273,7 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">If so, please specify:</p>
                                 </div>
                                 <div class="col-2">
-                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->radio_color($medical_history->q5) }}">{{ $check->radio($medical_history->q5) }}</p>
+                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->radio_color($patient->medical_history()->q5) }}">{{ $check->radio($patient->medical_history()->q5) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -284,7 +284,7 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">Do you use tobacco products?</p>
                                 </div>
                                 <div class="col-2">
-                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->radio_color($medical_history->q6) }}">{{ $check->radio($medical_history->q6) }}</p>
+                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->radio_color($patient->medical_history()->q6) }}">{{ $check->radio($patient->medical_history()->q6) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -296,7 +296,7 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">Do you use alcohol, cocaine or other dangerous drugs?</p>
                                 </div>
                                 <div class="col-2">
-                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->radio_color($medical_history->q7) }}">{{ $check->radio($medical_history->q7) }}</p>
+                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->radio_color($patient->medical_history()->q7) }}">{{ $check->radio($patient->medical_history()->q7) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -309,7 +309,7 @@
                                     <div class="d-flex flex-row flex-wrap">
 
                                     <!-- Add Information -->
-                                    @foreach ($check->arr($medical_history->allergies) as $allergy)
+                                    @foreach ($check->arr($patient->medical_history()->allergies) as $allergy)
 
                                         @if ($allergy == 'null')
                                             @continue
@@ -334,7 +334,7 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">Bleeding time:</p>
                                 </div>
                                 <div class="col-5 text-end">
-                                    <p class="roboto weight-600 mb-0 pb-0 text-dark">{{ $check->time($medical_history->bleeding_time) }}</p>
+                                    <p class="roboto weight-600 mb-0 pb-0 text-dark">{{ $check->time($patient->medical_history()->bleeding_time) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -345,7 +345,7 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">Are you pregnant?</p>
                                 </div>
                                 <div class="col-2">
-                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->empty_radio_color($medical_history->women_q1) }}">{{ $check->empty_radio($medical_history->women_q1) }}</p>
+                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->empty_radio_color($patient->medical_history()->women_q1) }}">{{ $check->empty_radio($patient->medical_history()->women_q1) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -357,7 +357,7 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">Are you nursing?</p>
                                 </div>
                                 <div class="col-2">
-                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->empty_radio_color($medical_history->women_q2) }}">{{ $check->empty_radio($medical_history->women_q2) }}</p>
+                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->empty_radio_color($patient->medical_history()->women_q2) }}">{{ $check->empty_radio($patient->medical_history()->women_q2) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -368,7 +368,7 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">Are you taking birth pills?</p>
                                 </div>
                                 <div class="col-2">
-                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->empty_radio_color($medical_history->women_q3) }}">{{ $check->empty_radio($medical_history->women_q3) }}</p>
+                                    <p class="roboto weight-500 mb-0 pb-0 text-{{ $check->empty_radio_color($patient->medical_history()->women_q3) }}">{{ $check->empty_radio($patient->medical_history()->women_q3) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -380,7 +380,7 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">Blood type:</p>
                                 </div>
                                 <div class="col-5 text-end">
-                                    <p class="roboto weight-600 mb-0 pb-0 text-dark">{{ $medical_history->blood_type }}</p>
+                                    <p class="roboto weight-600 mb-0 pb-0 text-dark">{{ $patient->medical_history()->blood_type }}</p>
                                 </div>
                             </div>
                         </div>
@@ -391,7 +391,7 @@
                                     <p class="roboto text-grayish fs-sm weight-500 pt-0 mt-0">Blood pressure:</p>
                                 </div>
                                 <div class="col-7 text-end">
-                                    <p class="roboto weight-600 mb-0 pb-0 text-dark">{{ $medical_history->blood_pressure }} mmHg</p>
+                                    <p class="roboto weight-600 mb-0 pb-0 text-dark">{{ $patient->medical_history()->blood_pressure }} mmHg</p>
                                 </div>
                             </div>
                         </div>
@@ -405,7 +405,7 @@
                                     <div class="d-flex flex-row flex-wrap">
 
                                         <!-- Add Information -->
-                                        @foreach ($check->arr($medical_history->illnesses) as $illness)
+                                        @foreach ($check->arr($patient->medical_history()->illnesses) as $illness)
 
                                             @if ($illness == 'null')
                                                 @continue
@@ -427,7 +427,7 @@
 
                 @endif
 
-                @if (isset($intraoral))
+                @if ($patient->intraoral())
 
                 <div class="section-title bg-dark px-4 py-2">
                     <h6 class="roboto text-light-gray weight-600 m-0 p-0"><i class="fa-solid fa-teeth text-success me-2"></i>Intraoral Examination Result</h6>
@@ -446,7 +446,7 @@
                     
                 @endif
 
-                @if ($xray)
+                @if ($patient->xray())
 
                 <div class="section-title bg-dark px-4 py-2">
                     <h6 class="roboto text-light-gray weight-600 m-0 p-0"><i class="fa-solid fa-x-ray text-success me-2"></i></i>X-ray Information</h6>
@@ -465,16 +465,16 @@
                             <!-- Add Information -->
                             <div class="d-flex flex-row flex-wrap">
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($xray->p1) }} me-2"></i>Periapical</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($patient->xray()->p1) }} me-2"></i>Periapical</p>
                                 </div>
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($xray->p2) }} me-2"></i>Panoramic</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($patient->xray()->p2) }} me-2"></i>Panoramic</p>
                                 </div>
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($xray->p3) }} me-2"></i>Cephalometric</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($patient->xray()->p3) }} me-2"></i>Cephalometric</p>
                                 </div>
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($xray->p4) }} me-2"></i>Occlusal (Upper/Lower)</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($patient->xray()->p4) }} me-2"></i>Occlusal (Upper/Lower)</p>
                                 </div>
                             </div>
 
@@ -484,7 +484,7 @@
                     
                 @endif
 
-                @if ($screening)
+                @if ($patient->screening())
 
                 <div class="section-title bg-dark px-4 py-2">
                     <h6 class="roboto text-light-gray weight-600 m-0 p-0"><i class="fa-solid fa-display text-success me-2"></i>Screening Information</h6>
@@ -504,16 +504,16 @@
                             <!-- Add Information -->
                             <div class="d-flex flex-row flex-wrap">
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($screening->p1) }} me-2"></i>Occlusal</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($patient->screening()->p1) }} me-2"></i>Occlusal</p>
                                 </div>
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($screening->p2) }} me-2"></i>Early Periodontitis</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($patient->screening()->p2) }} me-2"></i>Early Periodontitis</p>
                                 </div>
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($screening->p3) }} me-2"></i>Moderate Periodontitis</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($patient->screening()->p3) }} me-2"></i>Moderate Periodontitis</p>
                                 </div>
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($screening->p4) }} me-2"></i>Advanced Periodontitis</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($patient->screening()->p4) }} me-2"></i>Advanced Periodontitis</p>
                                 </div>
                             </div>
 
@@ -529,10 +529,10 @@
                             <!-- Add Information -->
                             <div class="d-flex flex-row flex-wrap">
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($screening->a1) }} me-2"></i>Orthodontics</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($patient->screening()->a1) }} me-2"></i>Orthodontics</p>
                                 </div>
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($screening->a2) }} me-2"></i>Stayplate</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($patient->screening()->a2) }} me-2"></i>Stayplate</p>
                                 </div>
                             </div>
 
@@ -548,19 +548,19 @@
                             <!-- Add Information -->
                             <div class="d-flex flex-row flex-wrap">
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><span class="text-success me-2">{{ $screening->o1 }}</span>Class (Molor)</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><span class="text-success me-2">{{ $patient->screening()->o1 }}</span>Class (Molor)</p>
                                 </div>
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><span class="text-success me-2">{{ $screening->o2 }}</span>Overjet</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><span class="text-success me-2">{{ $patient->screening()->o2 }}</span>Overjet</p>
                                 </div>
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><span class="text-success me-2">{{ $screening->o3 }}</span>Overbite</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><span class="text-success me-2">{{ $patient->screening()->o3 }}</span>Overbite</p>
                                 </div>
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><span class="text-success me-2">{{ $screening->o4 }}</span>Midline Deviation</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><span class="text-success me-2">{{ $patient->screening()->o4 }}</span>Midline Deviation</p>
                                 </div>
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><span class="text-success me-2">{{ $screening->o5 }}</span>Crossbite</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><span class="text-success me-2">{{ $patient->screening()->o5 }}</span>Crossbite</p>
                                 </div>
                             </div>
 
@@ -576,16 +576,16 @@
                             <!-- Add Information -->
                             <div class="d-flex flex-row flex-wrap">
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($screening->t1) }} me-2"></i>Clenching</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($patient->screening()->t1) }} me-2"></i>Clenching</p>
                                 </div>
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($screening->t2) }} me-2"></i>Clicking</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($patient->screening()->t2) }} me-2"></i>Clicking</p>
                                 </div>
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($screening->t3) }} me-2"></i>Trismus</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($patient->screening()->t3) }} me-2"></i>Trismus</p>
                                 </div>
                                 <div class="alert alert-light m-1 border-0 px-4 py-1">
-                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($screening->t4) }} me-2"></i>Muscle Spasm</p>
+                                    <p class="roboto fs-sm weight-600 m-0 p-0 text-dark"><i class="fa-solid {{ $check->radio_check($patient->screening()->t4) }} me-2"></i>Muscle Spasm</p>
                                 </div>
                             </div>
 
@@ -641,10 +641,14 @@
 
     <script>
 
-        @if (isset($intraoral))
+        let intraoralSettings = [];
+
+        @if (isset($patient))
+
+        @if ($patient->intraoral())
 
         @php
-            $intraoral_arr = $check->arr($intraoral->data);
+            $intraoral_arr = $check->arr($patient->intraoral()->data);
 
             $row1 = [
                 '0' => array('55', 'open'),
@@ -713,7 +717,7 @@
             $row_count = 0;
         @endphp
 
-        const intraoralSettings = [
+        intraoralSettings = [
             // first row
             {
                 isReversed: true,
@@ -794,9 +798,12 @@
 
         @else
 
-        const intraoralSettings = [];
+        intraoralSettings = [];
             
         @endif
+      
+        @endif
+
     </script>
 
 </body>

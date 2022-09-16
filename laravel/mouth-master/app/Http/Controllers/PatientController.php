@@ -41,7 +41,7 @@ class PatientController extends Controller
     {
         if($id == -1) return redirect(route('patient.create'));
 
-        return view('forms.screening-form', [
+        return view('forms.main-information-form', [
             'patient' => Patient::where('id', $id)->first()
         ]);
     }
@@ -54,10 +54,10 @@ class PatientController extends Controller
      */
     public function store(PatientRequest $request)
     {
-    
         $request->validated();
 
         $patient = Patient::create([
+            'dentist_id' => $request->dentist_id,
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'middle_initial' => $request->middle_initial,
@@ -97,28 +97,7 @@ class PatientController extends Controller
 
         return view('pages.dashboard', [
             'check' => new CheckUtility(),
-            
-            'patient' => $patient,
-
-            'medical_history' => 
-                $patient->medical_histories()->orderBy('created_at', 'desc')
-                    ->limit(1)->first(),
-
-            'intraoral' =>
-                $patient->intraorals()->orderBy('created_at', 'desc')
-                    ->limit(1)->first(),
-
-            'xray' =>
-                $patient->xrays()->orderBy('created_at', 'desc')
-                    ->limit(1)->first(),
-
-            'screening' =>
-                $patient->screenings()->orderBy('created_at', 'desc')
-                    ->limit(1)->first(),
-
-            'informed_consent' =>
-                $patient->informed_consents()->orderBy('created_at', 'desc')
-                    ->limit(1)->first()
+            'patient' => $patient
         ]);
     }
 
@@ -138,7 +117,10 @@ class PatientController extends Controller
      */
     public function edit($id)
     {
-        return view('forms.main-information-form');
+        return view('forms.main-information-form', [
+            'check' => new CheckUtility,
+            'patient' => Patient::where('id', $id)->first()
+        ]);
     }
 
     /**
@@ -150,7 +132,32 @@ class PatientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return redirect(RouteServiceProvider::HOME);
+        $patient = Patient::where('id', $id)->first();
+        $patient->dentist_id = $request->dentist_id;
+        $patient->first_name = $request->first_name;
+        $patient->last_name = $request->last_name;
+        $patient->middle_initial = $request->middle_initial;
+        $patient->birth_date = $request->birth_date;
+        $patient->sex = $request->sex;
+        $patient->age = $request->age;
+        $patient->religion = $request->religion;
+        $patient->nationality = $request->nationality;
+        $patient->nickname = $request->nickname;
+        $patient->home_no = $request->home_no;
+        $patient->home_address = $request->home_address;
+        $patient->occupation = $request->occupation;
+        $patient->office_no = $request->office_no;
+        $patient->dental_insurance = $request->dental_insurance;
+        $patient->effective_date = $request->effective_date;
+        $patient->phone_no = $request->phone_no;
+        $patient->email = $request->email;
+        $patient->refferer = $request->refferer;
+        $patient->reason = $request->reason;
+        $patient->guardian_name = $request->guardian_name;
+        $patient->guardian_occupation = $request->guardian_occupation;
+        $patient->update();
+        
+        return redirect(route('patient.show', $patient->id));
     }
 
     /**
@@ -161,6 +168,8 @@ class PatientController extends Controller
      */
     public function destroy($id)
     {
+        //dd(Patient::where('id', $id));
+        Patient::where('id', $id)->first()->delete();
         return redirect(route('patient.index'));
     }
 }

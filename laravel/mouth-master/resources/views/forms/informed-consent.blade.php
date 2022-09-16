@@ -1,5 +1,16 @@
 @extends('layouts.master')
 
+@php
+    $is_edited = Route::current()->getName() == 'consent.editWithPatient';
+    $consent_route = $is_edited ? route('consent.update', $patient->informed_consent()->id) : route('consent.store');
+    $btn = $is_edited ? 'Update' : 'Confirm';
+    $color = $is_edited ? 'bg-warning' : 'bg-success';
+    $is_checked = '';
+
+    if($patient->informed_consent())  
+        $is_checked = $patient->informed_consent()->agree == 'agree' ? 'checked' : '';
+@endphp
+
 <!-- MAIN INFORMATION FORM -->
 <!DOCTYPE html>
 <html lang="en">
@@ -52,8 +63,12 @@
                     <p class="roboto text-light-gray weight-500">Mouth Master - Dental Clinic</p>
                 </div>
 
-                <form action="{{ route('consent.store') }}" method="POST">
+                <form action="{{ $consent_route }}" method="POST">
                     @csrf
+
+                    @if($is_edited) 
+                        @method('PATCH')
+                    @endif
 
                     <input class="d-none" required value="{{ $patient->id }}" type="text" name="patient_id">
 
@@ -227,7 +242,7 @@
 
                     <!-- INFORMED CONSENT CHECKBOX -->
                     <div class="roboto form-check text-center">
-                        <input type="checkbox" value="agree" id="flexCheckDefault" name="agree">
+                        <input {{ $is_checked }} type="checkbox" value="agree" id="flexCheckDefault" name="agree">
                         <label class="ms-2 form-check-label" for="flexCheckDefault">
                             I agree and understand the terms and conditions stated in the  informed consent.
                         </label>
@@ -244,7 +259,7 @@
                         <!-- Ninth Row -->
                         <div class="col-12 mt-0 d-flex flex-column text-end">
                             <div class="text-end">
-                                <button class="w-25 btn btn-success text-light hover-to-dark px-4 py-1">Confirm</button>
+                                <button class="w-25 btn {{ $color }} text-light hover-to-dark px-4 py-1">{{ $btn }}</button>
                             </div>
                         </div>
 
@@ -293,27 +308,6 @@
         </div>
 
     @endsection
-
-    <div class="modal-section fade modal-dialog-centered text-center">
-        <div class="modal-dialog w-25 rounded-top">
-            <div class="modal-content bg-light rounded-top">
-            <div class="modal-header-box bg-danger text-center py-3 rounded-top">
-                <h5 class="modal-title d-block text-light" id="exampleModalLabel">notificationMessage</h5>
-                <p class="d-block p-0 m-0 fs-sm text-light">Mouth Masters - Dental Clinic</p>
-                <button class="btn btn-danger close-btn shadow-none border border-none border-0"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div class="modal-body p-3">
-                <p class="modal-paragraph fs-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-            <div class="modal-footer p-2">
-                <button type="button" class="btn cancel-btn btn-secondary px-4 py-1 shadow-none hover-to-dark" data-bs-dismiss="modal">Cancel</button>
-                <form action="#" method="POST">
-                    <button type="submit" class="btn btn-danger ms-2 px-4 py-1 shadow-none hover-to-dark border-light">Delete</button>
-                </form>
-            </div>
-            </div>
-        </div>
-    </div>
 
 </body>
 </html>

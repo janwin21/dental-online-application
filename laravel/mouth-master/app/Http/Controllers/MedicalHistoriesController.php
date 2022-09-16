@@ -49,6 +49,7 @@ class MedicalHistoriesController extends Controller
         
         $medical_histories = new MedicalHistories();
         $medical_histories->patient_id = $request->patient_id;
+        $medical_histories->dentist_id = $request->dentist_id;
         $medical_histories->previous_dentist = $request->previous_dentist;
         $medical_histories->last_dental_visit = $request->last_dental_visit;
         $medical_histories->physician = $request->physician;

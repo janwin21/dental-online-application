@@ -11,6 +11,7 @@ class MedicalHistories extends Model
 
     public $fillable = [
         'patient_id',
+        'dentist_id',
         'previous_dentist',
         'last_dental_visit',
         'physician',
@@ -42,6 +43,10 @@ class MedicalHistories extends Model
 
     public function patient() {
         return $this->belongsTo(Patient::class);
+    }
+
+    public function dentist() {
+        return $this->belongsTo(User::class);
     }
 
 }

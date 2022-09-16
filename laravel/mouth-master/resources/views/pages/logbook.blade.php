@@ -40,7 +40,7 @@
 <body>
 
     @section('page-content')
-    
+
         <!-- Main Content -->
         <div class="col-10 p-4">
 
@@ -61,7 +61,7 @@
                         </div>
                         
                         <div class="mt-4 col-5">
-                            <p class="roboto text-dark weight-600 fs-sm pt-0 mt-0">last_name, first_name, mi.</p>
+                            <p class="roboto text-dark weight-600 fs-sm pt-0 mt-0">{{ $patient->last_name }}, {{ $patient->first_name }} {{ $patient->middle_initial }}</p>
                         </div>
                         
                         <div class="mt-4 col-1 text-end">
@@ -69,7 +69,7 @@
                         </div>
                         
                         <div class="mt-4 col-1">
-                            <p class="roboto text-dark weight-600 fs-sm pt-0 mt-0">21</p>
+                            <p class="roboto text-dark weight-600 fs-sm pt-0 mt-0">{{ $patient->age }}</p>
                         </div>
                         
                         <div class="mt-4 col-1 text-end">
@@ -77,7 +77,7 @@
                         </div>
                         
                         <div class="mt-4 col-2">
-                            <p class="roboto text-dark weight-600 fs-sm pt-0 mt-0">M</p>
+                            <p class="roboto text-dark weight-600 fs-sm pt-0 mt-0">{{ $patient->sex }}</p>
                         </div>
 
                         <!-- Second Row Table -->
@@ -95,34 +95,33 @@
                                         <th><p class="text-dark roboto weight-600 m-1 p-0">NEXT APPOINTMENT</p></th>
                                         <th><p class="text-dark roboto weight-600 m-1 p-0">EDIT</p></th>
                                     </tr>
+
+                                    @foreach ($patient->appointments as $appointment)
+                                    
                                     <tr class="py-0 my-0 text-start">
-                                        <td class="py-2" width="10%"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">MM/DD/YYYY</p></td>
-                                        <td class="py-2" width="7%"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">00</p></td>
-                                        <td class="py-2"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p></td>
-                                        <td class="py-2" width="15%"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">last_name, first_name, mi.</p></td>
-                                        <td class="py-2" width="7%"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">P00.00</p></td>
-                                        <td class="py-2" width="7%"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">P00.00</p></td>
-                                        <td class="py-2" width="7%"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">P00.00</p></td>
-                                        <td class="py-2" width="20%"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">MM/DD/YYYY HH:SS:AM-HH:SS:AM</p></td>
+                                        <td class="py-2" width="10%"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">{{ $appointment->created_at->format('m-d-Y') }}</p></td>
+                                        <td class="py-2" width="7%"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">{{ $appointment->tooth_no }}</p></td>
+                                        <td class="py-2"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">{{ $appointment->procedure }}</p></td>
+                                        <td class="py-2" width="15%"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">
+                                            {{ $patient->medical_history()->physician }}
+                                        </p></td>
+                                        <td class="py-2" width="7%"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">&#8369;{{ $appointment->charge }}</p></td>
+                                        <td class="py-2" width="7%"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">&#8369;{{ $appointment->paid }}</p></td>
+                                        <td class="py-2" width="7%"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">&#8369;{{ $appointment->charge - $appointment->paid }}</p></td>
+                                        <td class="py-2" width="20%"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">{{ $check->date($appointment->appointment) }}<br>
+                                                {{ $check->time($appointment->start_time) }}-
+                                                {{ $check->time($appointment->end_time) }}</p></td>
                                         <td class="text-end py-2 pe-2" width="20%">
-                                            <button class="btn btn-danger hover-to-dark text-light rounded px-2 py-1"><i class="fa-solid fa-trash"></i></button>
-                                            <button class="btn btn-warning hover-to-dark text-light rounded px-2 py-1"><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <a href="#" class="btn btn-danger hover-to-dark text-light rounded px-2 py-1"><i class="fa-solid fa-trash"></i></a>
+                                            <a href="#" class="btn btn-warning hover-to-dark text-light rounded px-2 py-1"><i class="fa-solid fa-pen-to-square"></i></a>
                                         </td>
                                     </tr>
+
+                                    @endforeach
+                                    
                                 </table>
                             </div>
                         </div>
-
-                        <!-- First Row 
-                        <div class="col-3 mt-4 mb-3">
-                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="tooth_no">Tooth No./s <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="number" name="tooth_no">
-                        </div>
-                        
-                        <div class="col-9 mt-4 mb-3">
-                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="procedure">Procedure <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="text" name="procedure">
-                        </div>-->
 
                     </div>
                 </div>

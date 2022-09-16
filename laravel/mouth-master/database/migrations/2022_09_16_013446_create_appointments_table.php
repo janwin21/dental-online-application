@@ -13,10 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('informed_consents', function (Blueprint $table) {
+        Schema::create('appointments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('patient_id');
-            $table->string('agree')->nullable();
+            $table->integer('tooth_no');
+            $table->text('procedure');
+            $table->integer('charge');
+            $table->integer('paid');
+            $table->date('appointment');
+            $table->time('start_time');
+            $table->time('end_time');
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
             $table->timestamps();
         });
@@ -29,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('informed_consents');
+        Schema::dropIfExists('appointments');
     }
 };

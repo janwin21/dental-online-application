@@ -1,5 +1,21 @@
 @extends('layouts.master')
 
+@php
+    $is_edited = Route::current()->getName() == 'patient.edit';
+    $route = $is_edited ? route('patient.update', $patient->id) : route('patient.store');
+    $check_male = ''; $check_female = '';
+    $check_male = ''; $check_female = '';
+    $btn = $is_edited ? 'Update' : 'Confirm';
+    $color = $is_edited ? 'btn-warning' : 'bg-success';
+    
+    if(isset($patient)) {
+        $check_male = $patient->sex == 'male' ? 'checked' : '';
+        $check_female = $patient->sex == 'female' ? 'checked' : '';
+        $check_diy = $patient->dental_insurance == 1 ? 'checked' : '';
+        $check_din = $patient->dental_insurance == 0 ? 'checked' : '';
+    }
+@endphp
+
 <!-- MAIN INFORMATION FORM -->
 <!DOCTYPE html>
 <html lang="en">
@@ -51,9 +67,15 @@
                     <h5 class="roboto text-light-gray weight-600 m-0 mt-3 p-0">Dental Clinic Form</h5>
                     <p class="roboto text-light-gray weight-500">Mouth Master - Dental Clinic</p>
                 </div>
-
-                <form action="{{ route('patient.store') }}" method="POST">
+                
+                <form action="{{ $route }}" method="POST">
                     @csrf
+
+                    @if ($is_edited)
+                        @method('PATCH')
+                    @endif
+                    
+                    <input required class="d-none" type="text" name="dentist_id" value="{{ Auth::user()->id }}">
 
                 <div class="section-body bg-light p-5">
                     <div class="row">
@@ -68,15 +90,15 @@
                         </div>
 
                         <div class="border-bottom border-success border-2 col-4 mx-0 mt-2">
-                            <input required class="border border-0" type="text" name="last_name" placeholder="Doe">
+                            <input required class="border border-0" type="text" name="last_name" placeholder="Doe" value="{{ $is_edited ? $patient->last_name : '' }}">
                         </div>
 
                         <div class="border-bottom border-success border-2 col-4 mx-0 mt-2">
-                            <input required class="border border-0" type="text" name="first_name" placeholder="John">
+                            <input required class="border border-0" type="text" name="first_name" placeholder="John" value="{{ $is_edited ? $patient->first_name : '' }}">
                         </div>
 
                         <div class="border-bottom border-success border-2 col-4 mx-0 mt-2">
-                            <input required class="border border-0" type="text" name="middle_initial" placeholder="D.">
+                            <input required class="border border-0" type="text" name="middle_initial" placeholder="D." value="{{ $is_edited ? $patient->middle_initial : '' }}">
                         </div>
                         
                         <div class="col-4 mt-2">
@@ -94,7 +116,7 @@
                         <!-- Second Row -->
                         <div class="col-7 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="birth_date">Birth Date <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="date" name="birth_date">
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="date" name="birth_date" value="{{ $is_edited ? $check->retime($patient->birth_date) : '' }}">
                         </div>
 
                         <div class="col-3 mt-4 mb-3">
@@ -102,13 +124,13 @@
                             <div class="row mt-2">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="sex" value="male">
+                                        <input {{ $check_male }} required type="radio" name="sex" value="male">
                                         <label class="weight-600" for="sex">M</label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="sex" value="female">
+                                        <input {{ $check_female }} required type="radio" name="sex" value="female">
                                         <label class="weight-600" for="sex">FM</label><br>
                                     </div>
                                 </div>
@@ -117,38 +139,38 @@
 
                         <div class="col-2 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="age">Age <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-1 py-1 mt-2" type="number" name="age">
+                            <input required class="w-100 border border-secondary rounded px-1 py-1 mt-2" type="number" name="age" value="{{ $is_edited ? $patient->age : '' }}">
                         </div>
 
                         <!-- Fourth Row -->
                         <div class="col-6 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="religion">Religion <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="text" name="religion">
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="text" name="religion" value="{{ $is_edited ? $patient->religion : '' }}">
                         </div>
                         
                         <div class="col-6 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="nationality">Nationality <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="text" name="nationality">
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="text" name="nationality" value="{{ $is_edited ? $patient->nationality : '' }}">
                         </div>
                         
                         <!-- Fifth Row -->
                         <div class="col-5 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="nickname">Nickname <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2 mb-3" type="text" name="nickname">
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2 mb-3" type="text" name="nickname" value="{{ $is_edited ? $patient->nickname : '' }}">
                             
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1 mt-4" for="home_no">Home# <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="text" name="home_no">
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="text" name="home_no" value="{{ $is_edited ? $patient->home_no : '' }}">
                         </div>
 
                         <div class="col-7 mt-4 mb-3 d-flex flex-column">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="home_address">Home Address <strong class="text-danger ms-1">*</strong></label>
-                            <textarea required class="flex-grow-1 w-100 border border-secondary rounded px-2 py-1 mt-2" name="home_address" style="resize: none;"></textarea>
+                            <textarea required class="flex-grow-1 w-100 border border-secondary rounded px-2 py-1 mt-2" name="home_address" style="resize: none;">{{ $is_edited ? $patient->home_address : '' }}</textarea>
                         </div>
                         
                         <!-- Sixth Row -->
                         <div class="col-7 mt-4 mb-3 form-transformation">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="occupation">Occupation <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="text" name="occupation">
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="text" name="occupation" value="{{ $is_edited ? $patient->occupation : '' }}">
                         </div>
 
                         <div class="col-5 mt-4 mb-3">
@@ -156,13 +178,13 @@
                             <div class="row mt-2">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input required type="radio" name="dental_insurance" value="1">
+                                        <input {{ $check_diy }} required type="radio" name="dental_insurance" value="1">
                                         <label class="weight-600" for="dental_insurance">Yes</label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input required type="radio" name="dental_insurance" value="0">
+                                        <input {{ $check_din }} required type="radio" name="dental_insurance" value="0">
                                         <label class="weight-600" for="dental_insurance">No</label><br>
                                     </div>
                                 </div>
@@ -172,23 +194,23 @@
                         <!-- Seventh Row -->
                         <div class="col-6 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="office_no">Office#</label>
-                            <input class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="text" name="office_no">
+                            <input class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="text" name="office_no" value="{{ $is_edited ? $patient->office_no : '' }}">
                         </div>
 
                         <div class="col-6 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="effective_date">Effective Date</label>
-                            <input class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="date" name="effective_date">
+                            <input class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="date" name="effective_date" value="{{ $is_edited ? $check->retime_empty($patient->effective_date) : '' }}">
                         </div>
 
                         <!-- Eight Row -->
                         <div class="col-5 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="phone_no">Phone#</label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="text" name="phone_no">
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="text" name="phone_no" value="{{ $is_edited ? $patient->phone_no : '' }}">
                         </div>
                         
                         <div class="col-7 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="email">Email Address</label>
-                            <input class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="email" name="email">
+                            <input class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="email" name="email" value="{{ $is_edited ? $patient->email : '' }}">
                         </div>
 
                     </div>
@@ -200,13 +222,13 @@
                         <!-- Ninth Row -->
                         <div class="col-12 mt-4 mb-3 d-flex flex-column">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="refferer">Who may we thank for reffering you?</label>
-                            <textarea class="flex-grow-1 w-100 border border-1 border-secondary rounded px-2 py-1 mt-2" name="refferer"></textarea>
+                            <textarea class="flex-grow-1 w-100 border border-1 border-secondary rounded px-2 py-1 mt-2" name="refferer">{{ $is_edited ? $patient->refferer : '' }}</textarea>
                         </div>
                         
                         <!-- Tenth Row -->
                         <div class="col-12 mt-4 mb-3 d-flex flex-column">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="reason">What is your reason for your dental consultation?</label>
-                            <textarea class="flex-grow-1 w-100 border border-1 border-secondary rounded px-2 py-1 mt-2" name="reason"></textarea>
+                            <textarea class="flex-grow-1 w-100 border border-1 border-secondary rounded px-2 py-1 mt-2" name="reason">{{ $is_edited ? $patient->reason : '' }}</textarea>
                         </div>
 
                     </div>
@@ -227,12 +249,12 @@
                         <!-- First Row -->
                         <div class="col-6 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="guardian_name">Parent / Guardian Name</label>
-                            <input class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="text" name="guardian_name">
+                            <input class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="text" name="guardian_name" value="{{ $is_edited ? $patient->guardian_name : '' }}">
                         </div>
 
                         <div class="col-6 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="guardian_occupation">Occupation</label>
-                            <input class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="text" name="guardian_occupation">
+                            <input class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="text" name="guardian_occupation" value="{{ $is_edited ? $patient->guardian_occupation : '' }}">
                         </div>
 
                     </div>
@@ -246,7 +268,7 @@
                         <!-- Ninth Row -->
                         <div class="col-12 mt-0 d-flex flex-column text-end">
                             <div class="text-end">
-                                <button type="submit" class="w-25 btn btn-success text-light hover-to-dark px-4 py-1">Confirm</button>
+                                <button type="submit" class="w-25 btn {{ $color }} text-light hover-to-dark px-4 py-1">{{ $btn }}</button>
                             </div>
                         </div>
 
@@ -295,27 +317,6 @@
         </div>
 
     @endsection
-
-    <div class="modal-section fade modal-dialog-centered text-center">
-        <div class="modal-dialog w-25 rounded-top">
-            <div class="modal-content bg-light rounded-top">
-            <div class="modal-header-box bg-danger text-center py-3 rounded-top">
-                <h5 class="modal-title d-block text-light" id="exampleModalLabel">notificationMessage</h5>
-                <p class="d-block p-0 m-0 fs-sm text-light">Mouth Masters - Dental Clinic</p>
-                <button class="btn btn-danger close-btn shadow-none border border-none border-0"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div class="modal-body p-3">
-                <p class="modal-paragraph fs-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-            <div class="modal-footer p-2">
-                <button type="button" class="btn cancel-btn btn-secondary px-4 py-1 shadow-none hover-to-dark" data-bs-dismiss="modal">Cancel</button>
-                <form action="#" method="POST">
-                    <button type="submit" class="btn btn-danger ms-2 px-4 py-1 shadow-none hover-to-dark border-light">Delete</button>
-                </form>
-            </div>
-            </div>
-        </div>
-    </div>
 
 </body>
 </html>

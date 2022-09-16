@@ -9,7 +9,7 @@
     $btn = isset($patient->id) ? 'Add' : 'Patients';
 @endphp
 
-@unless ($current_route == 'patient.index' || $current_route == 'patient.showAll' || $current_route == 'page.logbook')
+@unless ($current_route == 'patient.index' || $current_route == 'patient.showAll' || $current_route == 'page.logbook' || $current_route == 'appointment.show')
     
     <!-- Section -->
     <div class="section col-3 {{ ($current_route == 'login' || $current_route == 'register') ?  '' : 'bg-light' }} py-4 sticky-top">

@@ -33,28 +33,38 @@
                 data-title="Add Patients"
                 data-paragraph="Do you want to add more patients?"
                 data-color="bg-success"
-                data-btn="Add"    
+                data-btn="Add"  
+                data-target="GET"   
                 class="modal-trigger btn border-0 outlined-hover-to-grayish m-0 ms-2 p-0">
                     <h4 class="m-0 p-0"><i class="fa-solid fa-hospital-user"></i></h4>
                 </button>
+
+                @if (isset($patient->id))
+
                 <button
-                data-src="SRC_URL"
-                data-title="Update { nickname }"
-                data-paragraph="Do you want to update { nickname }'s patient information?"
+                data-src="{{ route('patient.edit', $patient->id) }}"
+                data-title="Edit {{ $patient->nickname }}'s Information"
+                data-paragraph="Do you want to Edit {{ $patient->nickname }}'s patient information?"
                 data-color="bg-warning"
-                data-btn="Update"    
+                data-btn="Edit"   
+                data-target="GET" 
                 class="modal-trigger btn border-0 outlined-hover-to-grayish m-0 ms-2 p-0">
                     <h4 class="m-0 p-0"><i class="fa-solid fa-file-pen"></i></h4>
                 </button>
+
                 <button
-                data-src="SRC_URL"
-                data-title="Delete Patient"
-                data-paragraph="Do you want to delete { nickname }'s patient information?"
+                data-src="{{-- route('patient.destroy',$patient->id) --}}"
+                data-title="Delete {{ $patient->nickname }}'s Information"
+                data-paragraph="Do you want to delete {{ $patient->nickname }}'s patient information?"
                 data-color="bg-danger"
-                data-btn="Delete"    
+                data-btn="Delete"  
+                data-target="POST"   
                 class="modal-trigger btn border-0 outlined-hover-to-grayish m-0 ms-1 p-0">
                     <h4 class="m-0 p-0"><i class="fa-solid fa-trash"></i></h4>
                 </button>
+                    
+                @endif
+
                 <a href="{{ route('page.calendar') }}" class="btn border-0 outlined-hover-to-grayish m-0 ms-2 p-0">
                     <h4 class="m-0 p-0"><i class="fa-regular fa-calendar-xmark"></i></h4>
                 </a>

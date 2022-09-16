@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\InformedConsent;
+use App\Models\Appointment;
+use App\Models\CheckUtility;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 
-class InformedConsentController extends Controller
+class AppointmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,11 +37,17 @@ class InformedConsentController extends Controller
      */
     public function store(Request $request)
     {
-        InformedConsent::create([
+        Appointment::create([
             'patient_id' => $request->patient_id,
-            'agree' => $request->agree
+            'tooth_no' => $request->tooth_no,
+            'procedure' => $request->procedure,
+            'charge' => $request->charge,
+            'paid' => $request->paid,
+            'appointment' => $request->appointment,
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time,
         ]);
-        
+
         return redirect(route('patient.show', $request->patient_id));
     }
 
@@ -52,7 +59,12 @@ class InformedConsentController extends Controller
      */
     public function show($id)
     {
-        //
+        if($id == -1) return redirect(route('patient.index'));
+
+        return view('pages.logbook', [
+            'check' => new CheckUtility(),
+            'patient' => Patient::where('id', $id)->first()
+        ]);
     }
 
     /**
@@ -65,15 +77,8 @@ class InformedConsentController extends Controller
     {
         if($id == -1) return redirect(route('patient.index'));
 
-        return view('forms.informed-consent', [
+        return view('forms.appointment-form', [
             'patient' => Patient::where('id', $id)->first()
-        ]);
-    }
-
-    public function editWithPatient($patient_id) // THIS WILL BECOME A MEAN FOR CREATE W/ PATIENT!!!
-    {
-        return view('forms.informed-consent', [
-            'patient' => Patient::where('id', $patient_id)->first()
         ]);
     }
 
@@ -86,13 +91,7 @@ class InformedConsentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd($request->agree);
-        $consent = InformedConsent::where('id', $id)->first();
-        $consent->patient_id = $request->patient_id;
-        $consent->agree = $request->agree;
-        $consent->update();
-        
-        return redirect(route('patient.show', $request->patient_id));
+        //
     }
 
     /**

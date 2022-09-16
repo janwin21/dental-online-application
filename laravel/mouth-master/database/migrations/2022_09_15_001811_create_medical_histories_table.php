@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('medical_histories', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('patient_id');
+            $table->unsignedBigInteger('dentist_id');
             $table->string('previous_dentist');
             $table->string('last_dental_visit');
             $table->string('physician');
@@ -42,6 +43,7 @@ return new class extends Migration
             $table->tinyInteger('women_q3')->nullable();
             $table->string('illnesses');
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
+            $table->foreign('dentist_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

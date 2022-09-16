@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Appointment;
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\InformedConsentController;
 use App\Http\Controllers\IntraoralController;
 use App\Http\Controllers\MedicalHistoriesController;
@@ -45,6 +47,11 @@ Route::resource('medical-history', MedicalHistoriesController::class);
 Route::resource('intraoral', IntraoralController::class);
 Route::resource('xray', XrayController::class);
 Route::resource('screening', ScreeningController::class);
+
 Route::resource('consent', InformedConsentController::class);
+Route::get('consent/edit/{patient_id}', 
+    [InformedConsentController::class, 'editWithPatient'])->name('consent.editWithPatient');
+
+Route::resource('appointment', AppointmentController::class);
 
 require __DIR__.'/auth.php';

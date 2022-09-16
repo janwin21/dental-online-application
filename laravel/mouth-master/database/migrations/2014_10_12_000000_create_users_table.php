@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('middle_initial');
+            $table->string('specialty');
+            $table->string('office_address');
+            $table->string('office_no');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

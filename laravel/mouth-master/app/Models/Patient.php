@@ -11,6 +11,7 @@ class Patient extends Model
     use HasFactory;
 
     public $fillable = [
+        'dentist_id',
         'first_name',
         'last_name',
         'middle_initial',
@@ -37,24 +38,38 @@ class Patient extends Model
     public $table = 'patients';
     public $dates = ['birth_date'];
 
-    public function medical_histories() {
-        return $this->hasMany(MedicalHistories::class);
+    public function medical_history() {
+        return $this->getFirstOrderedData(MedicalHistories::class);
     }
 
-    public function intraorals() {
-        return $this->hasMany(Intraorals::class);
+    public function intraoral() {
+        return $this->getFirstOrderedData(Intraorals::class);
     }
 
-    public function xrays() {
-        return $this->hasMany(Xrays::class);
+    public function xray() {
+        return $this->getFirstOrderedData(Xrays::class);
     }
 
-    public function screenings() {
-        return $this->hasMany(Screenings::class);
+    public function screening() {
+        return $this->getFirstOrderedData(Screenings::class);
     }
 
-    public function informed_consents() {
-        return $this->hasMany(InformedConsent::class);
+    public function appointments() {
+        return $this->hasMany(Appointment::class);
+    }
+
+    public function informed_consent() {
+        return $this->hasOne(InformedConsent::class)->first();
+    }
+
+    public function getFirstOrderedData($class) {
+        return $this->hasMany($class)
+                    ->orderBy('created_at', 'desc')
+                    ->limit(1)->first();
+    }
+
+    public function dentist() {
+        return $this->belongsTo(User::class);
     }
 
 }

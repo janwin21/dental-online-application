@@ -52,7 +52,10 @@
                     <p class="roboto text-light-gray weight-500">Mouth Master - Dental Clinic</p>
                 </div>
 
-                <form action="#" method="POST">
+                <form action="{{ route('appointment.store') }}" method="POST">
+                    @csrf
+
+                    <input required class="d-none" type="text" name="patient_id" value="{{ $patient->id }}">
 
                 <div class="section-body bg-light p-5">
                     <div class="row">
@@ -73,19 +76,14 @@
                         </div>
 
                         <!-- Second Row -->
-                        <div class="col-4 mt-4 mb-3">
+                        <div class="col-6 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="charge">Amount Charge <strong class="text-danger ms-1">*</strong></label>
                             <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="number" step="0.01" name="charge">
                         </div>
                         
-                        <div class="col-4 mt-4 mb-3">
+                        <div class="col-6 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="paid">Amount Paid <strong class="text-danger ms-1">*</strong></label>
                             <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="number" step="0.01" name="paid">
-                        </div>
-                        
-                        <div class="col-4 mt-4 mb-3">
-                            <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="balance">Balance <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="number" step="0.01" name="balance">
                         </div>
 
                         <!-- Third Row -->

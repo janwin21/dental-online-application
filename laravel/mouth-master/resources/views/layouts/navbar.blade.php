@@ -3,7 +3,18 @@
     $dashboard_route = isset($patient->id) ? route('patient.show', $patient->id) : route('page.dashboard');
     $intraoral_route = route('intraoral.edit', isset($patient->id) ? $patient->id : -1);
     $screening_route = route('screening.edit', isset($patient->id) ? $patient->id : -1);
-    $consent_route = route('consent.edit', isset($patient->id) ? $patient->id : -1);
+    $appointment_route = route('appointment.show', isset($patient->id) ? $patient->id : -1);
+
+    $consent_route;
+
+    if(isset($patient->id)) {
+        if($patient->informed_consent())
+            $consent_route = route('consent.editWithPatient', $patient->id);
+        else
+            $consent_route = route('consent.edit', $patient->id);
+    } else {
+        $consent_route = route('consent.edit', -1);
+    }
 @endphp
 
 <!-- Navigation Bar -->
@@ -45,7 +56,7 @@
             <li class="nav-item me-3">
                 <a class="nav-link roboto fs-sm outlined-hover-to-success weight-500 text-grayish
                 {{ ($current_route == 'page.logbook') ? 'active' : '' }}
-                " href="{{ route('page.logbook') }}"><i class="fa-solid fa-book me-2"></i>Logbook</a>
+                " href="{{ $appointment_route }}"><i class="fa-solid fa-book me-2"></i>Logbook</a>
             </li>
 
             <li class="nav-item me-3">

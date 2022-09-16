@@ -56,6 +56,7 @@
                     @csrf
 
                     <input required class="d-none" type="number" name="patient_id" value="{{ $patient->id }}">
+                    <input required class="d-none" type="number" name="dentist_id" value="{{ Auth::user()->id }}">
 
                 <div class="section-body bg-light p-5">
                     <div class="row">
@@ -89,23 +90,24 @@
                         <!-- First Row -->
                         <div class="col-6 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="physician">Name of Physician <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary border-1 rounded px-3 py-1 mt-2" type="text" name="physician" placeholder="Dr. Doctor">
+                            <input readonly required class="w-100 border border-secondary border-1 rounded px-3 py-1 mt-2" type="text" name="physician" placeholder="Dr. Doctor" 
+                            value="Dr. {{ Auth::user()->first_name }} {{ Auth::user()->middle_initial }} {{ Auth::user()->last_name }}">
                         </div>
                         
                         <div class="col-6 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="specialty">Specialty <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary border-1 rounded px-3 py-1 mt-2" type="text" name="specialty">
+                            <input readonly required class="w-100 border border-secondary border-1 rounded px-3 py-1 mt-2" type="text" name="specialty" value="{{ Auth::user()->specialty }}">
                         </div>
 
                         <!-- Second Row -->
                         <div class="col-6 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="office_address">Office Address <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary border-1 rounded px-3 py-1 mt-2" type="text" name="office_address">
+                            <input readonly required class="w-100 border border-secondary border-1 rounded px-3 py-1 mt-2" type="text" name="office_address" value="{{ Auth::user()->office_address }}">
                         </div>
                         
                         <div class="col-6 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="office_no">Office# <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary border-1 rounded px-3 py-1 mt-2" type="text" name="office_no">
+                            <input readonly required class="w-100 border border-secondary border-1 rounded px-3 py-1 mt-2" type="text" name="office_no" value="{{ Auth::user()->office_no }}">
                         </div>
 
                     </div>

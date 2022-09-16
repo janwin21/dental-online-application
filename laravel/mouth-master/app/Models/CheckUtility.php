@@ -41,7 +41,11 @@ class CheckUtility extends Model
     }
 
     // check date & time
+    public function date($date) { return date( 'F d, Y', strtotime( $date ) ); }
     public function time($time) { return date( 'g:i A', strtotime( $time ) ); }
+    public function retime($date) { return date( 'Y-m-d', strtotime( $date ) ); }
+    public function retime_empty($date) { return isset($date) ? $this->retime($date) : ''; }
+    //public function redate($time) { return date( 'g:i A', strtotime( $time ) ); }
 
     // check if the value is empty
     public function empty($val) { return $val == 'null' ? $val : 'None'; }

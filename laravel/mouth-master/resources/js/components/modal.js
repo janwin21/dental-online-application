@@ -4,15 +4,18 @@
 $(document).ready(() => {
 
     const modal = $('.modal-section');
+
     modal.hide();
     modal.removeClass('fade');
     
     $('.close-btn, .cancel-btn').click(() => {
-        modal.fadeOut(500);
+        modal.fadeOut(500, () => { 
+            modal.find('.GET, .POST').addClass('d-none');
+        });
     });
 
     $('.modal-trigger').click(event => {
-        const { src, title, paragraph, color, btn } = event.currentTarget.dataset;
+        const { src, title, paragraph, color, btn, target } = event.currentTarget.dataset;
         const modalHeader = modal.find('.modal-header-box');
         const modalBody = modal.find('.modal-body');
         const modalFooter = modal.find('.modal-footer button[type=submit]');
@@ -38,6 +41,9 @@ $(document).ready(() => {
         modalFooter.addClass(color);
         modalFooter.text(btn);
         modalFooter.closest('form').attr('action', src);
+
+        //console.log($(`#${target}`)[0])
+        $(`.${target}`).removeClass('d-none');
 
         modal.fadeIn(500);
     });
