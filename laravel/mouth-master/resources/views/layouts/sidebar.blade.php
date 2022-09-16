@@ -2,6 +2,7 @@
     $current_route = Route::current()->getName();
     $medical_history_route = route('medical-history.edit', isset($patient->id) ? $patient->id : -1);
     $appointment_route = route('appointment.edit', isset($patient->id) ? $patient->id : -1);
+    $history_route = route('patient.showAllWith', isset($patient->id) ? $patient->id : -1);
     $patient_route = isset($patient->id) ? route('patient.showAll', $patient->id) : route('patient.index');
 
     // modal value
@@ -45,12 +46,13 @@
                     data-paragraph="{{ $paragraph }}"
                     data-color="{{ $color }}"
                     data-btn="{{ $btn }}"    
+                    data-target="GET"
                     class="modal-trigger btn btn-success px-5 py-1 rounded-pill roboto text-light weight-500 hover-to-dark fs-xs shadow-none">Add</a>
                 </div>
     
                 @endif
 
-                @if ($current_route == 'page.calendar')
+                @if ($current_route == 'appointment.indexWith')
 
                 <div class="duty border border-0 px-2 pt-0 pb-2 mt-3 text-start">
                     <p class="roboto ms-2 fs-xs weight-600 text-grayish">Months</p>
@@ -73,7 +75,7 @@
                 <div class="duty border border-0 px-2 pt-0 pb-2 mt-3 text-start">
                     <p class="roboto ms-2 fs-xs weight-600 text-grayish">Welcome to our Clinic</p>
                     <a class="btn btn-light w-100 text-start shadow-none my-2 weight-600" href="{{ $appointment_route }}"><i class="fa-solid fa-book me-2"></i>Appointment</a>
-                    <a class="btn btn-light w-100 text-start shadow-none my-2 weight-600" href="{{ route('page.history') }}"><i class="fa-solid fa-notes-medical me-2"></i>History</a>
+                    <a class="btn btn-light w-100 text-start shadow-none my-2 weight-600" href="{{ $history_route }}"><i class="fa-solid fa-notes-medical me-2"></i>History</a>
                     <a class="btn btn-light w-100 text-start shadow-none my-2 weight-600" href="{{ $patient_route }}"><i class="fa-solid fa-bed me-2"></i>Patients</a>
                 </div>
 

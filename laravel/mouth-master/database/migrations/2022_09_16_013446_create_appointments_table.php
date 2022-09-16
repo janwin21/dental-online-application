@@ -23,6 +23,8 @@ return new class extends Migration
             $table->date('appointment');
             $table->time('start_time');
             $table->time('end_time');
+            $table->string('color');
+            $table->string('done')->nullable();
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
             $table->timestamps();
         });

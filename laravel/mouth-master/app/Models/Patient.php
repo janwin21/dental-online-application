@@ -38,6 +38,7 @@ class Patient extends Model
     public $table = 'patients';
     public $dates = ['birth_date'];
 
+    // get the latest data
     public function medical_history() {
         return $this->getFirstOrderedData(MedicalHistories::class);
     }
@@ -54,22 +55,44 @@ class Patient extends Model
         return $this->getFirstOrderedData(Screenings::class);
     }
 
-    public function appointments() {
-        return $this->hasMany(Appointment::class);
-    }
-
     public function informed_consent() {
         return $this->hasOne(InformedConsent::class)->first();
     }
 
     public function getFirstOrderedData($class) {
         return $this->hasMany($class)
-                    ->orderBy('created_at', 'desc')
+                    ->orderBy('updated_at', 'desc')
                     ->limit(1)->first();
     }
 
     public function dentist() {
         return $this->belongsTo(User::class);
+    }
+
+    // get all data
+    public function medical_histories() {
+        return $this->getAllDataByOrder(MedicalHistories::class);
+    }
+
+    public function intraorals() {
+        return $this->getAllDataByOrder(Intraorals::class);
+    }
+
+    public function xrays() {
+        return $this->getAllDataByOrder(Xrays::class);
+    }
+
+    public function screenings() {
+        return $this->getAllDataByOrder(Screenings::class);
+    }
+
+    public function appointments() {
+        return $this->getAllDataByOrder(Appointment::class);
+    }
+
+    public function getAllDataByOrder($class) {
+        return $this->hasMany($class)
+                    ->orderBy('created_at', 'desc');
     }
 
 }

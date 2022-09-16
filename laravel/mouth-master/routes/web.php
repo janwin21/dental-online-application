@@ -22,26 +22,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [TestNavigationController::class, 'dashboard'])->name('page.dashboard');
-Route::get('/logbook', [TestNavigationController::class, 'logbook'])->name('page.logbook');
-Route::get('/patient', [TestNavigationController::class, 'patient'])->name('page.patient');
-Route::get('/history', [TestNavigationController::class, 'history'])->name('page.history');
-Route::get('/calendar', [TestNavigationController::class, 'calendar'])->name('page.calendar');
-
-Route::get('/intraoral', [TestNavigationController::class, 'intraoral_examination'])->name('form.intraoral');
-Route::get('/screening', [TestNavigationController::class, 'screening'])->name('form.screening');
-Route::get('/appointment', [TestNavigationController::class, 'appointment'])->name('form.appointment');
-Route::get('/main-information', [TestNavigationController::class, 'main_information'])->name('form.main-information');
-Route::get('/xray', [TestNavigationController::class, 'xray'])->name('form.xray');
-Route::get('/medical-history', [TestNavigationController::class, 'medical_history'])->name('form.medical-history');
-Route::get('/informed-consent', [TestNavigationController::class, 'informed_consent'])->name('form.informed-consent');
-
-Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
+Route::get('/dashboard', function () { return view('pages.dashboard'); })->name('page.dashboard');
 
 /*-- MOUST MASTERS ROUTES --*/
 Route::resource('patient', PatientController::class);
-Route::get('/patient/show/all/{id}', [PatientController::class, 'showAll'])->name('patient.showAll');
-Route::get('/patient/create/with/{id}', [PatientController::class, 'createIndex'])->name('patient.createIndex');
+Route::get('patient/show/all/{id}', [PatientController::class, 'showAll'])->name('patient.showAll');
+Route::get('patient/create/with/{id}', [PatientController::class, 'createIndex'])->name('patient.createIndex');
+Route::get('patient/show/all/with/{id}', [PatientController::class, 'showAllWith'])->name('patient.showAllWith');
 
 Route::resource('medical-history', MedicalHistoriesController::class);
 Route::resource('intraoral', IntraoralController::class);
@@ -53,5 +40,8 @@ Route::get('consent/edit/{patient_id}',
     [InformedConsentController::class, 'editWithPatient'])->name('consent.editWithPatient');
 
 Route::resource('appointment', AppointmentController::class);
+Route::get('appointment/edit/with/{id}/{appointment_id}', [AppointmentController::class, 'editIndex'])->name('appointment.editIndex');
+Route::get('appointment/index/with/{id}', [AppointmentController::class, 'indexWith'])->name('appointment.indexWith');
+Route::get('appointmetn/edit/done/{id}', [AppointmentController::class, 'done'])->name('appointment.done');
 
 require __DIR__.'/auth.php';

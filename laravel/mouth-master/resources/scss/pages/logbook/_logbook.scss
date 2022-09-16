@@ -16,7 +16,7 @@
             th { border: 1px solid black; }
         }
 
-        tr:nth-child(odd):not(tr:first-child) { background-color: $gray-300 !important; }
+        tr:nth-child(odd):not(tr:first-child) { background-color: $gray-300; }
     }
 
 }

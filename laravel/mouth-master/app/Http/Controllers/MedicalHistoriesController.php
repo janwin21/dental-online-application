@@ -116,7 +116,9 @@ class MedicalHistoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $medical_history = MedicalHistories::where('id', $id)->first();
+        $medical_history->touch();
+        return redirect(route('patient.show', $medical_history->patient_id));
     }
 
     /**
@@ -127,7 +129,10 @@ class MedicalHistoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $medical_history = MedicalHistories::where('id', $id)->first();
+        $patient_id = $medical_history->patient_id;
+        $medical_history->delete();
+        return redirect(route('patient.show', $patient_id));
     }
 
 }

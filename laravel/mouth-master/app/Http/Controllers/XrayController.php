@@ -82,7 +82,9 @@ class XrayController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $xray = Xrays::where('id', $id)->first();
+        $xray->touch();
+        return redirect(route('patient.show', $xray->patient_id));
     }
 
     /**
@@ -93,6 +95,9 @@ class XrayController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $xray = Xrays::where('id', $id)->first();
+        $patient_id = $xray->patient_id;
+        $xray->delete();
+        return redirect(route('patient.show', $patient_id));
     }
 }

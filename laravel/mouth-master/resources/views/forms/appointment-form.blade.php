@@ -1,5 +1,12 @@
 @extends('layouts.master')
 
+@php
+    $is_edited = Route::current()->getName() == 'appointment.editIndex';
+    $route = $is_edited ? route('appointment.update', $appointment->id) : route('appointment.store');
+    $btn = $is_edited ? 'Update' : 'Confirm';
+    $color = $is_edited ? 'btn-warning' : 'bg-success';
+@endphp
+
 <!-- APPOINTMENT FORM -->
 <!DOCTYPE html>
 <html lang="en">
@@ -52,8 +59,12 @@
                     <p class="roboto text-light-gray weight-500">Mouth Master - Dental Clinic</p>
                 </div>
 
-                <form action="{{ route('appointment.store') }}" method="POST">
+                <form action="{{ $route }}" method="POST">
                     @csrf
+
+                    @if ($is_edited)
+                        @method('PATCH')
+                    @endif
 
                     <input required class="d-none" type="text" name="patient_id" value="{{ $patient->id }}">
 
@@ -67,39 +78,39 @@
                         <!-- First Row -->
                         <div class="col-3 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="tooth_no">Tooth No./s <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="number" name="tooth_no">
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="number" name="tooth_no" value="{{ $is_edited ? $appointment->tooth_no : '' }}">
                         </div>
                         
                         <div class="col-9 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="procedure">Procedure <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="text" name="procedure">
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="text" name="procedure" value="{{ $is_edited ? $appointment->procedure : '' }}">
                         </div>
 
                         <!-- Second Row -->
                         <div class="col-6 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="charge">Amount Charge <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="number" step="0.01" name="charge">
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="number" step="0.01" name="charge" value="{{ $is_edited ? $appointment->charge : '' }}">
                         </div>
                         
                         <div class="col-6 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="paid">Amount Paid <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="number" step="0.01" name="paid">
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="number" step="0.01" name="paid" value="{{ $is_edited ? $appointment->paid : '' }}">
                         </div>
 
                         <!-- Third Row -->
                         <div class="col-4 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="appointment">Next Appointment <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="date" name="appointment">
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="date" name="appointment" value="{{ $is_edited ? $check->redate($appointment->appointment) : '' }}">
                         </div>
                         
                         <div class="col-4 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="start_time">Start Time <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="time" name="start_time">
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="time" name="start_time" value="{{ $is_edited ? $check->retime($appointment->start_time) : '' }}">
                         </div>
                         
                         <div class="col-4 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="end_time">End Time <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="time" name="end_time">
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="time" name="end_time" value="{{ $is_edited ? $check->retime($appointment->end_time) : '' }}">
                         </div>
 
                     </div>
@@ -111,16 +122,39 @@
                         <p class="text-grayish roboto weight-600 fs-xs date-p">Month DD, YYYY</p>
 
                         <!-- Ninth Row -->
-                        <div class="col-12 mt-0 d-flex flex-column text-end">
+                        <div class="col-8 mt-0 d-flex flex-column text-end">
                             <div class="text-end">
-                                <button type="submit" class="w-25 btn btn-success text-light hover-to-dark px-4 py-1">Confirm</button>
+                            
+                                <button type="submit" class="w-50 btn {{ $color }} text-light hover-to-dark px-4 py-1">{{ $btn }}</button>
+
                             </div>
                         </div>
 
+                        </form>
+
+                        @if ($is_edited)
+
+                        <!-- Tenth Row -->
+                        <div class="col-4 mt-0 px-0 d-flex flex-column text-end">
+                            <div class="text-end px-0">
+
+                                <form action="{{ route('appointment.done', $appointment->id) }}" method="GET">
+                                    @csrf
+                                    @method('PATCH')
+
+                                    <input required class="d-none" type="text" name="patient_id" value="{{ $patient->id }}">
+
+                                <button type="submit" class="d-inline w-100 btn bg-success text-light hover-to-dark py-1">Done</button>
+
+                                </form>
+
+                            </div>
+                        </div>
+                            
+                        @endif
+
                     </div>
                 </div>
-
-                </form>
 
             </div>
 

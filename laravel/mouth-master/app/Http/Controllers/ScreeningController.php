@@ -93,7 +93,9 @@ class ScreeningController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $screening = Screenings::where('id', $id)->first();
+        $screening->touch();
+        return redirect(route('patient.show', $screening->patient_id));
     }
 
     /**
@@ -104,6 +106,9 @@ class ScreeningController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $screening = Screenings::where('id', $id)->first();
+        $patient_id = $screening->patient_id;
+        $screening->delete();
+        return redirect(route('patient.show', $patient_id));
     }
 }

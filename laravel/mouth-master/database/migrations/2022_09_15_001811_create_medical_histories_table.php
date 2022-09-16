@@ -34,14 +34,14 @@ return new class extends Migration
             $table->string('q5_text');
             $table->tinyInteger('q6');
             $table->tinyInteger('q7');
-            $table->string('allergies');
+            $table->text('allergies');
             $table->time('bleeding_time');
             $table->string('blood_type');
             $table->integer('blood_pressure');
             $table->tinyInteger('women_q1')->nullable();
             $table->tinyInteger('women_q2')->nullable();
             $table->tinyInteger('women_q3')->nullable();
-            $table->string('illnesses');
+            $table->text('illnesses');
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
             $table->foreign('dentist_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

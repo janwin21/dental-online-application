@@ -101,11 +101,22 @@ class PatientController extends Controller
         ]);
     }
 
+    // SHOW ALL DATA FROM PATIENT TABLE
     public function showAll($id) 
     {
         return view('pages.patient', [
             'patient' => Patient::where('id', $id)->first(),
             'patients' => Patient::get()
+        ]);
+    }
+
+    // SHOW ALL DATA WITH ALL OTHER TABLE RELATIONSHIPS FROM HISTORY PAGES
+    public function showAllWith($id) 
+    {
+        if($id == -1) return redirect(route('patient.index'));
+
+        return view('pages.history-storage', [
+            'patient' => Patient::where('id', $id)->first()
         ]);
     }
 
@@ -168,7 +179,6 @@ class PatientController extends Controller
      */
     public function destroy($id)
     {
-        //dd(Patient::where('id', $id));
         Patient::where('id', $id)->first()->delete();
         return redirect(route('patient.index'));
     }

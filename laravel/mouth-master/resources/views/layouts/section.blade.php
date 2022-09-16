@@ -43,7 +43,7 @@
 
             </div>
 
-            @elseif ($current_route == 'page.calendar')
+            @elseif ($current_route == 'appointment.indexWith')
 
             <!-- X-ray Section -->
             <div class="card-content text-center border border-light bg-light rounded px-2 py-4">
@@ -79,7 +79,8 @@
                 data-title="{{ $title }}"
                 data-paragraph="{{ $paragraph }}"
                 data-color="{{ $color }}"
-                data-btn="{{ $btn }}"    
+                data-btn="{{ $btn }}"  
+                data-target="GET"  
                 class="modal-trigger btn btn-success px-5 py-1 rounded-pill roboto text-light weight-500 hover-to-dark fs-xs shadow-none">Add</a>
             </div>
 
@@ -91,7 +92,16 @@
 
                 @if (isset($users))
                 @foreach ($users as $user)
-                    <a class="btn btn-light w-100 text-start shadow-none my-2" href="#"><i class="fa-solid fa-user-tie me-2 text-dark fs-sm"></i>Dr. {{ $user->first_name }} {{ $user->middle_initial }} {{ $user->last_name }} </a>
+
+                    <button
+                    data-src="{{ route('patient.destroy', $user->id) }}"
+                    data-title="Dentist on Duty"
+                    data-paragraph="This function is UNDER CONSTRUCTION"
+                    data-color="bg-secondary"
+                    data-btn=""  
+                    data-target="NONE" 
+                    class="modal-trigger btn btn-light w-100 text-start shadow-none my-2"><i class="fa-solid fa-user-tie me-2 text-dark fs-sm"></i>Dr. {{ $user->first_name }} {{ $user->middle_initial }} {{ $user->last_name }}</button>
+
                 @endforeach
                 @endif
                 

@@ -84,7 +84,9 @@ class IntraoralController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $intraoral = Intraorals::where('id', $id)->first();
+        $intraoral->touch();
+        return redirect(route('patient.show', $intraoral->patient_id));
     }
 
     /**
@@ -95,6 +97,9 @@ class IntraoralController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $intraoral = Intraorals::where('id', $id)->first();
+        $patient_id = $intraoral->patient_id;
+        $intraoral->delete();
+        return redirect(route('patient.show', $patient_id));
     }
 }

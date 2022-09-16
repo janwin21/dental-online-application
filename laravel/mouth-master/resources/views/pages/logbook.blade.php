@@ -98,7 +98,7 @@
 
                                     @foreach ($patient->appointments as $appointment)
                                     
-                                    <tr class="py-0 my-0 text-start">
+                                    <tr class="py-0 my-0 text-start {{ $appointment->done ? 'bg-warning' : '' }}">
                                         <td class="py-2" width="10%"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">{{ $appointment->created_at->format('m-d-Y') }}</p></td>
                                         <td class="py-2" width="7%"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">{{ $appointment->tooth_no }}</p></td>
                                         <td class="py-2"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">{{ $appointment->procedure }}</p></td>
@@ -111,9 +111,35 @@
                                         <td class="py-2" width="20%"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">{{ $check->date($appointment->appointment) }}<br>
                                                 {{ $check->time($appointment->start_time) }}-
                                                 {{ $check->time($appointment->end_time) }}</p></td>
+                                                
                                         <td class="text-end py-2 pe-2" width="20%">
-                                            <a href="#" class="btn btn-danger hover-to-dark text-light rounded px-2 py-1"><i class="fa-solid fa-trash"></i></a>
-                                            <a href="#" class="btn btn-warning hover-to-dark text-light rounded px-2 py-1"><i class="fa-solid fa-pen-to-square"></i></a>
+
+                                            @unless ($appointment->done)
+
+                                            <!-- EDIT -->
+                                            <button
+                                            data-src="{{ route('appointment.editIndex', [
+                                                'id' => $patient->id,
+                                                'appointment_id' => $appointment->id
+                                            ]) }}"
+                                            data-title="Edit Appointment Information"
+                                            data-paragraph="Do you want to Edit {{ $appointment->patient->nickname }}'s appointment information?"
+                                            data-color="bg-warning"
+                                            data-btn="Edit"   
+                                            data-target="GET"
+                                            class="modal-trigger btn btn-warning hover-to-dark text-light rounded px-2 py-1"><i class="fa-solid fa-pen-to-square"></i></button>
+                                                
+                                            @endunless
+                                            
+                                            <!-- DELETE -->
+                                            <button
+                                            data-src="{{ route('appointment.destroy', $appointment->id) }}"
+                                            data-title="Delete Appointment Information"
+                                            data-paragraph="Do you want to delete {{ $appointment->patient->nickname }}'s appointment information?"
+                                            data-color="bg-danger"
+                                            data-btn="Delete"  
+                                            data-target="POST" 
+                                            class="modal-trigger btn btn-danger hover-to-dark text-light rounded px-2 py-1"><i class="fa-solid fa-trash"></i></button>
                                         </td>
                                     </tr>
 

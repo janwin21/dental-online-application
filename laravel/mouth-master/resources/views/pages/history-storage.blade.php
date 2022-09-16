@@ -48,73 +48,12 @@
             <div class="content-header rounded px-4">
                 
                 <div class="row">
+
                     <!-- Left SVG Image -->
-                    <div class="col-2 py-4"><object data="../svg/male.svg"></object></div>
+                    <div class="col-2 py-4"><object data="{{ asset('svg/male.svg') }}"></object></div>
 
-                    <!-- Header User Information -->
-                    <div class="col-7 ps-0 pe-4 py-4">
-                        <h5 class="pb-0 mb-0 text-dark">LastName, FirstName, MI.</h5>
-                        <p class="text-light-gray weight-500 pt-0 mt-0">Patient ID#1234</p>
-                        <p class="fs-sm weight-400 roboto reason">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, doloremque. Dignissimos maxime veniam repellat.</p>
+                    @include('layouts.dashboard-header')
 
-                        <div class="header-icons mt-4 pt-2">
-                            <div class="row">
-
-                                <div class="header-left col-6 text-start">
-                                    <button class="btn border-0 outlined-hover-to-grayish m-0 p-0">
-                                        <h4 class="m-0 p-0"><i class="fa-solid fa-circle-left"></i></h4>
-                                    </button>
-                                    <button class="btn border-0 outlined-hover-to-grayish m-0 p-0">
-                                        <h4 class="m-0 p-0"><i class="fa-solid fa-circle-right"></i></h4>
-                                    </button>
-                                </div>
-                                
-                                <div class="header-right col-6 text-end">
-                                    <button
-                                    data-src="SRC_URL"
-                                    data-title="Add Patients"
-                                    data-paragraph="Do you want to add more patients?"
-                                    data-color="bg-success"
-                                    data-btn="Add"    
-                                    class="modal-trigger btn border-0 outlined-hover-to-grayish m-0 ms-2 p-0">
-                                        <h4 class="m-0 p-0"><i class="fa-solid fa-hospital-user"></i></h4>
-                                    </button>
-                                    <button
-                                    data-src="SRC_URL"
-                                    data-title="Update { nickname }"
-                                    data-paragraph="Do you want to update { nickname }'s patient information?"
-                                    data-color="bg-warning"
-                                    data-btn="Update"    
-                                    class="modal-trigger btn border-0 outlined-hover-to-grayish m-0 ms-2 p-0">
-                                        <h4 class="m-0 p-0"><i class="fa-solid fa-file-pen"></i></h4>
-                                    </button>
-                                    <button
-                                    data-src="SRC_URL"
-                                    data-title="Delete Patient"
-                                    data-paragraph="Do you want to delete { nickname }'s patient information?"
-                                    data-color="bg-danger"
-                                    data-btn="Delete"    
-                                    class="modal-trigger btn border-0 outlined-hover-to-grayish m-0 ms-1 p-0">
-                                        <h4 class="m-0 p-0"><i class="fa-solid fa-trash"></i></h4>
-                                    </button>
-                                    <button class="btn border-0 outlined-hover-to-grayish m-0 ms-2 p-0">
-                                        <h4 class="m-0 p-0"><i class="fa-regular fa-calendar-xmark"></i></h4>
-                                    </button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Header User Section -->
-                    <div class="header-section col-3 py-4 border-start border-2 ps-4">
-                        <h1 class="fs-xl anton text-light-gray float-start">16</h1>
-                        <p class="text-light-gray weight-500 pt-2 ps-2 mt-0 float-start">Age</p>
-                        <div class="w-100 float-start">
-                            <h5 class="weight-600 pb-0 mb-0 roboto">Nickname</h5>
-                            <p class="text-light-gray weight-500 pt-0 mt-0 fs-sm">Nickname<i class="ms-2 fa-solid fa-children"></i></p>
-                        </div>
-                    </div>
                 </div>
 
             </div>
@@ -131,25 +70,62 @@
                         </div>
 
                         <!-- First Row -->
-                        <div class="col-3 p-2">
-                            <a href="#" class="w-100 btn btn-secondary p-0 m-0 border-0 shadow-none">
-                                <div class="text-center rounded pt-4 pb-1">
-                                    <object data="../svg/medical-history.svg"></object>
-                                    <h5 class="roboto fs-sm weight-600 mt-3 mb-1">ADD</h5>
-                                    <p class="roboto fs-xs mt-0">Medical History</p>
-                                </div>
-                            </a>
+                        <div class="col-3 p-2 text-light">
+                            <div class="text-center bg-secondary rounded pt-4 pb-1">
+                                <object data="{{ asset('svg/medical-history.svg') }}"></object>
+                                <h5 class="roboto fs-sm weight-600 mt-3 mb-1">ADD</h5>
+                                <p class="roboto fs-xs mt-0">Medical History</p>
+                            </div>
                         </div>
                         
-                        <div class="col-3 p-2">
-                            <div class="text-center rounded pt-4 pb-1 bg-light-gray hover-to-grayish border border-light border-0">
-                                <object data="../svg/folder.svg"></object>
-                                <form action="#" method="POST">
-                                    <button type="submit" class="btn btn-danger shadow-none py-0 px-4 mt-3 rounded-pill roboto fs-xs hover-to-dark">
-                                        DELETE
-                                    </button>
-                                </form>
-                                <p class="roboto fs-xs mt-1">History# { id }</p>
+                        <div class="col-9 p-2">
+                            <div class="row">
+
+                                <!-- column -->
+                                @if (count($patient->medical_histories) != 0)
+                                @foreach ($patient->medical_histories as $data)
+
+                                <div class="col-4 mb-4">
+                                    <div class="text-center rounded pt-4 pb-1 bg-light-gray hover-to-grayish border border-light border-0 h-100">
+                                        <object data="{{ asset("svg/folder.svg") }}"></object><br>
+                                        <!-- DELETE -->
+                                        <button 
+                                        data-src="{{ route('medical-history.destroy', $data->id) }}"
+                                        data-title="Delete Medical"
+                                        data-paragraph="Do you want to delete {{ $patient->nickname }}'s medical information no. {{ $data->id }}?"
+                                        data-color="bg-danger"
+                                        data-btn="Delete"  
+                                        data-target="POST" 
+                                        class="modal-trigger btn btn-danger shadow-none py-1 mt-3 rounded roboto fs-xs hover-to-dark">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+
+                                        <!-- TOUCH UPDATE -->
+                                        <form class="d-inline" action="{{ route('medical-history.update', $data->id) }}" method="POST">
+                                            @csrf
+                                            @method('PATCH')
+                                    
+                                            <button class="btn btn-success shadow-none py-1 mt-3 rounded roboto fs-xs hover-to-dark text-light">
+                                                <i class="fa-solid fa-door-open"></i>
+                                            </button>
+                                        </form>
+                                        <p class="roboto fs-xs weight-600 mt-3 mb-0">History #{{ $data->id }}</p>
+                                        <p class="roboto fs-xs mt-1">{{ $data->created_at->format('m-d-Y') }}</p>
+                                    </div>
+                                </div>
+ 
+                                @endforeach
+                                @else
+
+                                <div class="col-4 mb-4">
+                                    <div class="text-center rounded pt-4 pb-4 bg-light border border-light border-0 h-100">
+                                        <object data="{{ asset("svg/no-data.svg") }}"></object>
+                                        <p class="roboto fs-xs weight-600 mt-3 mb-0">Empty Data</p>
+                                    </div>
+                                </div>
+
+                                @endif
+
                             </div>
                         </div>
                         
@@ -162,22 +138,61 @@
                         <div class="col-3 p-2">
                             <a href="#" class="w-100 btn btn-secondary p-0 m-0 border-0 shadow-none">
                                 <div class="text-center rounded pt-4 pb-1">
-                                    <object data="../svg/intraoral.svg"></object>
+                                    <object data="{{ asset("svg/intraoral.svg") }}"></object>
                                     <h5 class="roboto fs-sm weight-600 mt-3 mb-1">ADD</h5>
                                     <p class="roboto fs-xs mt-0">Intraoral Exam</p>
                                 </div>
                             </a>
                         </div>
                         
-                        <div class="col-3 p-2">
-                            <div class="text-center rounded pt-4 pb-1 bg-light-gray hover-to-grayish border border-light border-0">
-                                <object data="../svg/folder.svg"></object>
-                                <form action="#" method="POST">
-                                    <button type="submit" class="btn btn-danger shadow-none py-0 px-4 mt-3 rounded-pill roboto fs-xs hover-to-dark">
-                                        DELETE
-                                    </button>
-                                </form>
-                                <p class="roboto fs-xs mt-1">Intraoral# { id }</p>
+                        <div class="col-9 p-2">
+                            <div class="row">
+
+                                <!-- column -->
+                                @if (count($patient->intraorals) != 0)
+                                @foreach ($patient->intraorals as $data)
+
+                                <div class="col-4 mb-4">
+                                    <div class="text-center rounded pt-4 pb-1 bg-light-gray hover-to-grayish border border-light border-0 h-100">
+                                        <object data="{{ asset("svg/folder.svg") }}"></object><br>
+                                        <!-- DELETE -->
+                                        <button 
+                                        data-src="{{ route('intraoral.destroy', $data->id) }}"
+                                        data-title="Delete Dental Chart"
+                                        data-paragraph="Do you want to delete {{ $patient->nickname }}'s dental chart no. {{ $data->id }}?"
+                                        data-color="bg-danger"
+                                        data-btn="Delete"  
+                                        data-target="POST" 
+                                        class="modal-trigger btn btn-danger shadow-none py-1 mt-3 rounded roboto fs-xs hover-to-dark">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+
+                                        <!-- TOUCH UPDATE -->
+                                        <form class="d-inline" action="{{ route('intraoral.update', $data->id) }}" method="POST">
+                                            @csrf
+                                            @method('PATCH')
+                                    
+                                            <button class="btn btn-success shadow-none py-1 mt-3 rounded roboto fs-xs hover-to-dark text-light">
+                                                <i class="fa-solid fa-door-open"></i>
+                                            </button>
+                                        </form>
+                                        <p class="roboto fs-xs weight-600 mt-3 mb-0">Dental Chart #{{ $data->id }}</p>
+                                        <p class="roboto fs-xs mt-1">{{ $data->created_at->format('m-d-Y') }}</p>
+                                    </div>
+                                </div>
+ 
+                                @endforeach
+                                @else
+
+                                <div class="col-4 mb-4">
+                                    <div class="text-center rounded pt-4 pb-4 bg-light border border-light border-0 h-100">
+                                        <object data="{{ asset("svg/no-data.svg") }}"></object>
+                                        <p class="roboto fs-xs weight-600 mt-3 mb-0">Empty Data</p>
+                                    </div>
+                                </div>
+
+                                @endif
+
                             </div>
                         </div>
                         
@@ -186,26 +201,65 @@
                             <p class="roboto text-grayish weight-600 fs-sm pt-0 mt-0">X-rays</p>
                         </div>
 
-                        <!-- Second Row -->
+                        <!-- Third Row -->
                         <div class="col-3 p-2">
                             <a href="#" class="w-100 btn btn-secondary p-0 m-0 border-0 shadow-none">
                                 <div class="text-center rounded pt-4 pb-1">
-                                    <object data="../svg/x-ray.svg"></object>
+                                    <object data="{{ asset("svg/x-ray.svg") }}"></object>
                                     <h5 class="roboto fs-sm weight-600 mt-3 mb-1">ADD</h5>
                                     <p class="roboto fs-xs mt-0">X-ray</p>
                                 </div>
                             </a>
                         </div>
                         
-                        <div class="col-3 p-2">
-                            <div class="text-center rounded pt-4 pb-1 bg-light-gray hover-to-grayish border border-light border-0">
-                                <object data="../svg/folder.svg"></object>
-                                <form action="#" method="POST">
-                                    <button type="submit" class="btn btn-danger shadow-none py-0 px-4 mt-3 rounded-pill roboto fs-xs hover-to-dark">
-                                        DELETE
-                                    </button>
-                                </form>
-                                <p class="roboto fs-xs mt-1">X-ray# { id }</p>
+                        <div class="col-9 p-2">
+                            <div class="row">
+
+                                <!-- column -->
+                                @if (count($patient->xrays) != 0)
+                                @foreach ($patient->xrays as $data)
+
+                                <div class="col-4 mb-4">
+                                    <div class="text-center rounded pt-4 pb-1 bg-light-gray hover-to-grayish border border-light border-0 h-100">
+                                        <object data="{{ asset("svg/folder.svg") }}"></object><br>
+                                        <!-- DELETE -->
+                                        <button 
+                                        data-src="{{ route('xray.destroy', $data->id) }}"
+                                        data-title="Delete X-Ray"
+                                        data-paragraph="Do you want to delete {{ $patient->nickname }}'s x-ray examination no. {{ $data->id }}?"
+                                        data-color="bg-danger"
+                                        data-btn="Delete"  
+                                        data-target="POST" 
+                                        class="modal-trigger btn btn-danger shadow-none py-1 mt-3 rounded roboto fs-xs hover-to-dark">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+
+                                        <!-- TOUCH UPDATE -->
+                                        <form class="d-inline" action="{{ route('xray.update', $data->id) }}" method="POST">
+                                            @csrf
+                                            @method('PATCH')
+                                    
+                                            <button class="btn btn-success shadow-none py-1 mt-3 rounded roboto fs-xs hover-to-dark text-light">
+                                                <i class="fa-solid fa-door-open"></i>
+                                            </button>
+                                        </form>
+                                        <p class="roboto fs-xs weight-600 mt-3 mb-0">X-ray #{{ $data->id }}</p>
+                                        <p class="roboto fs-xs mt-1">{{ $data->created_at->format('m-d-Y') }}</p>
+                                    </div>
+                                </div>
+ 
+                                @endforeach
+                                @else
+
+                                <div class="col-4 mb-4">
+                                    <div class="text-center rounded pt-4 pb-4 bg-light border border-light border-0 h-100">
+                                        <object data="{{ asset("svg/no-data.svg") }}"></object>
+                                        <p class="roboto fs-xs weight-600 mt-3 mb-0">Empty Data</p>
+                                    </div>
+                                </div>
+
+                                @endif
+
                             </div>
                         </div>
                         
@@ -214,26 +268,65 @@
                             <p class="roboto text-grayish weight-600 fs-sm pt-0 mt-0">Screenings</p>
                         </div>
 
-                        <!-- Second Row -->
+                        <!-- Fourth Row -->
                         <div class="col-3 p-2">
                             <a href="#" class="w-100 btn btn-secondary p-0 m-0 border-0 shadow-none">
                                 <div class="text-center rounded pt-4 pb-1">
-                                    <object data="../svg/screening.svg"></object>
+                                    <object data="{{ asset("svg/screening.svg") }}"></object>
                                     <h5 class="roboto fs-sm weight-600 mt-3 mb-1">ADD</h5>
                                     <p class="roboto fs-xs mt-0">Screening</p>
                                 </div>
                             </a>
                         </div>
                         
-                        <div class="col-3 p-2">
-                            <div class="text-center rounded pt-4 pb-1 bg-light-gray hover-to-grayish border border-light border-0">
-                                <object data="../svg/folder.svg"></object>
-                                <form action="#" method="POST">
-                                    <button type="submit" class="btn btn-danger shadow-none py-0 px-4 mt-3 rounded-pill roboto fs-xs hover-to-dark">
-                                        DELETE
-                                    </button>
-                                </form>
-                                <p class="roboto fs-xs mt-1">Screening# { id }</p>
+                        <div class="col-9 p-2">
+                            <div class="row">
+
+                                <!-- column -->
+                                @if (count($patient->screenings) != 0)
+                                @foreach ($patient->screenings as $data)
+
+                                <div class="col-4 mb-4">
+                                    <div class="text-center rounded pt-4 pb-1 bg-light-gray hover-to-grayish border border-light border-0 h-100">
+                                        <object data="{{ asset("svg/folder.svg") }}"></object><br>
+                                        <!-- DELETE -->
+                                        <button 
+                                        data-src="{{ route('screening.destroy', $data->id) }}"
+                                        data-title="Delete Screening Data"
+                                        data-paragraph="Do you want to delete {{ $patient->nickname }}'s screening no. {{ $data->id }}?"
+                                        data-color="bg-danger"
+                                        data-btn="Delete"  
+                                        data-target="POST" 
+                                        class="modal-trigger btn btn-danger shadow-none py-1 mt-3 rounded roboto fs-xs hover-to-dark">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+
+                                        <!-- TOUCH UPDATE -->
+                                        <form class="d-inline" action="{{ route('screening.update', $data->id) }}" method="POST">
+                                            @csrf
+                                            @method('PATCH')
+                                    
+                                            <button class="btn btn-success shadow-none py-1 mt-3 rounded roboto fs-xs hover-to-dark text-light">
+                                                <i class="fa-solid fa-door-open"></i>
+                                            </button>
+                                        </form>
+                                        <p class="roboto fs-xs weight-600 mt-3 mb-0">Screening #{{ $data->id }}</p>
+                                        <p class="roboto fs-xs mt-1">{{ $data->created_at->format('m-d-Y') }}</p>
+                                    </div>
+                                </div>
+ 
+                                @endforeach
+                                @else
+
+                                <div class="col-4 mb-4">
+                                    <div class="text-center rounded pt-4 pb-4 bg-light border border-light border-0 h-100">
+                                        <object data="{{ asset("svg/no-data.svg") }}"></object>
+                                        <p class="roboto fs-xs weight-600 mt-3 mb-0">Empty Data</p>
+                                    </div>
+                                </div>
+
+                                @endif
+
                             </div>
                         </div>
 
@@ -281,5 +374,8 @@
 
     @endsection
 
+    <script>
+        const intraoralSettings = [];
+    </script>
 </body>
 </html>

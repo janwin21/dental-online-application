@@ -1,10 +1,14 @@
 {{-- Header --}}
 <!-- Header User Information -->
 
+@php
+    $calendar_route = route('appointment.indexWith', isset($patient->id) ? $patient->id : -1);
+@endphp
+
 @if (isset($patient))
 
 <div class="col-7 ps-0 pe-4 py-4">
-    <h5 class="pb-0 mb-0 text-dark">{{ $patient->last_name }}, {{ $patient->first_name }}, {{ $patient->middle_initial }}</h5>
+    <h5 class="pb-0 mb-0 text-dark">{{ $patient->last_name }}, {{ $patient->first_name }} {{ $patient->middle_initial }}</h5>
     <p class="text-light-gray weight-500 pt-0 mt-0">Patient ID#{{ $patient->id }}</p>
     <p class="fs-sm weight-400 roboto reason">{{ $patient->reason }}</p>
 
@@ -28,6 +32,7 @@
             </div>
             
             <div class="header-right col-6 text-end">
+                <!-- ADD -->
                 <button
                 data-src="{{ route('patient.createIndex', isset($patient->id) ? $patient->id : -1) }}"
                 data-title="Add Patients"
@@ -41,6 +46,7 @@
 
                 @if (isset($patient->id))
 
+                <!-- EDIT -->
                 <button
                 data-src="{{ route('patient.edit', $patient->id) }}"
                 data-title="Edit {{ $patient->nickname }}'s Information"
@@ -52,8 +58,9 @@
                     <h4 class="m-0 p-0"><i class="fa-solid fa-file-pen"></i></h4>
                 </button>
 
+                <!-- DELETE -->
                 <button
-                data-src="{{-- route('patient.destroy',$patient->id) --}}"
+                data-src="{{ route('patient.destroy', $patient->id) }}"
                 data-title="Delete {{ $patient->nickname }}'s Information"
                 data-paragraph="Do you want to delete {{ $patient->nickname }}'s patient information?"
                 data-color="bg-danger"
@@ -65,7 +72,7 @@
                     
                 @endif
 
-                <a href="{{ route('page.calendar') }}" class="btn border-0 outlined-hover-to-grayish m-0 ms-2 p-0">
+                <a href="{{ $calendar_route }}" class="btn border-0 outlined-hover-to-grayish m-0 ms-2 p-0">
                     <h4 class="m-0 p-0"><i class="fa-regular fa-calendar-xmark"></i></h4>
                 </a>
             </div>

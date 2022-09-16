@@ -4,7 +4,7 @@
     $is_edited = Route::current()->getName() == 'patient.edit';
     $route = $is_edited ? route('patient.update', $patient->id) : route('patient.store');
     $check_male = ''; $check_female = '';
-    $check_male = ''; $check_female = '';
+    $check_diy = ''; $check_din = '';
     $btn = $is_edited ? 'Update' : 'Confirm';
     $color = $is_edited ? 'btn-warning' : 'bg-success';
     
@@ -116,7 +116,7 @@
                         <!-- Second Row -->
                         <div class="col-7 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="birth_date">Birth Date <strong class="text-danger ms-1">*</strong></label>
-                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="date" name="birth_date" value="{{ $is_edited ? $check->retime($patient->birth_date) : '' }}">
+                            <input required class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="date" name="birth_date">
                         </div>
 
                         <div class="col-3 mt-4 mb-3">
@@ -124,13 +124,13 @@
                             <div class="row mt-2">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input {{ $check_male }} required type="radio" name="sex" value="male">
+                                        <input {{ $is_edited ? $check_male : '' }} required type="radio" name="sex" value="male">
                                         <label class="weight-600" for="sex">M</label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input {{ $check_female }} required type="radio" name="sex" value="female">
+                                        <input {{ $is_edited ? $check_female : '' }} required type="radio" name="sex" value="female">
                                         <label class="weight-600" for="sex">FM</label><br>
                                     </div>
                                 </div>
@@ -178,13 +178,13 @@
                             <div class="row mt-2">
                                 <div class="col-6 m-0 p-0">
                                     <div class="pe-3 border border-0 rounded-start form-control-left py-1 px-2 text-end">
-                                        <input {{ $check_diy }} required type="radio" name="dental_insurance" value="1">
+                                        <input {{ $is_edited ? $check_diy : '' }} required type="radio" name="dental_insurance" value="1">
                                         <label class="weight-600" for="dental_insurance">Yes</label><br>
                                     </div>
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <div class="ps-3 border border-0 rounded-end form-control-right py-1 px-2">
-                                        <input {{ $check_din }} required type="radio" name="dental_insurance" value="0">
+                                        <input {{ $is_edited ? $check_din : '' }} required type="radio" name="dental_insurance" value="0">
                                         <label class="weight-600" for="dental_insurance">No</label><br>
                                     </div>
                                 </div>
@@ -199,7 +199,7 @@
 
                         <div class="col-6 mt-4 mb-3">
                             <label class="d-block roboto weight-500 mb-0 pb-0 ps-1" for="effective_date">Effective Date</label>
-                            <input class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="date" name="effective_date" value="{{ $is_edited ? $check->retime_empty($patient->effective_date) : '' }}">
+                            <input class="w-100 border border-secondary rounded px-3 py-1 mt-2" type="date" name="effective_date" value="{{ $is_edited ? $check->redate_empty($patient->effective_date) : '' }}">
                         </div>
 
                         <!-- Eight Row -->

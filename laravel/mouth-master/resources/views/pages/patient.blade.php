@@ -83,8 +83,29 @@
                                         <td class="py-2"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">{{ $patient_el->sex }}</p></td>
                                         <td class="py-2"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">{{ $patient_el->home_address }}</p></td>
                                         <td class="py-2"><p class="text-dark roboto fs-sm weight-500 m-1 p-0">{{ (isset($patient_el->phone_no)) ? $patient_el->phone_no : 'none' }}</p></td>
+                                        
                                         <td class="text-end py-2 pe-2" width="20%">
-                                            <button class="btn btn-danger hover-to-dark text-light rounded px-2 py-1"><i class="fa-solid fa-trash"></i></button>
+                                            <!-- EDIT -->
+                                            <button 
+                                            data-src="{{ route('patient.edit', $patient_el->id) }}"
+                                            data-title="Edit {{ $patient_el->nickname }}'s Information"
+                                            data-paragraph="Do you want to Edit {{ $patient_el->nickname }}'s patient information?"
+                                            data-color="bg-warning"
+                                            data-btn="Edit"   
+                                            data-target="GET" 
+                                            class="modal-trigger btn btn-warning hover-to-dark text-light rounded px-2 py-1"><i class="fa-solid fa-pen-to-square"></i></button>
+
+                                            <!-- DELETE -->
+                                            <button 
+                                            data-src="{{ route('patient.destroy', $patient_el->id) }}"
+                                            data-title="Delete {{ $patient_el->nickname }}'s Information"
+                                            data-paragraph="Do you want to delete {{ $patient_el->nickname }}'s patient information?"
+                                            data-color="bg-danger"
+                                            data-btn="Delete"  
+                                            data-target="POST" 
+                                            class="modal-trigger btn btn-danger hover-to-dark text-light rounded px-2 py-1"><i class="fa-solid fa-trash"></i></button>
+                                            
+                                            <!-- VISIT -->
                                             <a href="{{ route('patient.show', $patient_el->id) }}" class="btn btn-success hover-to-dark text-light rounded px-2 py-1"><i class="fa-solid fa-eye"></i></a>
                                         </td>
                                     </tr>

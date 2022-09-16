@@ -17,7 +17,8 @@ class Appointment extends Model
         'paid',
         'appointment',
         'start_time',
-        'end_time'
+        'end_time',
+        'color', 'done'
     ];
 
     public $table = 'appointments';

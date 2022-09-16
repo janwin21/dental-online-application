@@ -76,49 +76,8 @@
                         </div>
 
                         <div class="calendar col-12 mb-5 mt-3">
-                            <table class="w-100">
-                                <!--
-                                <tr>
-                                    <th class="text-center"><p class="text-success roboto">SUN</p></th>
-                                    <th class="text-center"><p class="text-success roboto">MON</p></th>
-                                    <th class="text-center"><p class="text-success roboto">TUE</p></th>
-                                    <th class="text-center"><p class="text-success roboto">WED</p></th>
-                                    <th class="text-center"><p class="text-success roboto">THU</p></th>
-                                    <th class="text-center"><p class="text-success roboto">FRI</p></th>
-                                    <th class="text-center"><p class="text-success roboto">SAT</p></th>
-                                </tr>
-                                
-                                <tr>
-                                    <td class="text-center"><a class="text-dark roboto btn btn-light hover-to-grayish px-3 py-4 rounded shadow-none" href="#">00</a></td>
-                                    <td class="text-center"><a class="text-dark roboto btn btn-light hover-to-grayish px-3 py-4 rounded shadow-none" href="#">00</a></td>
-                                    <td class="text-center"><a class="text-dark roboto btn btn-light hover-to-grayish px-3 py-4 rounded shadow-none" href="#">00</a></td>
-                                    <td class="text-center"><a class="text-dark roboto btn btn-light hover-to-grayish px-3 py-4 rounded shadow-none" href="#">00</a></td>
-                                    <td class="text-center"><a class="text-dark roboto btn btn-light hover-to-grayish px-3 py-4 rounded shadow-none" href="#">00</a></td>
-                                    <td class="text-center"><a class="text-dark roboto btn btn-light hover-to-grayish px-3 py-4 rounded shadow-none" href="#">00</a></td>
-                                    <td class="text-center"><a class="text-dark roboto btn btn-light hover-to-grayish px-3 py-4 rounded shadow-none" href="#">00</a></td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <a class="text-dark roboto btn btn-light hover-to-grayish px-3 py-4 rounded shadow-none" href="#">00</a>
-                                    </td>
-                                    <td class="text-center"><a class="text-dark roboto btn btn-light hover-to-grayish px-3 py-4 rounded shadow-none" href="#">00</a></td>
-                                    <td class="text-center"><a class="text-dark roboto btn btn-light hover-to-grayish px-3 py-4 rounded shadow-none" href="#">00</a></td>
-                                    <td class="text-center"><a class="text-dark roboto btn btn-light hover-to-grayish px-3 py-4 rounded shadow-none" href="#">00</a></td>
-                                    <td class="text-center"><a class="text-dark roboto btn btn-light hover-to-grayish px-3 py-4 rounded shadow-none" href="#">00</a></td>
-                                    <td class="text-center"><a class="text-dark roboto btn btn-light hover-to-grayish px-3 py-4 rounded shadow-none" href="#">00</a></td>
-                                    <td class="text-center"><a class="text-dark roboto btn btn-light hover-to-grayish px-3 py-4 rounded shadow-none" href="#">00</a></td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center"><a class="text-dark roboto btn btn-light hover-to-grayish px-3 py-4 rounded shadow-none" href="#">00</a></td>
-                                    <td class="text-center"><a class="text-dark roboto btn btn-light hover-to-grayish px-3 py-4 rounded shadow-none" href="#">00</a></td>
-                                    <td class="text-center"><a class="text-dark roboto btn btn-light hover-to-grayish px-3 py-4 rounded shadow-none" href="#">00</a></td>
-                                    <td class="text-center"><a class="text-dark roboto btn btn-light hover-to-grayish px-3 py-4 rounded shadow-none" href="#">00</a></td>
-                                    <td class="text-center"><a class="text-dark roboto btn btn-light hover-to-grayish px-3 py-4 rounded shadow-none" href="#">00</a></td>
-                                    <td class="text-center"><a class="text-dark roboto btn btn-light hover-to-grayish px-3 py-4 rounded shadow-none" href="#">00</a></td>
-                                    <td class="text-center"><a class="text-dark roboto btn btn-light hover-to-grayish px-3 py-4 rounded shadow-none" href="#">00</a></td>
-                                </tr>
-                                -->
-                            </table>
+                            <!-- Calendar Table -->
+                            <table class="w-100"></table>
                         </div>
 
                     </div>
@@ -168,51 +127,23 @@
     <script>
         
         const appointmentSettings = [
+
+            @if(isset($appointments))
+            @foreach ($appointments as $appointment)
+
             {
                 route: 1,
-                name: 'last_name, first_name, mi. 1',
-                done: true,
-                color: 'blue',
-                date: '2022-09-09',
-                startTime: '10:50 AM',
-                endTime: '1:30 PM'
+                name: 
+                '{{ $appointment->patient->last_name }}, {{ $appointment->patient->first_name }} {{ $appointment->patient->middle_initial }}',
+                done: {{ ($appointment->done) ? 'true' : 'false' }},
+                color: '{{ $appointment->color }}',
+                date: '{{ $appointment->appointment }}',
+                startTime: '{{ $check->time($appointment->start_time) }}',
+                endTime: '{{ $check->time($appointment->end_time) }}'
             },
-            {
-                route: 2,
-                name: 'last_name, first_name, mi. 2',
-                done: false,
-                color: 'indigo',
-                date: '2022-09-09',
-                startTime: '2:00 PM',
-                endTime: '3:00 PM'
-            },
-            {
-                route: 3,
-                name: 'last_name, first_name, mi. 3',
-                done: false,
-                color: 'yellow',
-                date: '2022-09-09',
-                startTime: '4:00 PM',
-                endTime: '6:00 PM'
-            },
-            {
-                route: 4,
-                name: 'last_name, first_name, mi. 4',
-                done: true,
-                color: 'indigo',
-                date: '2022-09-11',
-                startTime: '2:00 PM',
-                endTime: '3:00 PM'
-            },
-            {
-                route: 5,
-                name: 'last_name, first_name, mi. 5',
-                done: false,
-                color: 'yellow',
-                date: '2022-09-13',
-                startTime: '4:00 PM',
-                endTime: '6:00 PM'
-            }
+                
+            @endforeach
+            @endif
         ]
 
     </script>
